@@ -2,8 +2,10 @@ name: Build and Release QuickFix
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch: # manual trigger
+    branches: [master]
+    paths:
+      - 'quickfix.py'    # Only trigger if quickfix.py changes
+  workflow_dispatch:    # Manual trigger still allowed
 
 jobs:
   build:
