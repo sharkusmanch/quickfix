@@ -27,8 +27,8 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: chore: auto-refresh mods.json
+          commit-message: "chore: auto-refresh mods.json"
           branch: auto/refresh-mods
-          title: chore: auto-refresh mods.json
+          title: "chore: auto-refresh mods.json"
           body-path: pr_body.md
           delete-branch: true
