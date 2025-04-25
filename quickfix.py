@@ -11,7 +11,7 @@ import re
 import winreg
 from datetime import datetime
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 DEBUG_MODE = False
 
@@ -39,14 +39,34 @@ def fetch_latest_mods_json():
     return response.json()
 
 def load_local_mods_json():
-    if os.path.exists("mods.json"):
-        with open("mods.json", "r", encoding="utf-8") as f:
+    # Get the AppData path and define the folder for QuickFix
+    appdata_path = os.getenv("APPDATA")
+    quickfix_path = os.path.join(appdata_path, "QuickFix")
+
+    # Create the QuickFix directory if it doesn't exist
+    if not os.path.exists(quickfix_path):
+        os.makedirs(quickfix_path)
+
+    LOCAL_MODS_JSON = os.path.join(quickfix_path, "mods.json")
+
+    if os.path.exists(LOCAL_MODS_JSON):
+        with open(LOCAL_MODS_JSON, "r", encoding="utf-8") as f:
             return json.load(f)
     else:
         return {}
 
 def save_local_mods_json(mods):
-    with open("mods.json", "w", encoding="utf-8") as f:
+    # Get the AppData path and define the folder for QuickFix
+    appdata_path = os.getenv("APPDATA")
+    quickfix_path = os.path.join(appdata_path, "QuickFix")
+
+    # Create the QuickFix directory if it doesn't exist
+    if not os.path.exists(quickfix_path):
+        os.makedirs(quickfix_path)
+
+    LOCAL_MODS_JSON = os.path.join(quickfix_path, "mods.json")
+
+    with open(LOCAL_MODS_JSON, "w", encoding="utf-8") as f:
         json.dump(mods, f, indent=2, ensure_ascii=False)
 
 def get_steam_root():
@@ -276,17 +296,36 @@ def write_mod_marker(mod_id, version, install_path):
 
     print(f"[INFO] Wrote installation marker for {mod_id} at {marker_file}")
 
+def list_available_mods(mods):
+    """Lists all available mods."""
+    if not mods:
+        print("[INFO] No mods available.")
+        return
+
+    print(f"\n[INFO] Available mods: {len(mods)}")
+    for mod_id, mod in mods.items():
+        print(f"\nMod ID: {mod_id}")
+        print(f"  Repo: {mod['repo']}")
+        print(f"  Config files: {', '.join(mod.get('config_files', []))}")
+        for game in mod.get("games", []):
+            print(f"  Steam AppID: {game.get('steam_appid')}")
+
 def main():
     global DEBUG_MODE
 
     parser = argparse.ArgumentParser(description="QuickFix - Manage Lyall's PC Game Fixes")
-    parser.add_argument("command", choices=["install", "update", "open-config"], help="Command to run")
+    parser.add_argument("command", choices=["install", "update", "open-config", "list-mods", "--version"], help="Command to run")
     parser.add_argument("mod_id", nargs="?", help="Mod ID to install or open config (for 'install' or 'open-config' command)")
     parser.add_argument("--all", action="store_true", help="Install or update all mods")
     parser.add_argument("--debug", action="store_true", help="Enable debug logging")
+    parser.add_argument("--version", action="version", version=__version__, help="Show the version")
     args = parser.parse_args()
 
     DEBUG_MODE = args.debug
+
+    # Get the AppData path and define the folder for QuickFix
+    appdata_path = os.getenv("APPDATA")
+    quickfix_path = os.path.join(appdata_path, "QuickFix")
 
     mods = fetch_latest_mods_json()
 
@@ -305,6 +344,9 @@ def main():
             open_config_files(args.mod_id, mods)
         else:
             print("[ERROR] Please specify a mod ID to open its config files.")
+    elif args.command == "list-mods":
+        for mod_id, mod in mods.items():
+            print(f"Mod ID: {mod_id}, Repo: {mod['repo']}")
 
 if __name__ == "__main__":
     main()
