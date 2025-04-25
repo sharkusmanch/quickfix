@@ -44,3 +44,5 @@ coverage.xml
 
 # Local user override configs (optional future)
 config.local.json
+
+pr_body.md

@@ -32,3 +32,5 @@ jobs:
           title: "chore: auto-refresh mods.json"
           body-path: pr_body.md
           delete-branch: true
+          add-paths: |
+            mods.json
