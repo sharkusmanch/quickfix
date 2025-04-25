@@ -11,9 +11,10 @@ import re
 import winreg
 from datetime import datetime
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 DEBUG_MODE = False
+INSTALLED_MODS_FILE = "installed.json"
 
 def debug_print(message):
     if DEBUG_MODE:
@@ -24,10 +25,10 @@ def github_get(url):
     token = os.environ.get("GITHUB_TOKEN")
 
     if token:
-        debug_print(f"🔒 Authenticated GitHub request: {url}")  # Move to debug
+        debug_print(f"🔒 Authenticated GitHub request: {url}")
         headers["Authorization"] = f"Bearer {token}"
     else:
-        debug_print(f"🌐 Public GitHub request: {url}")  # Move to debug
+        debug_print(f"🌐 Public GitHub request: {url}")
 
     return requests.get(url, headers=headers, timeout=10)
 
@@ -38,35 +39,20 @@ def fetch_latest_mods_json():
     response.raise_for_status()
     return response.json()
 
-def load_local_mods_json():
-    # Get the AppData path and define the folder for QuickFix
+def load_installed_mods():
     appdata_path = os.getenv("APPDATA")
-    quickfix_path = os.path.join(appdata_path, "QuickFix")
-
-    # Create the QuickFix directory if it doesn't exist
-    if not os.path.exists(quickfix_path):
-        os.makedirs(quickfix_path)
-
-    LOCAL_MODS_JSON = os.path.join(quickfix_path, "mods.json")
-
-    if os.path.exists(LOCAL_MODS_JSON):
-        with open(LOCAL_MODS_JSON, "r", encoding="utf-8") as f:
+    installed_mods_path = os.path.join(appdata_path, "QuickFix", INSTALLED_MODS_FILE)
+    if os.path.exists(installed_mods_path):
+        with open(installed_mods_path, "r", encoding="utf-8") as f:
             return json.load(f)
     else:
         return {}
 
-def save_local_mods_json(mods):
-    # Get the AppData path and define the folder for QuickFix
+def save_installed_mods(mods):
     appdata_path = os.getenv("APPDATA")
-    quickfix_path = os.path.join(appdata_path, "QuickFix")
-
-    # Create the QuickFix directory if it doesn't exist
-    if not os.path.exists(quickfix_path):
-        os.makedirs(quickfix_path)
-
-    LOCAL_MODS_JSON = os.path.join(quickfix_path, "mods.json")
-
-    with open(LOCAL_MODS_JSON, "w", encoding="utf-8") as f:
+    installed_mods_path = os.path.join(appdata_path, "QuickFix", INSTALLED_MODS_FILE)
+    os.makedirs(os.path.dirname(installed_mods_path), exist_ok=True)
+    with open(installed_mods_path, "w", encoding="utf-8") as f:
         json.dump(mods, f, indent=2, ensure_ascii=False)
 
 def get_steam_root():
@@ -163,6 +149,8 @@ def install_mod(mod_id, mods, force=False):
         print(f"[ERROR] Could not retrieve latest release for {mod_id}.")
         return
 
+    installed_mods = load_installed_mods()
+
     for game in games:
         appid = game["steam_appid"]
         game_name = get_steam_game_name(appid)
@@ -172,15 +160,19 @@ def install_mod(mod_id, mods, force=False):
             print(f"[WARN] Could not find install path for {game_name}")
             continue
 
-        if not force and is_mod_already_installed(mod_id, install_path):
-            print(f"[INFO] {mod_id} already installed for {game_name}. Skipping.")
-            continue
+        # Check if the mod is installed and if the version needs an update
+        if mod_id in installed_mods:
+            installed_version = installed_mods[mod_id]
+            if installed_version == version and not force:
+                print(f"[INFO] Mod {mod_id} is already up to date for {game_name}. Skipping.")
+                continue
 
         print(f"[INFO] Installing {mod_id} for {game_name} ({version})...")
         try:
             zip_path = download_mod_zip(download_url)
             extract_zip(zip_path, install_path)
-            write_mod_marker(mod_id, version, install_path)
+            installed_mods[mod_id] = version  # Update version in installed mods
+            save_installed_mods(installed_mods)  # Save the updated installed mods info
             print(f"[INFO] Installation complete for {game_name}!")
         finally:
             if os.path.exists(zip_path):
@@ -190,6 +182,46 @@ def install_all_mods(mods):
     print("[INFO] Scanning all available mods for installed games...")
     for mod_id in mods.keys():
         install_mod(mod_id, mods, force=False)
+
+def update_cache():
+    print("[INFO] Fetching latest mods.json from GitHub and updating local cache...")
+    mods_json = fetch_latest_mods_json()
+    save_local_mods_json(mods_json)
+    print("[INFO] Cache updated successfully.")
+
+def save_local_mods_json(mods):
+    # Get the AppData path and define the folder for QuickFix
+    appdata_path = os.getenv("APPDATA")
+    quickfix_path = os.path.join(appdata_path, "QuickFix")
+
+    # Create the QuickFix directory if it doesn't exist
+    if not os.path.exists(quickfix_path):
+        os.makedirs(quickfix_path)
+
+    LOCAL_MODS_JSON = os.path.join(quickfix_path, "mods.json")
+
+    with open(LOCAL_MODS_JSON, "w", encoding="utf-8") as f:
+        json.dump(mods, f, indent=2, ensure_ascii=False)
+
+def download_mod_zip(download_url):
+    print(f"[INFO] Downloading mod from {download_url}...")
+    response = requests.get(download_url, stream=True, timeout=30)
+    response.raise_for_status()
+
+    temp_fd, temp_path = tempfile.mkstemp(suffix=".zip")
+    os.close(temp_fd)
+
+    with open(temp_path, "wb") as f:
+        for chunk in response.iter_content(chunk_size=8192):
+            f.write(chunk)
+
+    debug_print(f"Downloaded mod zip to: {temp_path}")
+    return temp_path
+
+def extract_zip(zip_path, extract_to):
+    print(f"[INFO] Extracting mod zip to {extract_to}...")
+    with zipfile.ZipFile(zip_path, "r") as zip_ref:
+        zip_ref.extractall(extract_to)
 
 def open_config_files(mod_id, mods):
     mod = mods.get(mod_id)
@@ -233,7 +265,6 @@ def open_config_files(mod_id, mods):
 
     print(f"[WARN] Could not find installed game for {mod_id}.")
 
-
 def get_latest_release_info(repo):
     url = f"https://api.github.com/repos/{repo}/releases/latest"
     response = github_get(url)
@@ -252,73 +283,16 @@ def get_latest_release_info(repo):
         print(f"[ERROR] Could not fetch release info for {repo}.")
         return None, None
 
-def is_mod_already_installed(mod_id, install_path):
-    marker_file = os.path.join(install_path, ".quickfix")
-    if os.path.exists(marker_file):
-        with open(marker_file, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            # Check if the mod_id exists in the marker file and matches the version
-            if data.get("mod_name") == mod_id:
-                print(f"[INFO] Mod {mod_id} already installed.")
-                return True
-    return False
-
-def download_mod_zip(download_url):
-    print(f"[INFO] Downloading mod from {download_url}...")
-    response = requests.get(download_url, stream=True, timeout=30)
-    response.raise_for_status()
-
-    temp_fd, temp_path = tempfile.mkstemp(suffix=".zip")
-    os.close(temp_fd)
-
-    with open(temp_path, "wb") as f:
-        for chunk in response.iter_content(chunk_size=8192):
-            f.write(chunk)
-
-    debug_print(f"Downloaded mod zip to: {temp_path}")
-    return temp_path
-
-def extract_zip(zip_path, extract_to):
-    print(f"[INFO] Extracting mod zip to {extract_to}...")
-    with zipfile.ZipFile(zip_path, "r") as zip_ref:
-        zip_ref.extractall(extract_to)
-
-def write_mod_marker(mod_id, version, install_path):
-    marker_file = os.path.join(install_path, ".quickfix")
-    mod_data = {
-        "mod_name": mod_id,
-        "version": version,
-        "installed_at": datetime.now().isoformat()
-    }
-
-    with open(marker_file, "w", encoding="utf-8") as f:
-        json.dump(mod_data, f, indent=2, ensure_ascii=False)
-
-    print(f"[INFO] Wrote installation marker for {mod_id} at {marker_file}")
-
-def list_available_mods(mods):
-    """Lists all available mods."""
-    if not mods:
-        print("[INFO] No mods available.")
-        return
-
-    print(f"\n[INFO] Available mods: {len(mods)}")
-    for mod_id, mod in mods.items():
-        print(f"\nMod ID: {mod_id}")
-        print(f"  Repo: {mod['repo']}")
-        print(f"  Config files: {', '.join(mod.get('config_files', []))}")
-        for game in mod.get("games", []):
-            print(f"  Steam AppID: {game.get('steam_appid')}")
-
 def main():
     global DEBUG_MODE
 
     parser = argparse.ArgumentParser(description="QuickFix - Manage Lyall's PC Game Fixes")
-    parser.add_argument("command", choices=["install", "update", "open-config", "list-mods", "--version"], help="Command to run")
+    parser.add_argument("command", choices=["install", "update", "update-cache", "open-config", "list-mods"], help="Command to run")
     parser.add_argument("mod_id", nargs="?", help="Mod ID to install or open config (for 'install' or 'open-config' command)")
     parser.add_argument("--all", action="store_true", help="Install or update all mods")
     parser.add_argument("--debug", action="store_true", help="Enable debug logging")
     parser.add_argument("--version", action="version", version=__version__, help="Show the version")
+
     args = parser.parse_args()
 
     DEBUG_MODE = args.debug
@@ -337,16 +311,18 @@ def main():
         else:
             print("[ERROR] Please specify a mod ID or --all")
     elif args.command == "update":
-        save_local_mods_json(mods)
-        print(f"[INFO] Updated {LOCAL_MODS_PATH}.")
+        install_all_mods(mods)  # Update installed mods
+    elif args.command == "update-cache":
+        update_cache()  # Force update cache
     elif args.command == "open-config":
         if args.mod_id:
             open_config_files(args.mod_id, mods)
         else:
             print("[ERROR] Please specify a mod ID to open its config files.")
     elif args.command == "list-mods":
-        for mod_id, mod in mods.items():
-            print(f"Mod ID: {mod_id}, Repo: {mod['repo']}")
+        print("[INFO] Listing all available mods:")
+        for mod_id in mods.keys():
+            print(f"- {mod_id}")
 
 if __name__ == "__main__":
     main()
