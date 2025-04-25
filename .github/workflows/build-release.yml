@@ -25,11 +25,17 @@ jobs:
 
       - name: Extract version from quickfix.py
         id: get_version
-        shell: bash
+        shell: pwsh
         run: |
-          VERSION=$(grep '__version__' quickfix.py | cut -d'"' -f2)
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "Detected version: $VERSION"
+          $content = Get-Content quickfix.py
+          if ($content -match '__version__ = "(?<version>[\d\.]+)"') {
+            $version = $matches.version
+            echo "VERSION=$version" >> $env:GITHUB_ENV
+            echo "Detected version: $version"
+          } else {
+            echo "Failed to find version!"
+            exit 1
+          }
 
       - name: Build executable
         run: pyinstaller --onefile quickfix.py

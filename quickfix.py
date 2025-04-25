@@ -11,6 +11,8 @@ import re
 import winreg
 from datetime import datetime
 
+__version__ = "1.0.0"
+
 DEBUG_MODE = False
 
 def debug_print(message):
