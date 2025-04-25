@@ -1,196 +1,111 @@
+import argparse
 import os
+import sys
 import requests
 import zipfile
-import shutil
+import io
 import json
-import re
-import configparser
-import sys
+import shutil
+import time
+from datetime import datetime
+from colorama import Fore, Style, init
 
-from io import BytesIO
-from colorama import init, Fore, Style
-
-# Initialize colorama
+# Initialize Colorama
 init(autoreset=True)
 
+# Constants
+QUICKFIX_VERSION = "0.1.0"
 MOD_MARKER_FILENAME = ".quickfix"
+CACHE_FILE = ".cache/mods.json"
+CACHE_EXPIRY_SECONDS = 3600  # 1 hour
+MODS_JSON_URL = "https://raw.githubusercontent.com/sharkusmanch/quickfix/master/mods.json"
 DEFAULT_STEAM_PATH = "C:/Program Files (x86)/Steam"
 
-# -------- Color print helpers --------
+# Utilities
+def print_info(message):
+    print(f"{Fore.CYAN}[INFO]{Style.RESET_ALL} {message}")
 
 def print_success(message):
-    print(f"{Fore.GREEN}{message}{Style.RESET_ALL}")
+    print(f"{Fore.GREEN}[SUCCESS]{Style.RESET_ALL} {message}")
 
 def print_warning(message):
-    print(f"{Fore.YELLOW}{message}{Style.RESET_ALL}")
+    print(f"{Fore.YELLOW}[WARNING]{Style.RESET_ALL} {message}")
 
 def print_error(message):
-    print(f"{Fore.RED}{message}{Style.RESET_ALL}")
+    print(f"{Fore.RED}[ERROR]{Style.RESET_ALL} {message}")
 
-def print_info(message):
-    print(f"{Fore.CYAN}{message}{Style.RESET_ALL}")
+# Core Functions
+def fetch_remote_mods_json():
+    response = requests.get(MODS_JSON_URL)
+    response.raise_for_status()
+    return response.json()
 
-# -------- Core functions --------
-
-
-
-def load_mods(custom_mods_path=None):
+def load_mods(custom_mods_path=None, force_refresh=False):
     if custom_mods_path:
         if not os.path.exists(custom_mods_path):
             print_error(f"Custom mods file '{custom_mods_path}' not found.")
             sys.exit(1)
         with open(custom_mods_path, "r") as f:
             return json.load(f)
+
+    if force_refresh or not os.path.exists(CACHE_FILE) or (time.time() - os.path.getmtime(CACHE_FILE)) > CACHE_EXPIRY_SECONDS:
+        print_info("Fetching latest mods.json from GitHub...")
+        mods = fetch_remote_mods_json()
+        os.makedirs(os.path.dirname(CACHE_FILE), exist_ok=True)
+        with open(CACHE_FILE, "w") as f:
+            json.dump(mods, f, indent=2)
     else:
-        # Load embedded mods.json relative to exe
-        base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-        with open(os.path.join(base_path, "mods.json"), "r") as f:
-            return json.load(f)
+        print_info("Using cached mods.json...")
+        with open(CACHE_FILE, "r") as f:
+            mods = json.load(f)
 
+    return mods
 
-def find_steam_libraries(steam_root):
-    library_vdf = os.path.join(steam_root, "steamapps", "libraryfolders.vdf")
-    libraries = [os.path.join(steam_root, "steamapps")]
+def get_installed_games():
+    steamapps_path = os.path.join(DEFAULT_STEAM_PATH, "steamapps", "common")
+    if not os.path.exists(steamapps_path):
+        print_error("Steam library not found at expected location.")
+        sys.exit(1)
+    return {game: os.path.join(steamapps_path, game) for game in os.listdir(steamapps_path)}
 
-    if not os.path.exists(library_vdf):
-        raise FileNotFoundError(f"libraryfolders.vdf not found at {library_vdf}")
-
-    with open(library_vdf, "r") as f:
-        content = f.read()
-
-    matches = re.findall(r'"\d+"\s*{\s*"path"\s*"([^"]+)"', content, re.MULTILINE)
-    for match in matches:
-        libraries.append(os.path.join(match.replace('\\\\', '\\'), "steamapps"))
-
-    return libraries
-
-def find_game_install_path(appid, steam_root=DEFAULT_STEAM_PATH):
-    libraries = find_steam_libraries(steam_root)
-
-    for library in libraries:
-        manifest_path = os.path.join(library, f"appmanifest_{appid}.acf")
-        if os.path.exists(manifest_path):
-            with open(manifest_path, "r", encoding="utf-8") as f:
-                content = f.read()
-            install_dir_match = re.search(r'"installdir"\s+"([^"]+)"', content)
-            if install_dir_match:
-                install_dir = install_dir_match.group(1)
-                return os.path.join(library, "common", install_dir)
+def find_game_path(game_name):
+    installed = get_installed_games()
+    for name, path in installed.items():
+        if game_name.lower() in name.lower():
+            return path
     return None
 
-def get_installable_games(mod):
-    installable_games = []
-    if "games" not in mod:
-        return installable_games
-
-    for game in mod["games"]:
-        try:
-            path = find_game_install_path(game["steam_appid"])
-            if path:
-                installable_games.append((game, path))
-        except Exception:
-            continue
-    return installable_games
-
-def download_zip(url):
-    print_info(f"Downloading {url}...")
-    response = requests.get(url)
-    response.raise_for_status()
-    return BytesIO(response.content)
-
-# -------- New function for merging INI files --------
-
-def merge_ini_configs(existing_config_path, new_config_path):
-    old_config = configparser.ConfigParser()
-    old_config.read(existing_config_path, encoding='utf-8')
-
-    new_config = configparser.ConfigParser()
-    new_config.read(new_config_path, encoding='utf-8')
-
-    merged = configparser.ConfigParser()
-
-    # Copy everything from new config first
-    for section in new_config.sections():
-        merged.add_section(section)
-        for key, value in new_config.items(section):
-            merged.set(section, key, value)
-
-    # Now override with user's settings
-    for section in old_config.sections():
-        if not merged.has_section(section):
-            merged.add_section(section)
-        for key, value in old_config.items(section):
-            merged.set(section, key, value)
-
-    # Save merged config back to existing path
-    with open(existing_config_path, "w", encoding='utf-8') as f:
-        merged.write(f)
-
-# -------- Updated extraction function --------
-
-def extract_zip(zip_data, install_path, config_files):
-    print_info(f"Installing to {install_path}...")
-    with zipfile.ZipFile(zip_data) as z:
-        for member in z.namelist():
-            target_path = os.path.join(install_path, member)
-
-            # Handle config files specially
-            if any(member.endswith(config) for config in config_files):
-                if os.path.exists(target_path):
-                    # Extract new config temporarily
-                    temp_new_config_path = target_path + ".new"
-                    with open(temp_new_config_path, "wb") as f:
-                        f.write(z.read(member))
-
-                    print_info(f"Merging config {member}...")
-                    merge_ini_configs(target_path, temp_new_config_path)
-
-                    os.remove(temp_new_config_path)
-                else:
-                    z.extract(member, install_path)
-            else:
-                z.extract(member, install_path)
-    print_success("Extraction complete.")
-
-def write_mod_marker(install_path, mod_name, version, game_name):
-    marker_path = os.path.join(install_path, MOD_MARKER_FILENAME)
-    data = {
-        "mod_name": mod_name,
+def write_mod_marker(install_path, mod_id, game_name, version):
+    marker = {
+        "mod_name": mod_id,
         "game_name": game_name,
         "version": version,
-        "installed_at": __import__('datetime').datetime.now().isoformat()
+        "installed_at": datetime.utcnow().isoformat()
     }
-    with open(marker_path, "w") as f:
-        json.dump(data, f, indent=2)
-    print_success(f"Wrote version marker at {marker_path}")
+    with open(os.path.join(install_path, MOD_MARKER_FILENAME), "w") as f:
+        json.dump(marker, f, indent=2)
 
 def get_installed_version(install_path):
     marker_path = os.path.join(install_path, MOD_MARKER_FILENAME)
     if not os.path.exists(marker_path):
         return None
     with open(marker_path, "r") as f:
-        data = json.load(f)
-    return data.get("version")
+        marker = json.load(f)
+        return marker.get("version")
 
-# -------- GitHub API functions --------
-
-def get_latest_release_asset(repo):
+def fetch_release_info(repo):
     url = f"https://api.github.com/repos/{repo}/releases/latest"
-
     token = os.getenv("GITHUB_TOKEN")
     headers = {'Authorization': f'token {token}'} if token else {}
-
     response = requests.get(url, headers=headers)
     if response.status_code == 404:
-        print_warning(f"No releases found for {repo}. Skipping.")
         return None, None
     if response.status_code != 200:
         print_error(f"Failed to fetch release info for {repo} (HTTP {response.status_code})")
         return None, None
 
     release_info = response.json()
-    raw_version = release_info.get("tag_name")
-
+    version = release_info.get("tag_name")
     assets = release_info.get("assets", [])
     if not assets:
         print_error(f"No assets found for {repo}")
@@ -198,49 +113,49 @@ def get_latest_release_asset(repo):
 
     asset = assets[0]
     download_url = asset["browser_download_url"]
+    return version.lstrip("v"), download_url
 
-    return raw_version, download_url
+def download_and_extract(url, install_path):
+    response = requests.get(url)
+    response.raise_for_status()
+    with zipfile.ZipFile(io.BytesIO(response.content)) as zip_ref:
+        zip_ref.extractall(install_path)
 
-
-# -------- Install / Update Logic --------
-
-def install_mod(mod_id, mods, force=False, version_override=None):
-    if mod_id not in mods:
+def install_mod(mod_id, mods, force=False):
+    mod = mods.get(mod_id)
+    if not mod:
         print_error(f"Mod {mod_id} not found.")
         return
 
-    mod = mods[mod_id]
-    installable_games = get_installable_games(mod)
-
-    if not installable_games:
-        print_warning(f"No supported games installed for {mod_id}. Skipping.")
+    games = mod.get("games", [])
+    if not games:
+        print_warning(f"No associated games for {mod_id}. Skipping.")
         return
 
-    raw_version, download_url = get_latest_release_asset(mod["repo"])
-    if not raw_version or not download_url:
-        print_error(f"Could not retrieve latest release for {mod_id}")
-        return
+    # Find installed game
+    for game in games:
+        game_name = game["name"]
+        install_path = find_game_path(game_name)
+        if install_path:
+            version, download_url = fetch_release_info(mod["repo"])
+            if not version or not download_url:
+                return
 
-    latest_version = raw_version.lstrip('v')
-    version_to_install = version_override or latest_version
+            installed_version = get_installed_version(install_path)
+            if installed_version == version and not force:
+                print_success(f"{mod_id} is already up-to-date ({version}).")
+                return
 
-    for game, install_path in installable_games:
-        marker_path = os.path.join(install_path, MOD_MARKER_FILENAME)
-        installed_version = None
+            print_info(f"Installing {mod_id} for {game_name} (v{version})...")
+            download_and_extract(download_url, install_path)
+            write_mod_marker(install_path, mod_id, game_name, version)
+            print_success(f"Installed {mod_id} at {install_path}")
+            return
 
-        if os.path.exists(marker_path):
-            with open(marker_path, "r") as f:
-                data = json.load(f)
-                installed_version = data.get("version")
+    print_warning(f"No matching installed game found for {mod_id}.")
 
-        if installed_version == version_to_install and not force:
-            print_success(f"{mod_id} ({game['name']}): Already up-to-date (v{installed_version}). Skipping.")
-            continue
-
-        print_info(f"Installing {mod_id} for {game['name']} (v{version_to_install})...")
-        zip_data = download_zip(download_url)
-        extract_zip(zip_data, install_path, mod.get("config_files", []))
-        write_mod_marker(install_path, mod_id, version_to_install, game["name"])
+def update_mod(mod_id, mods):
+    install_mod(mod_id, mods, force=False)
 
 def install_all_mods(mods):
     print_info("Scanning all available mods for installed games...")
@@ -248,95 +163,79 @@ def install_all_mods(mods):
         install_mod(mod_id, mods, force=False)
 
 def update_all_mods(mods):
-    print_info("Checking all installed mods for updates...")
-    for mod_id, mod in mods.items():
-        installable_games = get_installable_games(mod)
-
-        if not installable_games:
-            continue
-
-        raw_version, download_url = get_latest_release_asset(mod["repo"])
-        if not raw_version or not download_url:
-            print_error(f"- Failed to check {mod_id}, skipping.")
-            continue
-
-        latest_version = raw_version.lstrip('v')
-
-        for game, install_path in installable_games:
-            marker_path = os.path.join(install_path, MOD_MARKER_FILENAME)
-            installed_version = None
-
-            if os.path.exists(marker_path):
-                with open(marker_path, "r") as f:
-                    data = json.load(f)
-                    installed_version = data.get("version")
-
-            if not installed_version:
-                print_warning(f"- {mod_id} ({game['name']}): Not installed, skipping.")
-                continue
-
-            if installed_version != latest_version:
-                print_warning(f"- {mod_id} ({game['name']}): Needs update {installed_version} → {latest_version}")
-                install_mod(mod_id, mods, force=True, version_override=latest_version)
-            else:
-                print_success(f"- {mod_id} ({game['name']}): Up-to-date (v{installed_version})")
+    print_info("Checking for updates for all installed mods...")
+    for mod_id in mods:
+        install_mod(mod_id, mods, force=False)
 
 def list_mods(mods):
     print_info("Available mods:")
-    for mod_id in mods:
+    for mod_id, mod in mods.items():
         print(f"- {mod_id}")
 
-def list_installed(mods):
-    print_info("Installed mods:")
+def list_installed_mods(mods):
+    installed = get_installed_games()
+    found_any = False
     for mod_id, mod in mods.items():
-        installable_games = get_installable_games(mod)
+        for game in mod.get("games", []):
+            game_path = find_game_path(game["name"])
+            if game_path and os.path.exists(os.path.join(game_path, MOD_MARKER_FILENAME)):
+                version = get_installed_version(game_path)
+                print(f"- {mod_id} (version {version}) installed for {game['name']}")
+                found_any = True
+    if not found_any:
+        print_info("No installed mods found.")
 
-        for game, install_path in installable_games:
-            version = get_installed_version(install_path)
-            if version:
-                print(f"- {mod_id} ({game['name']}) (v{version})")
-            else:
-                print_warning(f"- {mod_id} ({game['name']}) (not installed)")
-
-# -------- CLI --------
-
-if __name__ == "__main__":
-    import argparse
-
+# Main CLI
+def main():
     parser = argparse.ArgumentParser(description="QuickFix - Lightweight Manager for Lyall's Game Fixes and Patches")
     parser.add_argument("--mods", help="Path to a custom mods.json file", default=None)
+    parser.add_argument("--force-refresh", action="store_true", help="Force download fresh mods.json from GitHub")
+    parser.add_argument("--version", action="store_true", help="Show QuickFix version and exit")
 
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    install_parser = subparsers.add_parser("install")
-    install_parser.add_argument("mod_id", nargs="?", help="Install a specific mod")
-    install_parser.add_argument("--all", action="store_true", help="Install all available mods for installed games")
+    install_parser = subparsers.add_parser("install", help="Install a mod")
+    install_parser.add_argument("mod_id", nargs="?")
+    install_parser.add_argument("--all", action="store_true", help="Install all available mods")
 
-    update_parser = subparsers.add_parser("update")
-    update_parser.add_argument("mod_id", nargs="?", help="Update a specific mod")
+    update_parser = subparsers.add_parser("update", help="Update a mod")
+    update_parser.add_argument("mod_id", nargs="?")
     update_parser.add_argument("--all", action="store_true", help="Update all installed mods")
 
-    subparsers.add_parser("list")
-    subparsers.add_parser("installed")
+    subparsers.add_parser("list", help="List available mods")
+    subparsers.add_parser("installed", help="List installed mods")
 
     args = parser.parse_args()
-    mods = load_mods(custom_mods_path=args.mods)
+
+    if args.version:
+        print(f"QuickFix version {QUICKFIX_VERSION}")
+        sys.exit(0)
+
+    mods = load_mods(custom_mods_path=args.mods, force_refresh=args.force_refresh)
 
     if args.command == "install":
         if args.all:
             install_all_mods(mods)
-        elif args.mod_id:
-            install_mod(args.mod_id, mods, force=False)
         else:
-            print_error("Specify a mod_id to install or use --all.")
+            if not args.mod_id:
+                print_error("Please specify a mod ID to install.")
+                sys.exit(1)
+            install_mod(args.mod_id, mods)
     elif args.command == "update":
         if args.all:
             update_all_mods(mods)
-        elif args.mod_id:
-            install_mod(args.mod_id, mods, force=False)
         else:
-            print_error("Specify a mod_id to update or use --all.")
+            if not args.mod_id:
+                print_error("Please specify a mod ID to update.")
+                sys.exit(1)
+            update_mod(args.mod_id, mods)
     elif args.command == "list":
         list_mods(mods)
     elif args.command == "installed":
-        list_installed(mods)
+        list_installed_mods(mods)
+    else:
+        print_error("Unknown command.")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
