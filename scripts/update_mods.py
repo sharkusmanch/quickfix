@@ -10,22 +10,30 @@ BLOCKLIST = [
 ]
 
 STEAM_SEARCH_API = "https://store.steampowered.com/api/storesearch/?term={}&l=english&cc=US"
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+
+def github_get(url):
+    headers = {"Accept": "application/vnd.github+json"}
+    if GITHUB_TOKEN:
+        headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+    return requests.get(url, headers=headers, timeout=10)
 
 def fetch_repos():
-    response = requests.get("https://api.github.com/users/Lyall/repos?per_page=100")
+    response = github_get("https://api.github.com/users/Lyall/repos?per_page=100")
     response.raise_for_status()
     return response.json()
-
-def load_existing_mods():
-    if os.path.exists("mods.json"):
-        with open("mods.json", "r", encoding="utf-8") as f:
-            return json.load(f)
-    else:
-        return {}
 
 def clean_game_title(title):
     if not title:
         return ""
+
+    substitutions = {
+        "’": "'", "‘": "'", "“": '"', "”": '"',
+        "–": "-", "—": "-"
+    }
+    for bad, good in substitutions.items():
+        title = title.replace(bad, good)
+
     title = unicodedata.normalize("NFKD", title)
     title = title.encode("ASCII", "ignore").decode("ASCII")
     title = re.sub(r"\s+", " ", title).strip()
@@ -34,7 +42,7 @@ def clean_game_title(title):
 def guess_game_from_repo(repo):
     description = repo.get("description", "").strip()
     if not description:
-        return None, None
+        return None
 
     match = re.search(r"for\s+(.+?)(?:\sthat|\sto|\sand|\.\s|$)", description, re.IGNORECASE)
     if match:
@@ -44,7 +52,7 @@ def guess_game_from_repo(repo):
         search_term = re.sub(r"Fix|Patch|Tweak|Plugin|Mod", "", search_term, flags=re.IGNORECASE).strip()
 
     if not search_term:
-        return None, None
+        return None
 
     print(f"🔎 Attempting Steam search for: '{search_term}'...")
 
@@ -55,13 +63,12 @@ def guess_game_from_repo(repo):
         if results:
             best_match = results[0]
             appid = best_match.get("id")
-            name = clean_game_title(best_match.get("name", ""))
-            print(f"✅ Found Steam match: {name} (AppID: {appid})")
-            return appid, name
+            print(f"✅ Found Steam AppID: {appid}")
+            return appid
     except Exception as e:
         print(f"⚠️ Steam search failed for '{search_term}': {e}")
 
-    return None, None
+    return None
 
 def main():
     repos = fetch_repos()
@@ -92,14 +99,13 @@ def main():
                 }
                 updated_mod_ids.append(mod_id)
             else:
-                appid, game_name = guess_game_from_repo(repo)
+                appid = guess_game_from_repo(repo)
                 updated_mods[mod_id] = {
                     "repo": full_name,
                     "config_files": [f"{name}.ini"],
                     "games": [{
-                        "name": game_name,
                         "steam_appid": appid
-                    }] if appid and game_name else []
+                    }] if appid else []
                 }
                 added_mods.append(mod_id)
 
@@ -112,14 +118,25 @@ def main():
             f.write("#### 🆕 New Mods Added:\n")
             for mod_id in added_mods:
                 f.write(f"- [{mod_id}](https://github.com/{updated_mods[mod_id]['repo']})\n")
+                for game in updated_mods[mod_id]["games"]:
+                    f.write(f"  - [Steam App {game['steam_appid']}](https://store.steampowered.com/app/{game['steam_appid']}/)\n")
             f.write("\n")
         if updated_mod_ids:
             f.write("#### ✏️ Existing Mods Updated:\n")
             for mod_id in updated_mod_ids:
                 f.write(f"- [{mod_id}](https://github.com/{updated_mods[mod_id]['repo']})\n")
+                for game in updated_mods[mod_id]["games"]:
+                    f.write(f"  - [Steam App {game['steam_appid']}](https://store.steampowered.com/app/{game['steam_appid']}/)\n")
 
     print("✅ mods.json updated successfully.")
     print("✅ pr_body.md generated for pull request.")
+
+def load_existing_mods():
+    if os.path.exists("mods.json"):
+        with open("mods.json", "r", encoding="utf-8") as f:
+            return json.load(f)
+    else:
+        return {}
 
 if __name__ == "__main__":
     main()

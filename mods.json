@@ -1,303 +1,729 @@
 {
-  "ClairObscurFix": {
-    "repo": "Lyall/ClairObscurFix",
-    "config_files": ["ClairObscurFix.ini"],
-    "games": [
-      {
-        "name": "Clair Obscur: Expedition 33",
-        "steam_appid": 1903340
-      }
-    ]
-  },
   "MandragoraFix": {
     "repo": "Lyall/MandragoraFix",
-    "config_files": ["MandragoraFix.ini"],
+    "config_files": [
+      "MandragoraFix.ini"
+    ],
     "games": [
       {
-        "name": "Mandragora: Whispers of the Witch Tree",
         "steam_appid": 1721060
       }
     ]
   },
   "ACShadowsFix": {
     "repo": "Lyall/ACShadowsFix",
-    "config_files": ["ACShadowsFix.ini"],
+    "config_files": [
+      "ACShadowsFix.ini"
+    ],
     "games": [
       {
-        "name": "Assassin's Creed Shadows",
         "steam_appid": 3159330
       }
     ]
   },
   "AtelierYumiaFix": {
     "repo": "Lyall/AtelierYumiaFix",
-    "config_files": ["AtelierYumiaFix.ini"],
+    "config_files": [
+      "AtelierYumiaFix.ini"
+    ],
     "games": [
       {
-        "name": "Atelier Yumia: The Alchemist of Memories & the Envisioned Land",
         "steam_appid": 3123410
       }
     ]
   },
   "MGSVFix": {
     "repo": "Lyall/MGSVFix",
-    "config_files": ["MGSVFix.ini"],
+    "config_files": [
+      "MGSVFix.ini"
+    ],
     "games": [
       {
-        "name": "Metal Gear Solid V: The Phantom Pain",
         "steam_appid": 287700
       }
     ]
   },
   "RiseOfTheRoninFix": {
     "repo": "Lyall/RiseOfTheRoninFix",
-    "config_files": ["RiseOfTheRoninFix.ini"],
+    "config_files": [
+      "RiseOfTheRoninFix.ini"
+    ],
     "games": [
       {
-        "name": "Rise of the Ronin",
         "steam_appid": 1340990
       }
     ]
   },
   "FF7RemakeFix": {
     "repo": "Lyall/FF7RemakeFix",
-    "config_files": ["FF7RemakeFix.ini"],
+    "config_files": [
+      "FF7RemakeFix.ini"
+    ],
     "games": [
       {
-        "name": "Final Fantasy VII Remake Intergrade",
         "steam_appid": 1462040
       }
     ]
   },
   "DragonTweak": {
     "repo": "Lyall/DragonTweak",
-    "config_files": ["DragonTweak.ini"],
+    "config_files": [
+      "DragonTweak.ini"
+    ],
     "games": [
       {
-        "name": "Like a Dragon: Infinite Wealth",
         "steam_appid": 2072450
       },
       {
-        "name": "Like a Dragon Gaiden: The Man Who Erased His Name",
         "steam_appid": 2375550
       },
       {
-        "name": "Lost Judgment",
         "steam_appid": 2058190
       },
       {
-        "name": "Yakuza: Like a Dragon",
         "steam_appid": 1235140
       },
       {
-        "name": "Judgment",
         "steam_appid": 2058180
       },
       {
-        "name": "Yakuza Kiwami 2",
         "steam_appid": 927380
       },
       {
-        "name": "Yakuza 6: The Song of Life",
         "steam_appid": 1388590
       },
       {
-        "name": "Like a Dragon: Pirate Yakuza in Hawaii",
         "steam_appid": 3061810
       }
     ]
   },
   "FateSamuraiRemnantFix": {
     "repo": "Lyall/FateSamuraiRemnantFix",
-    "config_files": ["FateSamuraiRemnantFix.ini"],
+    "config_files": [
+      "FateSamuraiRemnantFix.ini"
+    ],
     "games": [
       {
-        "name": "Fate/Samurai Remnant",
         "steam_appid": 1902690
       }
     ]
   },
   "FF7RebirthFix": {
     "repo": "Lyall/FF7RebirthFix",
-    "config_files": ["FF7RebirthFix.ini"],
+    "config_files": [
+      "FF7RebirthFix.ini"
+    ],
     "games": [
       {
-        "name": "Final Fantasy VII Rebirth",
         "steam_appid": 2909400
       }
     ]
   },
   "MegaMixPlusFix": {
     "repo": "Lyall/MegaMixPlusFix",
-    "config_files": ["MegaMixPlusFix.ini"],
+    "config_files": [
+      "MegaMixPlusFix.ini"
+    ],
     "games": [
       {
-        "name": "Hatsune Miku: Project DIVA MegaMix+",
         "steam_appid": 1761390
       }
     ]
   },
   "TalesOfGracesFFix": {
     "repo": "Lyall/TalesOfGracesFFix",
-    "config_files": ["TalesOfGracesFFix.ini"],
+    "config_files": [
+      "TalesOfGracesFFix.ini"
+    ],
     "games": [
       {
-        "name": "Tales of Graces f",
         "steam_appid": 2530980
       }
     ]
   },
   "GreatCircleFix": {
     "repo": "Lyall/GreatCircleFix",
-    "config_files": ["GreatCircleFix.ini"],
+    "config_files": [
+      "GreatCircleFix.ini"
+    ],
     "games": [
       {
-        "name": "Indiana Jones and the Great Circle",
         "steam_appid": 2677660
       }
     ]
   },
   "MDARainCodePlusFix": {
     "repo": "Lyall/MDARainCodePlusFix",
-    "config_files": ["MDARainCodePlusFix.ini"],
+    "config_files": [
+      "MDARainCodePlusFix.ini"
+    ],
     "games": [
       {
-        "name": "Master Detective Archives: RAIN CODE+",
         "steam_appid": 2903950
       }
     ]
   },
   "DQTreasuresFix": {
     "repo": "Lyall/DQTreasuresFix",
-    "config_files": ["DQTreasuresFix.ini"],
+    "config_files": [
+      "DQTreasuresFix.ini"
+    ],
     "games": [
       {
-        "name": "Dragon Quest Treasures",
         "steam_appid": 2021210
       }
     ]
   },
   "DQ3Fix": {
     "repo": "Lyall/DQ3Fix",
-    "config_files": ["DQ3Fix.ini"],
+    "config_files": [
+      "DQ3Fix.ini"
+    ],
     "games": [
       {
-        "name": "Dragon Quest III HD-2D Remake",
         "steam_appid": 2701660
       }
     ]
   },
   "STALKER2Tweak": {
     "repo": "Lyall/STALKER2Tweak",
-    "config_files": ["STALKER2Tweak.ini"],
+    "config_files": [
+      "STALKER2Tweak.ini"
+    ],
     "games": [
       {
-        "name": "STALKER 2: Heart of Chornobyl",
         "steam_appid": 1643320
       }
     ]
   },
   "DAFix": {
     "repo": "Lyall/DAFix",
-    "config_files": ["DAFix.ini"],
+    "config_files": [
+      "DAFix.ini"
+    ],
     "games": [
       {
-        "name": "Dragon Age: Origins",
         "steam_appid": 47810
       },
       {
-        "name": "Dragon Age II",
         "steam_appid": 1238040
       }
     ]
   },
   "SotDFix": {
     "repo": "Lyall/SotDFix",
-    "config_files": ["SotDFix.ini"],
+    "config_files": [
+      "SotDFix.ini"
+    ],
     "games": [
       {
-        "name": "Shadows of the Damned: Hella Remastered",
         "steam_appid": 2535440
       }
     ]
   },
   "OPPW4Fix": {
     "repo": "Lyall/OPPW4Fix",
-    "config_files": ["OPPW4Fix.ini"],
+    "config_files": [
+      "OPPW4Fix.ini"
+    ],
     "games": [
       {
-        "name": "One Piece: Pirate Warriors 4",
         "steam_appid": 1089090
       }
     ]
   },
   "BerserkFix": {
     "repo": "Lyall/BerserkFix",
-    "config_files": ["BerserkFix.ini"],
+    "config_files": [
+      "BerserkFix.ini"
+    ],
     "games": [
       {
-        "name": "BERSERK and the Band of the Hawk",
         "steam_appid": 502280
       }
     ]
   },
   "MetaphorFix": {
     "repo": "Lyall/MetaphorFix",
-    "config_files": ["MetaphorFix.ini"],
+    "config_files": [
+      "MetaphorFix.ini"
+    ],
     "games": [
       {
-        "name": "Metaphor: ReFantazio",
         "steam_appid": 2679460
       }
     ]
   },
   "NMHFix": {
     "repo": "Lyall/NMHFix",
-    "config_files": ["NMHFix.ini"],
+    "config_files": [
+      "NMHFix.ini"
+    ],
     "games": [
       {
-        "name": "No More Heroes",
         "steam_appid": 1420290
       }
     ]
   },
   "Disgaea5Fix": {
     "repo": "Lyall/Disgaea5Fix",
-    "config_files": ["Disgaea5Fix.ini"],
+    "config_files": [
+      "Disgaea5Fix.ini"
+    ],
     "games": [
       {
-        "name": "Disgaea 5 Complete",
         "steam_appid": 803600
       }
     ]
   },
   "WukongTweak": {
     "repo": "Lyall/WukongTweak",
-    "config_files": ["WukongTweak.ini"],
+    "config_files": [
+      "WukongTweak.ini"
+    ],
     "games": [
       {
-        "name": "Black Myth: Wukong",
         "steam_appid": 2358720
       }
     ]
   },
   "FFXVIFix": {
     "repo": "Lyall/FFXVIFix",
-    "config_files": ["FFXVIFix.ini"],
+    "config_files": [
+      "FFXVIFix.ini"
+    ],
     "games": [
       {
-        "name": "Final Fantasy XVI",
         "steam_appid": 2515020
       }
     ]
   },
   "PoPTLCFix": {
     "repo": "Lyall/PoPTLCFix",
-    "config_files": ["PoPTLCFix.ini"],
+    "config_files": [
+      "PoPTLCFix.ini"
+    ],
     "games": [
       {
-        "name": "Prince of Persia: The Lost Crown",
         "steam_appid": 2751000
+      }
+    ]
+  },
+  "AISomniumFiles2Fix": {
+    "repo": "Lyall/AISomniumFiles2Fix",
+    "config_files": [
+      "AISomniumFiles2Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1449200
+      }
+    ]
+  },
+  "AISomniumFilesFix": {
+    "repo": "Lyall/AISomniumFilesFix",
+    "config_files": [
+      "AISomniumFilesFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 948740
+      }
+    ]
+  },
+  "AsDuskFallsFix": {
+    "repo": "Lyall/AsDuskFallsFix",
+    "config_files": [
+      "AsDuskFallsFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1341820
+      }
+    ]
+  },
+  "BravelyDefault2Fix": {
+    "repo": "Lyall/BravelyDefault2Fix",
+    "config_files": [
+      "BravelyDefault2Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1446650
+      }
+    ]
+  },
+  "DDDAFix": {
+    "repo": "Lyall/DDDAFix",
+    "config_files": [
+      "DDDAFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 367500
+      }
+    ]
+  },
+  "DeadIsland2Fix": {
+    "repo": "Lyall/DeadIsland2Fix",
+    "config_files": [
+      "DeadIsland2Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 934700
+      }
+    ]
+  },
+  "DMCHDFix": {
+    "repo": "Lyall/DMCHDFix",
+    "config_files": [
+      "DMCHDFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 631510
+      }
+    ]
+  },
+  "DQXISFix": {
+    "repo": "Lyall/DQXISFix",
+    "config_files": [
+      "DQXISFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1295510
+      }
+    ]
+  },
+  "EiyudenChronicleRisingFix": {
+    "repo": "Lyall/EiyudenChronicleRisingFix",
+    "config_files": [
+      "EiyudenChronicleRisingFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1658290
+      }
+    ]
+  },
+  "FISTFix": {
+    "repo": "Lyall/FISTFix",
+    "config_files": [
+      "FISTFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1330470
+      }
+    ]
+  },
+  "GBFRelinkFix": {
+    "repo": "Lyall/GBFRelinkFix",
+    "config_files": [
+      "GBFRelinkFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 881020
+      }
+    ]
+  },
+  "GoTFix": {
+    "repo": "Lyall/GoTFix",
+    "config_files": [
+      "GoTFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 2215430
+      }
+    ]
+  },
+  "HogwartsLegacyFix": {
+    "repo": "Lyall/HogwartsLegacyFix",
+    "config_files": [
+      "HogwartsLegacyFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 990080
+      }
+    ]
+  },
+  "HundredHeroesFix": {
+    "repo": "Lyall/HundredHeroesFix",
+    "config_files": [
+      "HundredHeroesFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1658280
+      }
+    ]
+  },
+  "IshinFix": {
+    "repo": "Lyall/IshinFix",
+    "config_files": [
+      "IshinFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1805480
+      }
+    ]
+  },
+  "JediSurvivorFix": {
+    "repo": "Lyall/JediSurvivorFix",
+    "config_files": [
+      "JediSurvivorFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1774580
+      }
+    ]
+  },
+  "MaxPayne3Fix": {
+    "repo": "Lyall/MaxPayne3Fix",
+    "config_files": [
+      "MaxPayne3Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 204100
+      }
+    ]
+  },
+  "MGSHDFix": {
+    "repo": "Lyall/MGSHDFix",
+    "config_files": [
+      "MGSHDFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 2131630
+      }
+    ]
+  },
+  "Octopath2Fix": {
+    "repo": "Lyall/Octopath2Fix",
+    "config_files": [
+      "Octopath2Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1971650
+      }
+    ]
+  },
+  "OctopathFix": {
+    "repo": "Lyall/OctopathFix",
+    "config_files": [
+      "OctopathFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1971650
+      }
+    ]
+  },
+  "Overcooked2Fix": {
+    "repo": "Lyall/Overcooked2Fix",
+    "config_files": [
+      "Overcooked2Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 728880
+      }
+    ]
+  },
+  "P3RFix": {
+    "repo": "Lyall/P3RFix",
+    "config_files": [
+      "P3RFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 2161700
+      }
+    ]
+  },
+  "P5StrikersFix": {
+    "repo": "Lyall/P5StrikersFix",
+    "config_files": [
+      "P5StrikersFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1382330
+      }
+    ]
+  },
+  "RE5Fix": {
+    "repo": "Lyall/RE5Fix",
+    "config_files": [
+      "RE5Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 21690
+      }
+    ]
+  },
+  "RERevFix": {
+    "repo": "Lyall/RERevFix",
+    "config_files": [
+      "RERevFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 222480
+      }
+    ]
+  },
+  "RF5Fix": {
+    "repo": "Lyall/RF5Fix",
+    "config_files": [
+      "RF5Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1702330
+      }
+    ]
+  },
+  "SignalisFix": {
+    "repo": "Lyall/SignalisFix",
+    "config_files": [
+      "SignalisFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1262350
+      }
+    ]
+  },
+  "SMTVFix": {
+    "repo": "Lyall/SMTVFix",
+    "config_files": [
+      "SMTVFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1875830
+      }
+    ]
+  },
+  "SO4Fix": {
+    "repo": "Lyall/SO4Fix",
+    "config_files": [
+      "SO4Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 609150
+      }
+    ]
+  },
+  "SoulHackers2Fix": {
+    "repo": "Lyall/SoulHackers2Fix",
+    "config_files": [
+      "SoulHackers2Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1777620
+      }
+    ]
+  },
+  "StarTrekResurgenceFix": {
+    "repo": "Lyall/StarTrekResurgenceFix",
+    "config_files": [
+      "StarTrekResurgenceFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 2653940
+      }
+    ]
+  },
+  "StrayedLightsFix": {
+    "repo": "Lyall/StrayedLightsFix",
+    "config_files": [
+      "StrayedLightsFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 2162020
+      }
+    ]
+  },
+  "SyberiaTWBFix": {
+    "repo": "Lyall/SyberiaTWBFix",
+    "config_files": [
+      "SyberiaTWBFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1410640
+      }
+    ]
+  },
+  "TGYHFix": {
+    "repo": "Lyall/TGYHFix",
+    "config_files": [
+      "TGYHFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 2366980
+      }
+    ]
+  },
+  "ThronebreakerFix": {
+    "repo": "Lyall/ThronebreakerFix",
+    "config_files": [
+      "ThronebreakerFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 973760
+      }
+    ]
+  },
+  "TormentedSoulsFix": {
+    "repo": "Lyall/TormentedSoulsFix",
+    "config_files": [
+      "TormentedSoulsFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1367590
+      }
+    ]
+  },
+  "WeNeedToGoDeeperFix": {
+    "repo": "Lyall/WeNeedToGoDeeperFix",
+    "config_files": [
+      "WeNeedToGoDeeperFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 307110
+      }
+    ]
+  },
+  "WOFFFix": {
+    "repo": "Lyall/WOFFFix",
+    "config_files": [
+      "WOFFFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 552700
       }
     ]
   }
