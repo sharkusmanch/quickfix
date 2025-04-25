@@ -301,6 +301,8 @@ def main():
     parser.add_argument("mod_id", nargs="?", help="Mod ID to install or open config (for 'install' or 'open-config' command)")
     parser.add_argument("--all", action="store_true", help="Install or update all mods")
     parser.add_argument("--debug", action="store_true", help="Enable debug logging")
+    parser.add_argument("--version", action="version", version=__version__, help="Show the version")
+
     args = parser.parse_args()
 
     DEBUG_MODE = args.debug
