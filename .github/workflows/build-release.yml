@@ -22,7 +22,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install pyinstaller
-        run: pip install pyinstaller
+        run: pip install pyinstaller requests
 
       - name: Extract version from quickfix.py
         id: get_version
@@ -39,7 +39,7 @@ jobs:
           }
 
       - name: Build executable
-        run: pyinstaller --onefile quickfix.py
+        run: pyinstaller --onefile --hidden-import=requests quickfix.py
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4

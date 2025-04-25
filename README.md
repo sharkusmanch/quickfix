@@ -1,100 +1,121 @@
+
 # QuickFix
 
-**QuickFix** is a lightweight, CLI-based tool to manage, install, and update community-made PC game fixes and tweaks.
+QuickFix is a CLI tool to easily install, update, and manage Lyall's PC game fixes from GitHub.
 
-Originally built for managing [Lyall](https://github.com/Lyall)'s fixes, QuickFix is designed to be general-purpose, dynamic, and safe — fetching only the latest approved patches directly from GitHub.
+## 🚀 Features
 
----
+- Install and update mods automatically from GitHub releases
+- Automatically detect installed Steam games
+- Merge config files intelligently to preserve user settings
+- Semantic versioning and clean GitHub releases
+- Manage config files easily
+- Debug logging for troubleshooting
+- Custom Steam directories support
 
-## ✨ Features
+## 📦 Installation
 
-- ✅ Auto-detects installed Steam games
-- ✅ Fetches latest fixes dynamically from GitHub
-- ✅ Caches mod list locally for faster performance (1 hour expiry)
-- ✅ Force-refresh mods list manually if needed
-- ✅ Merges user-edited `.ini` configs intelligently during updates
-- ✅ Supports custom mods list override with `--mods`
-- ✅ Fully portable: available as standalone `.exe` or simple Python script
+1. Download the latest release from the [Releases](https://github.com/sharkusmanch/quickfix/releases) page.
+2. Run `quickfix.exe` or `python quickfix.py` if using the source.
 
----
+## 🧩 Commands
 
-## 📦 Usage
+### Install a mod
 
-You can either:
+```bash
+python quickfix.py install <mod_id>
+```
 
-- Run directly with **Python** (`python quickfix.py`)
-or
-- Use the **self-contained executable** (`quickfix.exe`)
+Example:
 
----
+```bash
+python quickfix.py install ClairObscurFix
+```
 
-## 🚀 Commands
+### Install all available mods
 
-| Command | Description |
-|:---|:---|
-| `install <mod_id>` | Install a specific fix (skips if already installed) |
-| `install --all` | Install all available fixes for detected games |
-| `update <mod_id>` | Update a specific fix if outdated |
-| `update --all` | Update all installed fixes |
-| `list` | Show all available fixes |
-| `installed` | Show installed fixes and their versions |
+```bash
+python quickfix.py install --all
+```
 
----
+This will install all mods for detected installed games that don't already have the latest version installed.
 
-## ⚙️ Options
+### Update all mods
 
-| Option | Description |
-|:---|:---|
-| `--mods <path>` | Use a custom `mods.json` instead of fetching from GitHub |
-| `--force-refresh` | Force downloading the latest `mods.json` even if cache is still fresh |
+```bash
+python quickfix.py update --all
+```
 
----
+Force re-download and update all installed mods.
+
+### 📂 Open a mod's config file
+
+```bash
+python quickfix.py open-config <mod_id>
+```
+
+Example:
+
+```bash
+python quickfix.py open-config ClairObscurFix
+```
+
+QuickFix will find and open the config file inside the installed game's directory.
+
+### 🐛 Enable debug logging
+
+Add `--debug` to any command:
+
+```bash
+python quickfix.py install ClairObscurFix --debug
+```
+
+Shows detailed Steam scanning, GitHub API requests, and file operations.
+
+### 📂 Use custom Steam directories
+
+Specify one or multiple custom Steam game libraries:
+
+```bash
+python quickfix.py install ClairObscurFix --steam-dir "D:\SteamLibrary"
+```
+
+Or multiple:
+
+```bash
+python quickfix.py install ClairObscurFix --steam-dir "D:\SteamLibrary" --steam-dir "E:\Games\SteamLibrary"
+```
+
+## ⚙️ Advanced Usage
+
+- Open a mod's config file: `python quickfix.py open-config <mod_id>`
+- Enable debug logging: `python quickfix.py --debug install <mod_id>`
+- Set custom Steam game directories: `python quickfix.py --steam-dir "<path>" install <mod_id>`
 
 ## 🛡 Security Disclaimer
 
-> **Warning:**
-> QuickFix downloads and installs community-made patches directly into your local game directories.
->
-> While every effort is made to support reputable sources (like [Lyall](https://github.com/Lyall)), you should **always exercise caution** when installing third-party content into your system.
->
-> Only use trusted mods, review GitHub releases when possible, and never run QuickFix (or any mod manager) with elevated/admin privileges unless absolutely necessary.
-
----
-
-## 📚 How It Works
-
-1. **QuickFix fetches `mods.json`** dynamically from the GitHub repository.
-2. **Mods list is cached** locally for 1 hour (`.cache/mods.json`) to minimize API calls.
-3. **Smart version checking** avoids unnecessary reinstalls.
-4. **Custom config merging** preserves your `.ini` tweaks when updating mods.
-5. **User can override** mods source via `--mods` or force an update with `--force-refresh`.
-
----
+**Use at your own risk!**  
+QuickFix downloads and installs files from third-party GitHub repositories (Lyall).  
+Always exercise caution when running scripts or modifying your game installations.
 
 ## 🛠 Development
 
-To build your own executable:
+Install requirements:
 
-1. Install [PyInstaller](https://pyinstaller.org/):
+```bash
+pip install pyinstaller requests
+```
 
-   ```bash
-   pip install pyinstaller
-   ```
+Build executable:
 
-2. Build:
-    ```bash
-    pyinstaller --onefile --add-data "mods.json:." --name quickfix quickfix.py
-    ```
+```bash
+pyinstaller --onefile quickfix.py
+```
 
-    Output will be in the dist/ folder.
+## 📜 License
 
-## 📍 License
-
-This project is licensed under the MIT License.
-
-## 📬 Credits
-
-- Built originally for [Lyall](https://github.com/Lyall)'s PC game fixes
-- Inspired by the need for a safer, centralized way to manage essential patches
+MIT License (see LICENSE file).
 
 ---
+
+Made with ❤️ for PC gamers by [sharkusmanch](https://github.com/sharkusmanch).
