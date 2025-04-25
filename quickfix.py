@@ -314,15 +314,19 @@ def main():
     global DEBUG_MODE
 
     parser = argparse.ArgumentParser(description="QuickFix - Manage Lyall's PC Game Fixes")
-    parser.add_argument("command", choices=["install", "update", "open-config", "list-mods"], help="Command to run")
+    parser.add_argument("command", choices=["install", "update", "open-config", "list-mods", "--version"], help="Command to run")
     parser.add_argument("mod_id", nargs="?", help="Mod ID to install or open config (for 'install' or 'open-config' command)")
     parser.add_argument("--all", action="store_true", help="Install or update all mods")
     parser.add_argument("--debug", action="store_true", help="Enable debug logging")
+    parser.add_argument("--version", action="version", version=__version__, help="Show the version")
     args = parser.parse_args()
 
     DEBUG_MODE = args.debug
 
-    # Fetch and load latest mods.json from GitHub or local AppData
+    # Get the AppData path and define the folder for QuickFix
+    appdata_path = os.getenv("APPDATA")
+    quickfix_path = os.path.join(appdata_path, "QuickFix")
+
     mods = fetch_latest_mods_json()
 
     if args.command == "install":
@@ -334,14 +338,15 @@ def main():
             print("[ERROR] Please specify a mod ID or --all")
     elif args.command == "update":
         save_local_mods_json(mods)
-        print(f"[INFO] Updated mods.json in AppData directory.")
+        print(f"[INFO] Updated {LOCAL_MODS_PATH}.")
     elif args.command == "open-config":
         if args.mod_id:
             open_config_files(args.mod_id, mods)
         else:
             print("[ERROR] Please specify a mod ID to open its config files.")
     elif args.command == "list-mods":
-        list_available_mods(mods)
+        for mod_id, mod in mods.items():
+            print(f"Mod ID: {mod_id}, Repo: {mod['repo']}")
 
 if __name__ == "__main__":
     main()
