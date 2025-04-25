@@ -2,6 +2,7 @@ import requests
 import json
 import os
 import re
+import unicodedata
 
 BLOCKLIST = [
     "Lyall/BepInEx",
@@ -17,19 +18,30 @@ def fetch_repos():
 
 def load_existing_mods():
     if os.path.exists("mods.json"):
-        with open("mods.json", "r") as f:
+        with open("mods.json", "r", encoding="utf-8") as f:
             return json.load(f)
     else:
         return {}
+
+def clean_game_title(title):
+    if not title:
+        return ""
+    title = unicodedata.normalize("NFKD", title)
+    title = title.encode("ASCII", "ignore").decode("ASCII")
+    title = re.sub(r"\s+", " ", title).strip()
+    return title
 
 def guess_game_from_repo(repo):
     description = repo.get("description", "").strip()
     if not description:
         return None, None
 
-    # Use first line of description or smartly guess a title
-    search_term = description.split("\n")[0].strip()
-    search_term = re.sub(r"Fix|Patch|Tweak", "", search_term, flags=re.IGNORECASE).strip()
+    match = re.search(r"for\s+(.+?)(?:\sthat|\sto|\sand|\.\s|$)", description, re.IGNORECASE)
+    if match:
+        search_term = match.group(1).strip()
+    else:
+        search_term = description.split("\n")[0].strip()
+        search_term = re.sub(r"Fix|Patch|Tweak|Plugin|Mod", "", search_term, flags=re.IGNORECASE).strip()
 
     if not search_term:
         return None, None
@@ -43,11 +55,9 @@ def guess_game_from_repo(repo):
         if results:
             best_match = results[0]
             appid = best_match.get("id")
-            name = best_match.get("name")
+            name = clean_game_title(best_match.get("name", ""))
             print(f"✅ Found Steam match: {name} (AppID: {appid})")
             return appid, name
-        else:
-            print(f"⚠️ No Steam results for '{search_term}'.")
     except Exception as e:
         print(f"⚠️ Steam search failed for '{search_term}': {e}")
 
@@ -58,6 +68,8 @@ def main():
     existing_mods = load_existing_mods()
 
     updated_mods = existing_mods.copy()
+    added_mods = []
+    updated_mod_ids = []
 
     for repo in repos:
         name = repo["name"]
@@ -70,7 +82,6 @@ def main():
             mod_id = name
 
             if mod_id in existing_mods:
-                # Preserve existing fields
                 preserved_config_files = existing_mods[mod_id].get("config_files", [])
                 preserved_games = existing_mods[mod_id].get("games", [])
 
@@ -79,8 +90,8 @@ def main():
                     "config_files": preserved_config_files,
                     "games": preserved_games
                 }
+                updated_mod_ids.append(mod_id)
             else:
-                # New mod
                 appid, game_name = guess_game_from_repo(repo)
                 updated_mods[mod_id] = {
                     "repo": full_name,
@@ -90,11 +101,25 @@ def main():
                         "steam_appid": appid
                     }] if appid and game_name else []
                 }
+                added_mods.append(mod_id)
 
-    with open("mods.json", "w") as f:
-        json.dump(updated_mods, f, indent=2)
+    with open("mods.json", "w", encoding="utf-8") as f:
+        json.dump(updated_mods, f, indent=2, ensure_ascii=False)
 
-    print("✅ mods.json updated successfully, preserving existing entries.")
+    with open("pr_body.md", "w", encoding="utf-8") as f:
+        f.write("### 🔄 Auto-refresh of `mods.json`\n\n")
+        if added_mods:
+            f.write("#### 🆕 New Mods Added:\n")
+            for mod_id in added_mods:
+                f.write(f"- [{mod_id}](https://github.com/{updated_mods[mod_id]['repo']})\n")
+            f.write("\n")
+        if updated_mod_ids:
+            f.write("#### ✏️ Existing Mods Updated:\n")
+            for mod_id in updated_mod_ids:
+                f.write(f"- [{mod_id}](https://github.com/{updated_mods[mod_id]['repo']})\n")
+
+    print("✅ mods.json updated successfully.")
+    print("✅ pr_body.md generated for pull request.")
 
 if __name__ == "__main__":
     main()

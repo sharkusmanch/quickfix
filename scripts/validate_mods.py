@@ -2,8 +2,18 @@ import json
 import os
 import sys
 import requests
+import unicodedata
+import re
 
-STEAM_API_APP_DETAILS = "https://store.steampowered.com/api/appdetails?appids={}"
+STEAM_APP_DETAILS = "https://store.steampowered.com/api/appdetails?appids={}"
+
+def clean_game_title(title):
+    if not title:
+        return ""
+    title = unicodedata.normalize("NFKD", title)
+    title = title.encode("ASCII", "ignore").decode("ASCII")
+    title = re.sub(r"\s+", " ", title).strip().lower()
+    return title
 
 def validate_mods():
     mods_path = "mods.json"
@@ -11,19 +21,16 @@ def validate_mods():
         print("❌ mods.json not found.")
         sys.exit(1)
 
-    # 1. Validate JSON is valid
     try:
-        with open(mods_path, "r") as f:
+        with open(mods_path, "r", encoding="utf-8") as f:
             mods = json.load(f)
     except Exception as e:
         print(f"❌ Failed to parse mods.json: {e}")
         sys.exit(1)
 
-    # 2. Check each mod entry
     for mod_id, mod in mods.items():
         print(f"🔎 Checking mod: {mod_id}")
 
-        # Repo must exist
         repo = mod.get("repo")
         if not repo:
             print(f"❌ {mod_id}: missing 'repo' field.")
@@ -31,22 +38,19 @@ def validate_mods():
 
         response = requests.get(f"https://api.github.com/repos/{repo}")
         if response.status_code != 200:
-            print(f"❌ {mod_id}: GitHub repo '{repo}' does not exist or is not accessible.")
+            print(f"❌ {mod_id}: GitHub repo '{repo}' does not exist.")
             sys.exit(1)
 
-        # config_files must be provided
         config_files = mod.get("config_files", [])
         if not config_files:
-            print(f"❌ {mod_id}: missing 'config_files' field.")
+            print(f"❌ {mod_id}: missing 'config_files'.")
             sys.exit(1)
 
-        # games list must exist and not be empty
         games = mod.get("games", [])
         if not games:
             print(f"❌ {mod_id}: missing or empty 'games' list.")
             sys.exit(1)
 
-        # 3. Check each game's steam appid
         for game in games:
             appid = game.get("steam_appid")
             title = game.get("name")
@@ -54,25 +58,23 @@ def validate_mods():
                 print(f"❌ {mod_id}: each game must have a 'name' and 'steam_appid'.")
                 sys.exit(1)
 
-            print(f"  🔎 Verifying Steam AppID {appid}...")
+            print(f"  🔍 Verifying AppID {appid}...")
 
             try:
-                steam_response = requests.get(STEAM_API_APP_DETAILS.format(appid), timeout=5)
+                steam_response = requests.get(STEAM_APP_DETAILS.format(appid), timeout=5)
                 steam_data = steam_response.json().get(str(appid), {}).get("data", {})
-                steam_name = steam_data.get("name", "").strip()
-
+                steam_name = steam_data.get("name", "")
                 if not steam_name:
-                    print(f"⚠️ Warning: Steam API did not return a name for AppID {appid}.")
-                else:
-                    # Compare game title from mods.json to Steam title
-                    if title.lower() not in steam_name.lower():
-                        print(f"❌ {mod_id}: Game title mismatch for AppID {appid}: '{title}' vs Steam '{steam_name}'")
-                        sys.exit(1)
-
+                    print(f"⚠️  Warning: Steam API returned no title for {appid}")
+                elif clean_game_title(title) not in clean_game_title(steam_name):
+                    print(f"❌ {mod_id}: game title mismatch for AppID {appid}:")
+                    print(f"    mods.json = {title}")
+                    print(f"    Steam     = {steam_name}")
+                    sys.exit(1)
             except Exception as e:
-                print(f"⚠️ Warning: Failed to validate Steam AppID {appid}: {e}")
+                print(f"⚠️  Warning: Steam app lookup failed for {appid}: {e}")
 
-    print("✅ All mods.json checks passed successfully!")
+    print("✅ All checks passed for mods.json!")
 
 if __name__ == "__main__":
     validate_mods()
