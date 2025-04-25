@@ -1,0 +1,331 @@
+{
+  "ClairObscurFix": {
+    "repo": "Lyall/ClairObscurFix",
+    "download_url": "https://github.com/Lyall/ClairObscurFix/releases/latest/download/ClairObscurFix.zip",
+    "config_files": ["ClairObscurFix.ini"],
+    "games": [
+      {
+        "name": "Clair Obscur: Expedition 33",
+        "steam_appid": 1903340
+      }
+    ]
+  },
+  "MandragoraFix": {
+    "repo": "Lyall/MandragoraFix",
+    "download_url": "https://github.com/Lyall/MandragoraFix/releases/latest/download/MandragoraFix.zip",
+    "config_files": ["MandragoraFix.ini"],
+    "games": [
+      {
+        "name": "Mandragora: Whispers of the Witch Tree",
+        "steam_appid": 1721060
+      }
+    ]
+  },
+  "ACShadowsFix": {
+    "repo": "Lyall/ACShadowsFix",
+    "download_url": "https://github.com/Lyall/ACShadowsFix/releases/latest/download/ACShadowsFix.zip",
+    "config_files": ["ACShadowsFix.ini"],
+    "games": [
+      {
+        "name": "Assassin's Creed Shadows",
+        "steam_appid": 3159330
+      }
+    ]
+  },
+  "AtelierYumiaFix": {
+    "repo": "Lyall/AtelierYumiaFix",
+    "download_url": "https://github.com/Lyall/AtelierYumiaFix/releases/latest/download/AtelierYumiaFix.zip",
+    "config_files": ["AtelierYumiaFix.ini"],
+    "games": [
+      {
+        "name": "Atelier Yumia: The Alchemist of Memories & the Envisioned Land",
+        "steam_appid": 3123410
+      }
+    ]
+  },
+  "MGSVFix": {
+    "repo": "Lyall/MGSVFix",
+    "download_url": "https://github.com/Lyall/MGSVFix/releases/latest/download/MGSVFix.zip",
+    "config_files": ["MGSVFix.ini"],
+    "games": [
+      {
+        "name": "Metal Gear Solid V: The Phantom Pain",
+        "steam_appid": 287700
+      }
+    ]
+  },
+  "RiseOfTheRoninFix": {
+    "repo": "Lyall/RiseOfTheRoninFix",
+    "download_url": "https://github.com/Lyall/RiseOfTheRoninFix/releases/latest/download/RiseOfTheRoninFix.zip",
+    "config_files": ["RiseOfTheRoninFix.ini"],
+    "games": [
+      {
+        "name": "Rise of the Ronin",
+        "steam_appid": 1340990
+      }
+    ]
+  },
+  "FF7RemakeFix": {
+    "repo": "Lyall/FF7RemakeFix",
+    "download_url": "https://github.com/Lyall/FF7RemakeFix/releases/latest/download/FF7RemakeFix.zip",
+    "config_files": ["FF7RemakeFix.ini"],
+    "games": [
+      {
+        "name": "Final Fantasy VII Remake Intergrade",
+        "steam_appid": 1462040
+      }
+    ]
+  },
+  "DragonTweak": {
+    "repo": "Lyall/DragonTweak",
+    "download_url": "https://github.com/Lyall/DragonTweak/releases/latest/download/DragonTweak.zip",
+    "config_files": ["DragonTweak.ini"],
+    "games": [
+      {
+        "name": "Like a Dragon: Infinite Wealth",
+        "steam_appid": 2072450
+      },
+      {
+        "name": "Like a Dragon Gaiden: The Man Who Erased His Name",
+        "steam_appid": 2375550
+      },
+      {
+        "name": "Lost Judgment",
+        "steam_appid": 2058190
+      },
+      {
+        "name": "Yakuza: Like a Dragon",
+        "steam_appid": 1235140
+      },
+      {
+        "name": "Judgment",
+        "steam_appid": 2058180
+      },
+      {
+        "name": "Yakuza Kiwami 2",
+        "steam_appid": 927380
+      },
+      {
+        "name": "Yakuza 6: The Song of Life",
+        "steam_appid": 1388590
+      },
+      {
+        "name": "Like a Dragon: Pirate Yakuza in Hawaii",
+        "steam_appid": 3061810
+      }
+    ]
+  },
+  "FateSamuraiRemnantFix": {
+    "repo": "Lyall/FateSamuraiRemnantFix",
+    "download_url": "https://github.com/Lyall/FateSamuraiRemnantFix/releases/latest/download/FateSamuraiRemnantFix.zip",
+    "config_files": ["FateSamuraiRemnantFix.ini"],
+    "games": [
+      {
+        "name": "Fate/Samurai Remnant",
+        "steam_appid": 1902690
+      }
+    ]
+  },
+  "FF7RebirthFix": {
+    "repo": "Lyall/FF7RebirthFix",
+    "download_url": "https://github.com/Lyall/FF7RebirthFix/releases/latest/download/FF7RebirthFix.zip",
+    "config_files": ["FF7RebirthFix.ini"],
+    "games": [
+      {
+        "name": "Final Fantasy VII Rebirth",
+        "steam_appid": 2909400
+      }
+    ]
+  },
+  "MegaMixPlusFix": {
+    "repo": "Lyall/MegaMixPlusFix",
+    "download_url": "https://github.com/Lyall/MegaMixPlusFix/releases/latest/download/MegaMixPlusFix.zip",
+    "config_files": ["MegaMixPlusFix.ini"],
+    "games": [
+      {
+        "name": "Hatsune Miku: Project DIVA MegaMix+",
+        "steam_appid": 1761390
+      }
+    ]
+  },
+  "TalesOfGracesFFix": {
+    "repo": "Lyall/TalesOfGracesFFix",
+    "download_url": "https://github.com/Lyall/TalesOfGracesFFix/releases/latest/download/TalesOfGracesFFix.zip",
+    "config_files": ["TalesOfGracesFFix.ini"],
+    "games": [
+      {
+        "name": "Tales of Graces f",
+        "steam_appid": 2530980
+      }
+    ]
+  },
+  "GreatCircleFix": {
+    "repo": "Lyall/GreatCircleFix",
+    "download_url": "https://github.com/Lyall/GreatCircleFix/releases/latest/download/GreatCircleFix.zip",
+    "config_files": ["GreatCircleFix.ini"],
+    "games": [
+      {
+        "name": "Indiana Jones and the Great Circle",
+        "steam_appid": 2677660
+      }
+    ]
+  },
+  "MDARainCodePlusFix": {
+    "repo": "Lyall/MDARainCodePlusFix",
+    "download_url": "https://github.com/Lyall/MDARainCodePlusFix/releases/latest/download/MDARainCodePlusFix.zip",
+    "config_files": ["MDARainCodePlusFix.ini"],
+    "games": [
+      {
+        "name": "Master Detective Archives: RAIN CODE+",
+        "steam_appid": 2903950
+      }
+    ]
+  },
+  "DQTreasuresFix": {
+    "repo": "Lyall/DQTreasuresFix",
+    "download_url": "https://github.com/Lyall/DQTreasuresFix/releases/latest/download/DQTreasuresFix.zip",
+    "config_files": ["DQTreasuresFix.ini"],
+    "games": [
+      {
+        "name": "Dragon Quest Treasures",
+        "steam_appid": 2021210
+      }
+    ]
+  },
+  "DQ3Fix": {
+    "repo": "Lyall/DQ3Fix",
+    "download_url": "https://github.com/Lyall/DQ3Fix/releases/latest/download/DQ3Fix.zip",
+    "config_files": ["DQ3Fix.ini"],
+    "games": [
+      {
+        "name": "Dragon Quest III HD-2D Remake",
+        "steam_appid": 2701660
+      }
+    ]
+  },
+  "STALKER2Tweak": {
+    "repo": "Lyall/STALKER2Tweak",
+    "download_url": "https://github.com/Lyall/STALKER2Tweak/releases/latest/download/STALKER2Tweak.zip",
+    "config_files": ["STALKER2Tweak.ini"],
+    "games": [
+      {
+        "name": "STALKER 2: Heart of Chornobyl",
+        "steam_appid": 1643320
+      }
+    ]
+  },
+  "DAFix": {
+    "repo": "Lyall/DAFix",
+    "download_url": "https://github.com/Lyall/DAFix/releases/latest/download/DAFix.zip",
+    "config_files": ["DAFix.ini"],
+    "games": [
+      {
+        "name": "Dragon Age: Origins",
+        "steam_appid": 47810
+      },
+      {
+        "name": "Dragon Age II",
+        "steam_appid": 1238040
+      }
+    ]
+  },
+  "SotDFix": {
+    "repo": "Lyall/SotDFix",
+    "download_url": "https://github.com/Lyall/SotDFix/releases/latest/download/SotDFix.zip",
+    "config_files": ["SotDFix.ini"],
+    "games": [
+      {
+        "name": "Shadows of the Damned: Hella Remastered",
+        "steam_appid": 2535440
+      }
+    ]
+  },
+  "OPPW4Fix": {
+    "repo": "Lyall/OPPW4Fix",
+    "download_url": "https://github.com/Lyall/OPPW4Fix/releases/latest/download/OPPW4Fix.zip",
+    "config_files": ["OPPW4Fix.ini"],
+    "games": [
+      {
+        "name": "One Piece: Pirate Warriors 4",
+        "steam_appid": 1089090
+      }
+    ]
+  },
+  "BerserkFix": {
+    "repo": "Lyall/BerserkFix",
+    "download_url": "https://github.com/Lyall/BerserkFix/releases/latest/download/BerserkFix.zip",
+    "config_files": ["BerserkFix.ini"],
+    "games": [
+      {
+        "name": "BERSERK and the Band of the Hawk",
+        "steam_appid": 502280
+      }
+    ]
+  },
+  "MetaphorFix": {
+    "repo": "Lyall/MetaphorFix",
+    "download_url": "https://github.com/Lyall/MetaphorFix/releases/latest/download/MetaphorFix.zip",
+    "config_files": ["MetaphorFix.ini"],
+    "games": [
+      {
+        "name": "Metaphor: ReFantazio",
+        "steam_appid": 2679460
+      }
+    ]
+  },
+  "NMHFix": {
+    "repo": "Lyall/NMHFix",
+    "download_url": "https://github.com/Lyall/NMHFix/releases/latest/download/NMHFix.zip",
+    "config_files": ["NMHFix.ini"],
+    "games": [
+      {
+        "name": "No More Heroes",
+        "steam_appid": 1420290
+      }
+    ]
+  },
+  "Disgaea5Fix": {
+    "repo": "Lyall/Disgaea5Fix",
+    "download_url": "https://github.com/Lyall/Disgaea5Fix/releases/latest/download/Disgaea5Fix.zip",
+    "config_files": ["Disgaea5Fix.ini"],
+    "games": [
+      {
+        "name": "Disgaea 5 Complete",
+        "steam_appid": 803600
+      }
+    ]
+  },
+  "WukongTweak": {
+    "repo": "Lyall/WukongTweak",
+    "download_url": "https://github.com/Lyall/WukongTweak/releases/latest/download/WukongTweak.zip",
+    "config_files": ["WukongTweak.ini"],
+    "games": [
+      {
+        "name": "Black Myth: Wukong",
+        "steam_appid": 2358720
+      }
+    ]
+  },
+  "FFXVIFix": {
+    "repo": "Lyall/FFXVIFix",
+    "download_url": "https://github.com/Lyall/FFXVIFix/releases/latest/download/FFXVIFix.zip",
+    "config_files": ["FFXVIFix.ini"],
+    "games": [
+      {
+        "name": "Final Fantasy XVI",
+        "steam_appid": 2515020
+      }
+    ]
+  },
+  "PoPTLCFix": {
+    "repo": "Lyall/PoPTLCFix",
+    "download_url": "https://github.com/Lyall/PoPTLCFix/releases/latest/download/PoPTLCFix.zip",
+    "config_files": ["PoPTLCFix.ini"],
+    "games": [
+      {
+        "name": "Prince of Persia: The Lost Crown",
+        "steam_appid": 2751000
+      }
+    ]
+  }
+}
