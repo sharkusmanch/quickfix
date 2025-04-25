@@ -3,6 +3,7 @@ import json
 import os
 import re
 import unicodedata
+import copy
 
 BLOCKLIST = [
     "Lyall/BepInEx",
@@ -70,13 +71,20 @@ def guess_game_from_repo(repo):
 
     return None
 
+def load_existing_mods():
+    if os.path.exists("mods.json"):
+        with open("mods.json", "r", encoding="utf-8") as f:
+            return json.load(f)
+    else:
+        return {}
+
 def main():
     repos = fetch_repos()
     existing_mods = load_existing_mods()
 
-    updated_mods = existing_mods.copy()
+    updated_mods = copy.deepcopy(existing_mods)
     added_mods = []
-    updated_mod_ids = []
+    updated_mods_ids = []
 
     for repo in repos:
         name = repo["name"]
@@ -88,30 +96,34 @@ def main():
         if "fix" in name.lower() or "tweak" in name.lower():
             mod_id = name
 
-            if mod_id in existing_mods:
-                preserved_config_files = existing_mods[mod_id].get("config_files", [])
-                preserved_games = existing_mods[mod_id].get("games", [])
-
-                updated_mods[mod_id] = {
-                    "repo": full_name,
-                    "config_files": preserved_config_files,
-                    "games": preserved_games
-                }
-                updated_mod_ids.append(mod_id)
-            else:
+            if mod_id not in existing_mods:
                 appid = guess_game_from_repo(repo)
                 updated_mods[mod_id] = {
                     "repo": full_name,
                     "config_files": [f"{name}.ini"],
-                    "games": [{
-                        "steam_appid": appid
-                    }] if appid else []
+                    "games": [{"steam_appid": appid}] if appid else []
                 }
                 added_mods.append(mod_id)
+            else:
+                preserved_config_files = existing_mods[mod_id].get("config_files", [])
+                preserved_games = existing_mods[mod_id].get("games", [])
 
+                new_entry = {
+                    "repo": full_name,
+                    "config_files": preserved_config_files,
+                    "games": preserved_games
+                }
+
+                # Only mark as updated if there's a real difference
+                if new_entry != existing_mods[mod_id]:
+                    updated_mods[mod_id] = new_entry
+                    updated_mods_ids.append(mod_id)
+
+    # Write updated mods.json
     with open("mods.json", "w", encoding="utf-8") as f:
         json.dump(updated_mods, f, indent=2, ensure_ascii=False)
 
+    # Write pull request body
     with open("pr_body.md", "w", encoding="utf-8") as f:
         f.write("### 🔄 Auto-refresh of `mods.json`\n\n")
         if added_mods:
@@ -121,22 +133,15 @@ def main():
                 for game in updated_mods[mod_id]["games"]:
                     f.write(f"  - [Steam App {game['steam_appid']}](https://store.steampowered.com/app/{game['steam_appid']}/)\n")
             f.write("\n")
-        if updated_mod_ids:
+        if updated_mods_ids:
             f.write("#### ✏️ Existing Mods Updated:\n")
-            for mod_id in updated_mod_ids:
+            for mod_id in updated_mods_ids:
                 f.write(f"- [{mod_id}](https://github.com/{updated_mods[mod_id]['repo']})\n")
                 for game in updated_mods[mod_id]["games"]:
                     f.write(f"  - [Steam App {game['steam_appid']}](https://store.steampowered.com/app/{game['steam_appid']}/)\n")
 
     print("✅ mods.json updated successfully.")
     print("✅ pr_body.md generated for pull request.")
-
-def load_existing_mods():
-    if os.path.exists("mods.json"):
-        with open("mods.json", "r", encoding="utf-8") as f:
-            return json.load(f)
-    else:
-        return {}
 
 if __name__ == "__main__":
     main()
