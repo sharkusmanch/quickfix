@@ -5,6 +5,8 @@ import shutil
 import json
 import re
 import configparser
+import sys
+
 from io import BytesIO
 from colorama import init, Fore, Style
 
@@ -30,9 +32,21 @@ def print_info(message):
 
 # -------- Core functions --------
 
-def load_mods():
-    with open("mods.json", "r") as f:
-        return json.load(f)
+
+
+def load_mods(custom_mods_path=None):
+    if custom_mods_path:
+        if not os.path.exists(custom_mods_path):
+            print_error(f"Custom mods file '{custom_mods_path}' not found.")
+            sys.exit(1)
+        with open(custom_mods_path, "r") as f:
+            return json.load(f)
+    else:
+        # Load embedded mods.json relative to exe
+        base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+        with open(os.path.join(base_path, "mods.json"), "r") as f:
+            return json.load(f)
+
 
 def find_steam_libraries(steam_root):
     library_vdf = os.path.join(steam_root, "steamapps", "libraryfolders.vdf")
@@ -290,6 +304,8 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description="QuickFix - Lightweight Manager for Lyall's Game Fixes and Patches")
+    parser.add_argument("--mods", help="Path to a custom mods.json file", default=None)
+
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     install_parser = subparsers.add_parser("install")
@@ -304,7 +320,7 @@ if __name__ == "__main__":
     subparsers.add_parser("installed")
 
     args = parser.parse_args()
-    mods = load_mods()
+    mods = load_mods(custom_mods_path=args.mods)
 
     if args.command == "install":
         if args.all:
