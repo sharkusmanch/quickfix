@@ -1,0 +1,38 @@
+name: Refresh Mods List
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install requirements
+        run: pip install requests
+
+      - name: Update mods.json
+        run: python scripts/update_mods.py
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: auto-refresh mods.json"
+          branch: auto/refresh-mods
+          title: "chore: auto-refresh mods.json"
+          body-path: pr_body.md
+          delete-branch: true
+          add-paths: |
+            mods.json

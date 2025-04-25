@@ -1,0 +1,48 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyInstaller build artifacts
+build/
+dist/
+*.spec
+
+# Caches
+.cache/
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# macOS stuff
+.DS_Store
+
+# Windows stuff
+Thumbs.db
+desktop.ini
+
+# VSCode/IDE/editor folders (optional)
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Python virtual environments
+venv/
+env/
+.venv/
+
+# Test coverage files (if you ever add tests)
+htmlcov/
+.tox/
+.coverage
+coverage.xml
+
+# Local user override configs (optional future)
+config.local.json
+
+pr_body.md

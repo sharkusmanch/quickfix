@@ -1,0 +1,49 @@
+name: Build and Release QuickFix
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'quickfix.py'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pyinstaller
+        run: pip install pyinstaller
+
+      - name: Extract version from quickfix.py
+        id: get_version
+        shell: bash
+        run: |
+          VERSION=$(grep '__version__' quickfix.py | cut -d'"' -f2)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Detected version: $VERSION"
+
+      - name: Build executable
+        run: pyinstaller --onefile quickfix.py
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: quickfix
+          path: dist/quickfix.exe
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION }}
+          generate_release_notes: true
+          files: |
+            dist/quickfix.exe
