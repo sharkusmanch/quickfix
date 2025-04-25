@@ -39,14 +39,34 @@ def fetch_latest_mods_json():
     return response.json()
 
 def load_local_mods_json():
-    if os.path.exists("mods.json"):
-        with open("mods.json", "r", encoding="utf-8") as f:
+    # Get the AppData path and define the folder for QuickFix
+    appdata_path = os.getenv("APPDATA")
+    quickfix_path = os.path.join(appdata_path, "QuickFix")
+
+    # Create the QuickFix directory if it doesn't exist
+    if not os.path.exists(quickfix_path):
+        os.makedirs(quickfix_path)
+
+    LOCAL_MODS_JSON = os.path.join(quickfix_path, "mods.json")
+
+    if os.path.exists(LOCAL_MODS_JSON):
+        with open(LOCAL_MODS_JSON, "r", encoding="utf-8") as f:
             return json.load(f)
     else:
         return {}
 
 def save_local_mods_json(mods):
-    with open("mods.json", "w", encoding="utf-8") as f:
+    # Get the AppData path and define the folder for QuickFix
+    appdata_path = os.getenv("APPDATA")
+    quickfix_path = os.path.join(appdata_path, "QuickFix")
+
+    # Create the QuickFix directory if it doesn't exist
+    if not os.path.exists(quickfix_path):
+        os.makedirs(quickfix_path)
+
+    LOCAL_MODS_JSON = os.path.join(quickfix_path, "mods.json")
+
+    with open(LOCAL_MODS_JSON, "w", encoding="utf-8") as f:
         json.dump(mods, f, indent=2, ensure_ascii=False)
 
 def get_steam_root():
@@ -288,6 +308,7 @@ def main():
 
     DEBUG_MODE = args.debug
 
+    # Fetch and load latest mods.json from GitHub or local AppData
     mods = fetch_latest_mods_json()
 
     if args.command == "install":
@@ -299,7 +320,7 @@ def main():
             print("[ERROR] Please specify a mod ID or --all")
     elif args.command == "update":
         save_local_mods_json(mods)
-        print(f"[INFO] Updated {LOCAL_MODS_PATH}.")
+        print(f"[INFO] Updated mods.json in AppData directory.")
     elif args.command == "open-config":
         if args.mod_id:
             open_config_files(args.mod_id, mods)
