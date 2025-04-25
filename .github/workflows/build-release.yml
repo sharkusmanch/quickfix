@@ -1,0 +1,47 @@
+name: Build and Release QuickFix
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # manual trigger
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyinstaller
+
+      - name: Build QuickFix
+        run: pyinstaller --onefile --add-data "mods.json:." --name quickfix quickfix.py
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: quickfix
+          path: dist/quickfix.exe
+
+  release:
+    needs: build
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: quickfix
+          path: dist/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "v${{ github.run_number }}"
+          name: "QuickFix Build ${{ github.run_number }}"
+          files: dist/quickfix.exe
