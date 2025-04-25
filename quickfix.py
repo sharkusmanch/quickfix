@@ -296,11 +296,25 @@ def write_mod_marker(mod_id, version, install_path):
 
     print(f"[INFO] Wrote installation marker for {mod_id} at {marker_file}")
 
+def list_available_mods(mods):
+    """Lists all available mods."""
+    if not mods:
+        print("[INFO] No mods available.")
+        return
+
+    print(f"\n[INFO] Available mods: {len(mods)}")
+    for mod_id, mod in mods.items():
+        print(f"\nMod ID: {mod_id}")
+        print(f"  Repo: {mod['repo']}")
+        print(f"  Config files: {', '.join(mod.get('config_files', []))}")
+        for game in mod.get("games", []):
+            print(f"  Steam AppID: {game.get('steam_appid')}")
+
 def main():
     global DEBUG_MODE
 
     parser = argparse.ArgumentParser(description="QuickFix - Manage Lyall's PC Game Fixes")
-    parser.add_argument("command", choices=["install", "update", "open-config"], help="Command to run")
+    parser.add_argument("command", choices=["install", "update", "open-config", "list-mods"], help="Command to run")
     parser.add_argument("mod_id", nargs="?", help="Mod ID to install or open config (for 'install' or 'open-config' command)")
     parser.add_argument("--all", action="store_true", help="Install or update all mods")
     parser.add_argument("--debug", action="store_true", help="Enable debug logging")
@@ -326,6 +340,8 @@ def main():
             open_config_files(args.mod_id, mods)
         else:
             print("[ERROR] Please specify a mod ID to open its config files.")
+    elif args.command == "list-mods":
+        list_available_mods(mods)
 
 if __name__ == "__main__":
     main()
