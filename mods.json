@@ -1,7 +1,6 @@
 {
   "ClairObscurFix": {
     "repo": "Lyall/ClairObscurFix",
-    "download_url": "https://github.com/Lyall/ClairObscurFix/releases/latest/download/ClairObscurFix.zip",
     "config_files": ["ClairObscurFix.ini"],
     "games": [
       {
@@ -12,7 +11,6 @@
   },
   "MandragoraFix": {
     "repo": "Lyall/MandragoraFix",
-    "download_url": "https://github.com/Lyall/MandragoraFix/releases/latest/download/MandragoraFix.zip",
     "config_files": ["MandragoraFix.ini"],
     "games": [
       {
@@ -23,7 +21,6 @@
   },
   "ACShadowsFix": {
     "repo": "Lyall/ACShadowsFix",
-    "download_url": "https://github.com/Lyall/ACShadowsFix/releases/latest/download/ACShadowsFix.zip",
     "config_files": ["ACShadowsFix.ini"],
     "games": [
       {
@@ -34,7 +31,6 @@
   },
   "AtelierYumiaFix": {
     "repo": "Lyall/AtelierYumiaFix",
-    "download_url": "https://github.com/Lyall/AtelierYumiaFix/releases/latest/download/AtelierYumiaFix.zip",
     "config_files": ["AtelierYumiaFix.ini"],
     "games": [
       {
@@ -45,7 +41,6 @@
   },
   "MGSVFix": {
     "repo": "Lyall/MGSVFix",
-    "download_url": "https://github.com/Lyall/MGSVFix/releases/latest/download/MGSVFix.zip",
     "config_files": ["MGSVFix.ini"],
     "games": [
       {
@@ -56,7 +51,6 @@
   },
   "RiseOfTheRoninFix": {
     "repo": "Lyall/RiseOfTheRoninFix",
-    "download_url": "https://github.com/Lyall/RiseOfTheRoninFix/releases/latest/download/RiseOfTheRoninFix.zip",
     "config_files": ["RiseOfTheRoninFix.ini"],
     "games": [
       {
@@ -67,7 +61,6 @@
   },
   "FF7RemakeFix": {
     "repo": "Lyall/FF7RemakeFix",
-    "download_url": "https://github.com/Lyall/FF7RemakeFix/releases/latest/download/FF7RemakeFix.zip",
     "config_files": ["FF7RemakeFix.ini"],
     "games": [
       {
@@ -78,7 +71,6 @@
   },
   "DragonTweak": {
     "repo": "Lyall/DragonTweak",
-    "download_url": "https://github.com/Lyall/DragonTweak/releases/latest/download/DragonTweak.zip",
     "config_files": ["DragonTweak.ini"],
     "games": [
       {
@@ -117,7 +109,6 @@
   },
   "FateSamuraiRemnantFix": {
     "repo": "Lyall/FateSamuraiRemnantFix",
-    "download_url": "https://github.com/Lyall/FateSamuraiRemnantFix/releases/latest/download/FateSamuraiRemnantFix.zip",
     "config_files": ["FateSamuraiRemnantFix.ini"],
     "games": [
       {
@@ -128,7 +119,6 @@
   },
   "FF7RebirthFix": {
     "repo": "Lyall/FF7RebirthFix",
-    "download_url": "https://github.com/Lyall/FF7RebirthFix/releases/latest/download/FF7RebirthFix.zip",
     "config_files": ["FF7RebirthFix.ini"],
     "games": [
       {
@@ -139,7 +129,6 @@
   },
   "MegaMixPlusFix": {
     "repo": "Lyall/MegaMixPlusFix",
-    "download_url": "https://github.com/Lyall/MegaMixPlusFix/releases/latest/download/MegaMixPlusFix.zip",
     "config_files": ["MegaMixPlusFix.ini"],
     "games": [
       {
@@ -150,7 +139,6 @@
   },
   "TalesOfGracesFFix": {
     "repo": "Lyall/TalesOfGracesFFix",
-    "download_url": "https://github.com/Lyall/TalesOfGracesFFix/releases/latest/download/TalesOfGracesFFix.zip",
     "config_files": ["TalesOfGracesFFix.ini"],
     "games": [
       {
@@ -161,7 +149,6 @@
   },
   "GreatCircleFix": {
     "repo": "Lyall/GreatCircleFix",
-    "download_url": "https://github.com/Lyall/GreatCircleFix/releases/latest/download/GreatCircleFix.zip",
     "config_files": ["GreatCircleFix.ini"],
     "games": [
       {
@@ -172,7 +159,6 @@
   },
   "MDARainCodePlusFix": {
     "repo": "Lyall/MDARainCodePlusFix",
-    "download_url": "https://github.com/Lyall/MDARainCodePlusFix/releases/latest/download/MDARainCodePlusFix.zip",
     "config_files": ["MDARainCodePlusFix.ini"],
     "games": [
       {
@@ -183,7 +169,6 @@
   },
   "DQTreasuresFix": {
     "repo": "Lyall/DQTreasuresFix",
-    "download_url": "https://github.com/Lyall/DQTreasuresFix/releases/latest/download/DQTreasuresFix.zip",
     "config_files": ["DQTreasuresFix.ini"],
     "games": [
       {
@@ -194,7 +179,6 @@
   },
   "DQ3Fix": {
     "repo": "Lyall/DQ3Fix",
-    "download_url": "https://github.com/Lyall/DQ3Fix/releases/latest/download/DQ3Fix.zip",
     "config_files": ["DQ3Fix.ini"],
     "games": [
       {
@@ -205,7 +189,6 @@
   },
   "STALKER2Tweak": {
     "repo": "Lyall/STALKER2Tweak",
-    "download_url": "https://github.com/Lyall/STALKER2Tweak/releases/latest/download/STALKER2Tweak.zip",
     "config_files": ["STALKER2Tweak.ini"],
     "games": [
       {
@@ -216,7 +199,6 @@
   },
   "DAFix": {
     "repo": "Lyall/DAFix",
-    "download_url": "https://github.com/Lyall/DAFix/releases/latest/download/DAFix.zip",
     "config_files": ["DAFix.ini"],
     "games": [
       {
@@ -231,7 +213,6 @@
   },
   "SotDFix": {
     "repo": "Lyall/SotDFix",
-    "download_url": "https://github.com/Lyall/SotDFix/releases/latest/download/SotDFix.zip",
     "config_files": ["SotDFix.ini"],
     "games": [
       {
@@ -242,7 +223,6 @@
   },
   "OPPW4Fix": {
     "repo": "Lyall/OPPW4Fix",
-    "download_url": "https://github.com/Lyall/OPPW4Fix/releases/latest/download/OPPW4Fix.zip",
     "config_files": ["OPPW4Fix.ini"],
     "games": [
       {
@@ -253,7 +233,6 @@
   },
   "BerserkFix": {
     "repo": "Lyall/BerserkFix",
-    "download_url": "https://github.com/Lyall/BerserkFix/releases/latest/download/BerserkFix.zip",
     "config_files": ["BerserkFix.ini"],
     "games": [
       {
@@ -264,7 +243,6 @@
   },
   "MetaphorFix": {
     "repo": "Lyall/MetaphorFix",
-    "download_url": "https://github.com/Lyall/MetaphorFix/releases/latest/download/MetaphorFix.zip",
     "config_files": ["MetaphorFix.ini"],
     "games": [
       {
@@ -275,7 +253,6 @@
   },
   "NMHFix": {
     "repo": "Lyall/NMHFix",
-    "download_url": "https://github.com/Lyall/NMHFix/releases/latest/download/NMHFix.zip",
     "config_files": ["NMHFix.ini"],
     "games": [
       {
@@ -286,7 +263,6 @@
   },
   "Disgaea5Fix": {
     "repo": "Lyall/Disgaea5Fix",
-    "download_url": "https://github.com/Lyall/Disgaea5Fix/releases/latest/download/Disgaea5Fix.zip",
     "config_files": ["Disgaea5Fix.ini"],
     "games": [
       {
@@ -297,7 +273,6 @@
   },
   "WukongTweak": {
     "repo": "Lyall/WukongTweak",
-    "download_url": "https://github.com/Lyall/WukongTweak/releases/latest/download/WukongTweak.zip",
     "config_files": ["WukongTweak.ini"],
     "games": [
       {
@@ -308,7 +283,6 @@
   },
   "FFXVIFix": {
     "repo": "Lyall/FFXVIFix",
-    "download_url": "https://github.com/Lyall/FFXVIFix/releases/latest/download/FFXVIFix.zip",
     "config_files": ["FFXVIFix.ini"],
     "games": [
       {
@@ -319,7 +293,6 @@
   },
   "PoPTLCFix": {
     "repo": "Lyall/PoPTLCFix",
-    "download_url": "https://github.com/Lyall/PoPTLCFix/releases/latest/download/PoPTLCFix.zip",
     "config_files": ["PoPTLCFix.ini"],
     "games": [
       {
