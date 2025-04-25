@@ -47,4 +47,4 @@ jobs:
       # Clean up
       - name: Clean up build files
         run: |
-          rm -rf dist build quickfix.spec
+          Remove-Item -Recurse -Force dist build quickfix.spec
