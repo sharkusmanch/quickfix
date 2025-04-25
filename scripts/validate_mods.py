@@ -1,15 +1,27 @@
 import json
 import os
 import sys
+import time
 import requests
 
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 
-def github_get(url):
+def github_get(url, retries=3):
     headers = {"Accept": "application/vnd.github+json"}
     if GITHUB_TOKEN:
         headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
-    return requests.get(url, headers=headers, timeout=10)
+        print(f"🔒 Authenticated GitHub request: {url}")
+    else:
+        print(f"🌐 Public GitHub request: {url}")
+
+    for attempt in range(retries):
+        response = requests.get(url, headers=headers, timeout=10)
+        if response.status_code == 200:
+            return response
+        elif attempt < retries - 1:
+            print(f"⚠️ Request failed (attempt {attempt + 1}), retrying...")
+            time.sleep(2 ** attempt)
+    response.raise_for_status()
 
 def validate_mods():
     mods_path = "mods.json"
