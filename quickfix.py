@@ -183,6 +183,27 @@ def install_all_mods(mods):
     for mod_id in mods.keys():
         install_mod(mod_id, mods, force=False)
 
+def update_mod(mod_id, mods):
+    """Update a specific mod."""
+    installed_mods = load_installed_mods()
+    if mod_id not in installed_mods:
+        print(f"[ERROR] Mod ID {mod_id} is not installed.")
+        return
+
+    print(f"[INFO] Updating mod {mod_id}...")
+    install_mod(mod_id, mods, force=True)
+
+def update_all_mods(mods):
+    """Update all installed mods."""
+    installed_mods = load_installed_mods()
+    if not installed_mods:
+        print("[INFO] No mods are currently installed.")
+        return
+
+    print("[INFO] Updating all installed mods...")
+    for mod_id in installed_mods.keys():
+        update_mod(mod_id, mods)
+
 def update_cache():
     print("[INFO] Fetching latest mods.json from GitHub and updating local cache...")
     mods_json = fetch_latest_mods_json()
@@ -306,7 +327,7 @@ def main():
 
     parser = argparse.ArgumentParser(description="QuickFix - Manage Lyall's PC Game Fixes")
     parser.add_argument("command", choices=["install", "update", "update-cache", "open-config", "list-mods", "list-installed"], help="Command to run")
-    parser.add_argument("mod_id", nargs="?", help="Mod ID to install or open config (for 'install' or 'open-config' command)")
+    parser.add_argument("mod_id", nargs="?", help="Mod ID to install, update, or open config (for 'install', 'update', or 'open-config' command)")
     parser.add_argument("--all", action="store_true", help="Install or update all mods")
     parser.add_argument("--debug", action="store_true", help="Enable debug logging")
     parser.add_argument("--version", action="version", version=__version__, help="Show the version")
@@ -329,7 +350,12 @@ def main():
         else:
             print("[ERROR] Please specify a mod ID or --all")
     elif args.command == "update":
-        install_all_mods(mods)  # Update installed mods
+        if args.all:
+            update_all_mods(mods)
+        elif args.mod_id:
+            update_mod(args.mod_id, mods)
+        else:
+            print("[ERROR] Please specify a mod ID or --all")
     elif args.command == "update-cache":
         update_cache()  # Force update cache
     elif args.command == "open-config":
