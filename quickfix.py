@@ -11,7 +11,7 @@ import re
 import winreg
 from datetime import datetime
 
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 
 DEBUG_MODE = False
 INSTALLED_MODS_FILE = "installed.json"
@@ -239,31 +239,38 @@ def open_config_files(mod_id, mods):
         print(f"[WARN] No games defined for {mod_id}.")
         return
 
-    # Find the game install path
+    # Iterate over all games associated with the mod
     for game in games:
         appid = game["steam_appid"]
+        game_name = get_steam_game_name(appid)
         install_path = find_steam_game_install_path(appid)
-        if install_path:
-            for config_name in config_files:
-                found_path = None
 
-                # Search recursively inside install_path
-                for root, dirs, files in os.walk(install_path):
-                    if config_name in files:
-                        found_path = os.path.join(root, config_name)
-                        break
+        if not install_path:
+            print(f"[WARN] Could not find install path for {game_name}.")
+            continue
 
-                if found_path:
-                    print(f"[INFO] Opening config file: {found_path}")
-                    if platform.system() == "Windows":
-                        os.startfile(found_path)
-                    else:
-                        subprocess.run(["open", found_path])  # macOS/Linux
+        print(f"[INFO] Searching for config files for {game_name}...")
+
+        # Search for each config file in the game's install path
+        for config_name in config_files:
+            found_path = None
+
+            # Search recursively inside install_path
+            for root, dirs, files in os.walk(install_path):
+                if config_name in files:
+                    found_path = os.path.join(root, config_name)
+                    break
+
+            if found_path:
+                print(f"[INFO] Opening config file: {found_path}")
+                if platform.system() == "Windows":
+                    os.startfile(found_path)
                 else:
-                    print(f"[WARN] Could not find {config_name} inside {install_path}.")
-            return
+                    subprocess.run(["open", found_path])  # macOS/Linux
+            else:
+                print(f"[WARN] Could not find {config_name} inside {install_path} for {game_name}.")
 
-    print(f"[WARN] Could not find installed game for {mod_id}.")
+    print(f"[INFO] Finished processing config files for {mod_id}.")
 
 def get_latest_release_info(repo):
     url = f"https://api.github.com/repos/{repo}/releases/latest"
@@ -283,11 +290,22 @@ def get_latest_release_info(repo):
         print(f"[ERROR] Could not fetch release info for {repo}.")
         return None, None
 
+def list_installed_mods():
+    """List all installed mods and their versions."""
+    installed_mods = load_installed_mods()
+    if not installed_mods:
+        print("[INFO] No mods are currently installed.")
+        return
+
+    print("[INFO] Installed mods:")
+    for mod_id, version in installed_mods.items():
+        print(f"- {mod_id}: {version}")
+
 def main():
     global DEBUG_MODE
 
     parser = argparse.ArgumentParser(description="QuickFix - Manage Lyall's PC Game Fixes")
-    parser.add_argument("command", choices=["install", "update", "update-cache", "open-config", "list-mods"], help="Command to run")
+    parser.add_argument("command", choices=["install", "update", "update-cache", "open-config", "list-mods", "list-installed"], help="Command to run")
     parser.add_argument("mod_id", nargs="?", help="Mod ID to install or open config (for 'install' or 'open-config' command)")
     parser.add_argument("--all", action="store_true", help="Install or update all mods")
     parser.add_argument("--debug", action="store_true", help="Enable debug logging")
@@ -323,6 +341,8 @@ def main():
         print("[INFO] Listing all available mods:")
         for mod_id in mods.keys():
             print(f"- {mod_id}")
+    elif args.command == "list-installed":
+        list_installed_mods()
 
 if __name__ == "__main__":
     main()
