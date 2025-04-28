@@ -190,7 +190,24 @@ def update_mod(mod_id, mods):
         print(f"[ERROR] Mod ID {mod_id} is not installed.")
         return
 
-    print(f"[INFO] Updating mod {mod_id}...")
+    mod = mods.get(mod_id)
+    if not mod:
+        print(f"[ERROR] Mod ID {mod_id} not found in available mods.")
+        return
+
+    repo = mod["repo"]
+    latest_version, _ = get_latest_release_info(repo)
+
+    if not latest_version:
+        print(f"[ERROR] Could not retrieve the latest version for mod {mod_id}.")
+        return
+
+    installed_version = installed_mods[mod_id]
+    if installed_version == latest_version:
+        print(f"[INFO] Mod {mod_id} is already up to date (version {installed_version}). Skipping update.")
+        return
+
+    print(f"[INFO] Updating mod {mod_id} from version {installed_version} to {latest_version}...")
     install_mod(mod_id, mods, force=True)
 
 def update_all_mods(mods):
