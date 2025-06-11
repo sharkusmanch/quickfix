@@ -748,5 +748,16 @@
         "steam_appid": 3014080
       }
     ]
+  },
+  "DeusExMDFix": {
+    "repo": "Lyall/DeusExMDFix",
+    "config_files": [
+      "DeusExMDFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 337000
+      }
+    ]
   }
 }
