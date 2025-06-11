@@ -4,15 +4,16 @@ import sys
 import time
 import requests
 
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+API_TOKEN = os.environ.get("CODEBERG_TOKEN")
+CODEBERG_API = "https://codeberg.org/api/v1"
 
-def github_get(url, retries=3):
-    headers = {"Accept": "application/vnd.github+json"}
-    if GITHUB_TOKEN:
-        headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
-        print(f"🔒 Authenticated GitHub request: {url}")
+def codeberg_get(url, retries=3):
+    headers = {}
+    if API_TOKEN:
+        headers["Authorization"] = f"token {API_TOKEN}"
+        print(f"🔒 Authenticated Codeberg request: {url}")
     else:
-        print(f"🌐 Public GitHub request: {url}")
+        print(f"🌐 Public Codeberg request: {url}")
 
     for attempt in range(retries):
         response = requests.get(url, headers=headers, timeout=10)
@@ -44,9 +45,9 @@ def validate_mods():
             print(f"❌ {mod_id}: missing 'repo' field.")
             sys.exit(1)
 
-        response = github_get(f"https://api.github.com/repos/{repo}")
+        response = codeberg_get(f"{CODEBERG_API}/repos/{repo}")
         if response.status_code != 200:
-            print(f"❌ {mod_id}: GitHub repo '{repo}' does not exist.")
+            print(f"❌ {mod_id}: Codeberg repo '{repo}' does not exist.")
             sys.exit(1)
 
         config_files = mod.get("config_files", [])
