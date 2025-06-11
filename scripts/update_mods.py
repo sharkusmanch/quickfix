@@ -11,16 +11,17 @@ BLOCKLIST = [
 ]
 
 STEAM_SEARCH_API = "https://store.steampowered.com/api/storesearch/?term={}&l=english&cc=US"
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+API_TOKEN = os.environ.get("CODEBERG_TOKEN")
+CODEBERG_API = "https://codeberg.org/api/v1"
 
-def github_get(url):
-    headers = {"Accept": "application/vnd.github+json"}
-    if GITHUB_TOKEN:
-        headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+def codeberg_get(url):
+    headers = {}
+    if API_TOKEN:
+        headers["Authorization"] = f"token {API_TOKEN}"
     return requests.get(url, headers=headers, timeout=10)
 
 def fetch_repos():
-    response = github_get("https://api.github.com/users/Lyall/repos?per_page=100")
+    response = codeberg_get(f"{CODEBERG_API}/users/Lyall/repos")
     response.raise_for_status()
     return response.json()
 
@@ -88,7 +89,7 @@ def main():
 
     for repo in repos:
         name = repo["name"]
-        full_name = repo["full_name"]
+        full_name = f"Lyall/{name}"  # Codeberg format
 
         if any(bad.lower() == full_name.lower() for bad in BLOCKLIST):
             continue
@@ -129,14 +130,14 @@ def main():
         if added_mods:
             f.write("#### 🆕 New Mods Added:\n")
             for mod_id in added_mods:
-                f.write(f"- [{mod_id}](https://github.com/{updated_mods[mod_id]['repo']})\n")
+                f.write(f"- [{mod_id}](https://codeberg.org/{updated_mods[mod_id]['repo']})\n")
                 for game in updated_mods[mod_id]["games"]:
                     f.write(f"  - [Steam App {game['steam_appid']}](https://store.steampowered.com/app/{game['steam_appid']}/)\n")
             f.write("\n")
         if updated_mods_ids:
             f.write("#### ✏️ Existing Mods Updated:\n")
             for mod_id in updated_mods_ids:
-                f.write(f"- [{mod_id}](https://github.com/{updated_mods[mod_id]['repo']})\n")
+                f.write(f"- [{mod_id}](https://codeberg.org/{updated_mods[mod_id]['repo']})\n")
                 for game in updated_mods[mod_id]["games"]:
                     f.write(f"  - [Steam App {game['steam_appid']}](https://store.steampowered.com/app/{game['steam_appid']}/)\n")
 

@@ -11,10 +11,11 @@ import re
 import winreg
 from datetime import datetime
 
-__version__ = "1.0.4"
+__version__ = "1.0.5"
 
 DEBUG_MODE = False
 INSTALLED_MODS_FILE = "installed.json"
+CODEBERG_API = "https://codeberg.org/api/v1"
 
 def debug_print(message):
     if DEBUG_MODE:
@@ -30,6 +31,14 @@ def github_get(url):
     else:
         debug_print(f"🌐 Public GitHub request: {url}")
 
+    return requests.get(url, headers=headers, timeout=10)
+
+def codeberg_get(url):
+    headers = {}
+    API_TOKEN = os.environ.get("CODEBERG_TOKEN")
+    if API_TOKEN:
+        debug_print(f"🔒 Authenticated Codeberg request: {url}")
+        headers["Authorization"] = f"token {API_TOKEN}"
     return requests.get(url, headers=headers, timeout=10)
 
 def fetch_latest_mods_json():
@@ -311,13 +320,16 @@ def open_config_files(mod_id, mods):
     print(f"[INFO] Finished processing config files for {mod_id}.")
 
 def get_latest_release_info(repo):
-    url = f"https://api.github.com/repos/{repo}/releases/latest"
-    response = github_get(url)
+    url = f"{CODEBERG_API}/repos/{repo}/releases/latest"
+    response = codeberg_get(url)
 
     if response.status_code == 200:
         release_data = response.json()
         version = release_data.get("tag_name", "unknown")
-        download_url = release_data.get("assets", [{}])[0].get("browser_download_url")
+        attachments = release_data.get("assets", [])
+        download_url = next((asset.get("browser_download_url")
+                          for asset in attachments
+                          if asset.get("name", "").endswith(".zip")), None)
 
         if not download_url:
             print(f"[ERROR] No download URL found for the latest release of {repo}.")
