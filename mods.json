@@ -759,5 +759,27 @@
         "steam_appid": 337000
       }
     ]
+  },
+  "WatchDogsFix": {
+    "repo": "Lyall/WatchDogsFix",
+    "config_files": [
+      "WatchDogsFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 243470
+      }
+    ]
+  },
+  "SekiroFix": {
+    "repo": "Lyall/SekiroFix",
+    "config_files": [
+      "SekiroFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 814380
+      }
+    ]
   }
 }
