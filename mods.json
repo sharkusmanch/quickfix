@@ -781,5 +781,49 @@
         "steam_appid": 814380
       }
     ]
+  },
+  "NinjaGaidenMCFix": {
+    "repo": "Lyall/NinjaGaidenMCFix",
+    "config_files": [
+      "NinjaGaidenMCFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1580790
+      }
+    ]
+  },
+  "RaidouFix": {
+    "repo": "Lyall/RaidouFix",
+    "config_files": [
+      "RaidouFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 2288350
+      }
+    ]
+  },
+  "DeathStrandingDCFix": {
+    "repo": "Lyall/DeathStrandingDCFix",
+    "config_files": [
+      "DeathStrandingDCFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1850570
+      }
+    ]
+  },
+  "WoLongFix": {
+    "repo": "Lyall/WoLongFix",
+    "config_files": [
+      "WoLongFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1448440
+      }
+    ]
   }
 }
