@@ -21,9 +21,20 @@ def codeberg_get(url):
     return requests.get(url, headers=headers, timeout=10)
 
 def fetch_repos():
-    response = codeberg_get(f"{CODEBERG_API}/users/Lyall/repos")
-    response.raise_for_status()
-    return response.json()
+    repos = []
+    page = 1
+    while True:
+        url = f"{CODEBERG_API}/users/Lyall/repos?page={page}&limit=100"
+        response = codeberg_get(url)
+        response.raise_for_status()
+        data = response.json()
+        if not data:
+            break
+        repos.extend(data)
+        if len(data) < 100:
+            break
+        page += 1
+    return repos
 
 def clean_game_title(title):
     if not title:
@@ -87,17 +98,21 @@ def main():
     added_mods = []
     updated_mods_ids = []
 
+    print(f"🔍 Total repos fetched: {len(repos)}")
     for repo in repos:
-        name = repo["name"]
+        name = repo.get("name")
         full_name = f"Lyall/{name}"  # Codeberg format
-
+        print(f"\n---\nProcessing repo: {full_name}")
         if any(bad.lower() == full_name.lower() for bad in BLOCKLIST):
+            print(f"⏩ Skipped (blocklist): {full_name}")
             continue
 
         if "fix" in name.lower() or "tweak" in name.lower():
+            print(f"✅ Detected as mod: {full_name}")
             mod_id = name
 
             if mod_id not in existing_mods:
+                print(f"🆕 New mod detected: {mod_id}")
                 appid = guess_game_from_repo(repo)
                 updated_mods[mod_id] = {
                     "repo": full_name,
@@ -106,6 +121,7 @@ def main():
                 }
                 added_mods.append(mod_id)
             else:
+                print(f"✏️ Existing mod: {mod_id}")
                 preserved_config_files = existing_mods[mod_id].get("config_files", [])
                 preserved_games = existing_mods[mod_id].get("games", [])
 
@@ -117,8 +133,11 @@ def main():
 
                 # Only mark as updated if there's a real difference
                 if new_entry != existing_mods[mod_id]:
+                    print(f"✏️ Updated mod: {mod_id}")
                     updated_mods[mod_id] = new_entry
                     updated_mods_ids.append(mod_id)
+        else:
+            print(f"❌ Not detected as mod (name does not contain 'fix' or 'tweak'): {full_name}")
 
     # Write updated mods.json
     with open("mods.json", "w", encoding="utf-8") as f:
