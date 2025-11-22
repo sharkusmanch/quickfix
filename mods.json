@@ -8,7 +8,8 @@
       {
         "steam_appid": 1721060
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T17:34:19+02:00"
   },
   "ACShadowsFix": {
     "repo": "Lyall/ACShadowsFix",
@@ -19,7 +20,8 @@
       {
         "steam_appid": 3159330
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T17:32:11+02:00"
   },
   "AtelierYumiaFix": {
     "repo": "Lyall/AtelierYumiaFix",
@@ -30,7 +32,8 @@
       {
         "steam_appid": 3123410
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T17:33:34+02:00"
   },
   "MGSVFix": {
     "repo": "Lyall/MGSVFix",
@@ -41,7 +44,8 @@
       {
         "steam_appid": 287700
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T17:30:05+02:00"
   },
   "RiseOfTheRoninFix": {
     "repo": "Lyall/RiseOfTheRoninFix",
@@ -52,7 +56,8 @@
       {
         "steam_appid": 1340990
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T17:32:54+02:00"
   },
   "FF7RemakeFix": {
     "repo": "Lyall/FF7RemakeFix",
@@ -63,7 +68,8 @@
       {
         "steam_appid": 1462040
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T17:18:05+02:00"
   },
   "DragonTweak": {
     "repo": "Lyall/DragonTweak",
@@ -95,7 +101,8 @@
       {
         "steam_appid": 3061810
       }
-    ]
+    ],
+    "last_updated": "2025-05-31T19:32:14+02:00"
   },
   "FateSamuraiRemnantFix": {
     "repo": "Lyall/FateSamuraiRemnantFix",
@@ -106,7 +113,8 @@
       {
         "steam_appid": 1902690
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T17:17:18+02:00"
   },
   "FF7RebirthFix": {
     "repo": "Lyall/FF7RebirthFix",
@@ -117,7 +125,8 @@
       {
         "steam_appid": 2909400
       }
-    ]
+    ],
+    "last_updated": "2025-11-05T20:10:32+01:00"
   },
   "MegaMixPlusFix": {
     "repo": "Lyall/MegaMixPlusFix",
@@ -128,7 +137,8 @@
       {
         "steam_appid": 1761390
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T17:15:36+02:00"
   },
   "TalesOfGracesFFix": {
     "repo": "Lyall/TalesOfGracesFFix",
@@ -150,7 +160,8 @@
       {
         "steam_appid": 2677660
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T17:14:22+02:00"
   },
   "MDARainCodePlusFix": {
     "repo": "Lyall/MDARainCodePlusFix",
@@ -161,7 +172,8 @@
       {
         "steam_appid": 2903950
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T17:12:38+02:00"
   },
   "DQTreasuresFix": {
     "repo": "Lyall/DQTreasuresFix",
@@ -172,7 +184,8 @@
       {
         "steam_appid": 2021210
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T23:37:42+02:00"
   },
   "DQ3Fix": {
     "repo": "Lyall/DQ3Fix",
@@ -183,7 +196,8 @@
       {
         "steam_appid": 2701660
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T23:11:26+02:00"
   },
   "STALKER2Tweak": {
     "repo": "Lyall/STALKER2Tweak",
@@ -208,7 +222,8 @@
       {
         "steam_appid": 1238040
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T18:22:35+02:00"
   },
   "SotDFix": {
     "repo": "Lyall/SotDFix",
@@ -219,7 +234,8 @@
       {
         "steam_appid": 2535440
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T17:10:00+02:00"
   },
   "OPPW4Fix": {
     "repo": "Lyall/OPPW4Fix",
@@ -230,7 +246,8 @@
       {
         "steam_appid": 1089090
       }
-    ]
+    ],
+    "last_updated": "2025-06-05T01:01:26+02:00"
   },
   "BerserkFix": {
     "repo": "Lyall/BerserkFix",
@@ -252,7 +269,8 @@
       {
         "steam_appid": 2679460
       }
-    ]
+    ],
+    "last_updated": "2025-06-05T01:15:29+02:00"
   },
   "NMHFix": {
     "repo": "Lyall/NMHFix",
@@ -285,7 +303,8 @@
       {
         "steam_appid": 2358720
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T23:34:10+02:00"
   },
   "FFXVIFix": {
     "repo": "Lyall/FFXVIFix",
@@ -296,7 +315,8 @@
       {
         "steam_appid": 2515020
       }
-    ]
+    ],
+    "last_updated": "2025-06-05T01:17:00+02:00"
   },
   "PoPTLCFix": {
     "repo": "Lyall/PoPTLCFix",
@@ -307,7 +327,8 @@
       {
         "steam_appid": 2751000
       }
-    ]
+    ],
+    "last_updated": "2025-06-06T16:24:15+02:00"
   },
   "AISomniumFiles2Fix": {
     "repo": "Lyall/AISomniumFiles2Fix",
@@ -318,7 +339,8 @@
       {
         "steam_appid": 1449200
       }
-    ]
+    ],
+    "last_updated": "2025-07-08T06:21:46+02:00"
   },
   "AISomniumFilesFix": {
     "repo": "Lyall/AISomniumFilesFix",
@@ -351,7 +373,8 @@
       {
         "steam_appid": 1446650
       }
-    ]
+    ],
+    "last_updated": "2025-06-21T17:55:03+02:00"
   },
   "DDDAFix": {
     "repo": "Lyall/DDDAFix",
@@ -362,7 +385,8 @@
       {
         "steam_appid": 367500
       }
-    ]
+    ],
+    "last_updated": "2025-06-21T17:54:29+02:00"
   },
   "DeadIsland2Fix": {
     "repo": "Lyall/DeadIsland2Fix",
@@ -395,7 +419,8 @@
       {
         "steam_appid": 1295510
       }
-    ]
+    ],
+    "last_updated": "2025-06-08T23:11:09+02:00"
   },
   "EiyudenChronicleRisingFix": {
     "repo": "Lyall/EiyudenChronicleRisingFix",
@@ -428,7 +453,8 @@
       {
         "steam_appid": 881020
       }
-    ]
+    ],
+    "last_updated": "2025-06-06T00:18:28+02:00"
   },
   "GoTFix": {
     "repo": "Lyall/GoTFix",
@@ -461,7 +487,8 @@
       {
         "steam_appid": 1658280
       }
-    ]
+    ],
+    "last_updated": "2025-06-06T21:58:40+02:00"
   },
   "IshinFix": {
     "repo": "Lyall/IshinFix",
@@ -516,7 +543,8 @@
       {
         "steam_appid": 1971650
       }
-    ]
+    ],
+    "last_updated": "2025-06-08T21:49:07+02:00"
   },
   "OctopathFix": {
     "repo": "Lyall/OctopathFix",
@@ -549,7 +577,8 @@
       {
         "steam_appid": 2161700
       }
-    ]
+    ],
+    "last_updated": "2025-08-24T16:28:10+02:00"
   },
   "P5StrikersFix": {
     "repo": "Lyall/P5StrikersFix",
@@ -560,7 +589,8 @@
       {
         "steam_appid": 1382330
       }
-    ]
+    ],
+    "last_updated": "2025-06-08T21:38:16+02:00"
   },
   "RE5Fix": {
     "repo": "Lyall/RE5Fix",
@@ -615,7 +645,8 @@
       {
         "steam_appid": 1875830
       }
-    ]
+    ],
+    "last_updated": "2025-09-20T12:55:10+02:00"
   },
   "SO4Fix": {
     "repo": "Lyall/SO4Fix",
@@ -626,7 +657,8 @@
       {
         "steam_appid": 609150
       }
-    ]
+    ],
+    "last_updated": "2025-06-06T15:54:29+02:00"
   },
   "SoulHackers2Fix": {
     "repo": "Lyall/SoulHackers2Fix",
@@ -637,7 +669,8 @@
       {
         "steam_appid": 1777620
       }
-    ]
+    ],
+    "last_updated": "2025-07-07T16:40:18+02:00"
   },
   "StarTrekResurgenceFix": {
     "repo": "Lyall/StarTrekResurgenceFix",
@@ -670,7 +703,8 @@
       {
         "steam_appid": 1410640
       }
-    ]
+    ],
+    "last_updated": "2025-06-21T17:55:28+02:00"
   },
   "TGYHFix": {
     "repo": "Lyall/TGYHFix",
@@ -725,7 +759,8 @@
       {
         "steam_appid": 552700
       }
-    ]
+    ],
+    "last_updated": "2025-06-08T22:57:21+02:00"
   },
   "ClairObscurFix": {
     "repo": "Lyall/ClairObscurFix",
@@ -736,7 +771,8 @@
       {
         "steam_appid": 1903340
       }
-    ]
+    ],
+    "last_updated": "2025-08-23T12:50:23+02:00"
   },
   "HundredLineFix": {
     "repo": "Lyall/HundredLineFix",
@@ -747,7 +783,8 @@
       {
         "steam_appid": 3014080
       }
-    ]
+    ],
+    "last_updated": "2025-05-29T20:51:21+02:00"
   },
   "DeusExMDFix": {
     "repo": "Lyall/DeusExMDFix",
@@ -758,7 +795,8 @@
       {
         "steam_appid": 337000
       }
-    ]
+    ],
+    "last_updated": "2025-06-04T17:11:28+02:00"
   },
   "WatchDogsFix": {
     "repo": "Lyall/WatchDogsFix",
@@ -769,7 +807,8 @@
       {
         "steam_appid": 243470
       }
-    ]
+    ],
+    "last_updated": "2025-05-29T21:20:59+02:00"
   },
   "SekiroFix": {
     "repo": "Lyall/SekiroFix",
@@ -780,7 +819,8 @@
       {
         "steam_appid": 814380
       }
-    ]
+    ],
+    "last_updated": "2025-06-09T12:58:30+02:00"
   },
   "NinjaGaidenMCFix": {
     "repo": "Lyall/NinjaGaidenMCFix",
@@ -791,7 +831,8 @@
       {
         "steam_appid": 1580790
       }
-    ]
+    ],
+    "last_updated": "2025-06-21T17:55:13+02:00"
   },
   "RaidouFix": {
     "repo": "Lyall/RaidouFix",
@@ -802,7 +843,8 @@
       {
         "steam_appid": 2288350
       }
-    ]
+    ],
+    "last_updated": "2025-06-25T03:28:08+02:00"
   },
   "DeathStrandingDCFix": {
     "repo": "Lyall/DeathStrandingDCFix",
@@ -813,7 +855,8 @@
       {
         "steam_appid": 1850570
       }
-    ]
+    ],
+    "last_updated": "2025-07-05T00:31:21+02:00"
   },
   "WoLongFix": {
     "repo": "Lyall/WoLongFix",
@@ -824,6 +867,7 @@
       {
         "steam_appid": 1448440
       }
-    ]
+    ],
+    "last_updated": "2025-07-18T14:27:40+02:00"
   }
 }
