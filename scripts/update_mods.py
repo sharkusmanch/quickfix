@@ -24,14 +24,16 @@ def fetch_repos():
     repos = []
     page = 1
     while True:
-        url = f"{CODEBERG_API}/users/Lyall/repos?page={page}&limit=100"
+        url = f"{CODEBERG_API}/users/Lyall/repos?page={page}&limit=50"
         response = codeberg_get(url)
         response.raise_for_status()
         data = response.json()
         if not data:
             break
         repos.extend(data)
-        if len(data) < 100:
+        # Check if there are more pages by looking at the response length
+        # and the Link header if present
+        if len(data) < 50:
             break
         page += 1
     return repos
@@ -110,6 +112,9 @@ def main():
         if "fix" in name.lower() or "tweak" in name.lower():
             print(f"✅ Detected as mod: {full_name}")
             mod_id = name
+            
+            # Get the repo's last updated timestamp
+            repo_updated_at = repo.get("updated_at", "")
 
             if mod_id not in existing_mods:
                 print(f"🆕 New mod detected: {mod_id}")
@@ -117,25 +122,31 @@ def main():
                 updated_mods[mod_id] = {
                     "repo": full_name,
                     "config_files": [f"{name}.ini"],
-                    "games": [{"steam_appid": appid}] if appid else []
+                    "games": [{"steam_appid": appid}] if appid else [],
+                    "last_updated": repo_updated_at
                 }
                 added_mods.append(mod_id)
             else:
                 print(f"✏️ Existing mod: {mod_id}")
                 preserved_config_files = existing_mods[mod_id].get("config_files", [])
                 preserved_games = existing_mods[mod_id].get("games", [])
+                existing_last_updated = existing_mods[mod_id].get("last_updated", "")
 
                 new_entry = {
                     "repo": full_name,
                     "config_files": preserved_config_files,
-                    "games": preserved_games
+                    "games": preserved_games,
+                    "last_updated": repo_updated_at
                 }
 
-                # Only mark as updated if there's a real difference
-                if new_entry != existing_mods[mod_id]:
-                    print(f"✏️ Updated mod: {mod_id}")
+                # Check if repo has been updated on Codeberg or if metadata changed
+                if repo_updated_at != existing_last_updated or new_entry != existing_mods[mod_id]:
+                    print(f"✏️ Updated mod: {mod_id} (last updated: {repo_updated_at})")
                     updated_mods[mod_id] = new_entry
                     updated_mods_ids.append(mod_id)
+                else:
+                    # No changes, keep existing entry
+                    updated_mods[mod_id] = existing_mods[mod_id]
         else:
             print(f"❌ Not detected as mod (name does not contain 'fix' or 'tweak'): {full_name}")
 
@@ -149,16 +160,24 @@ def main():
         if added_mods:
             f.write("#### 🆕 New Mods Added:\n")
             for mod_id in added_mods:
-                f.write(f"- [{mod_id}](https://codeberg.org/{updated_mods[mod_id]['repo']})\n")
-                for game in updated_mods[mod_id]["games"]:
+                mod_data = updated_mods[mod_id]
+                f.write(f"- [{mod_id}](https://codeberg.org/{mod_data['repo']})\n")
+                if mod_data.get("last_updated"):
+                    f.write(f"  - Last updated: {mod_data['last_updated']}\n")
+                for game in mod_data["games"]:
                     f.write(f"  - [Steam App {game['steam_appid']}](https://store.steampowered.com/app/{game['steam_appid']}/)\n")
             f.write("\n")
         if updated_mods_ids:
             f.write("#### ✏️ Existing Mods Updated:\n")
             for mod_id in updated_mods_ids:
-                f.write(f"- [{mod_id}](https://codeberg.org/{updated_mods[mod_id]['repo']})\n")
-                for game in updated_mods[mod_id]["games"]:
+                mod_data = updated_mods[mod_id]
+                f.write(f"- [{mod_id}](https://codeberg.org/{mod_data['repo']})\n")
+                if mod_data.get("last_updated"):
+                    f.write(f"  - Last updated: {mod_data['last_updated']}\n")
+                for game in mod_data["games"]:
                     f.write(f"  - [Steam App {game['steam_appid']}](https://store.steampowered.com/app/{game['steam_appid']}/)\n")
+        if not added_mods and not updated_mods_ids:
+            f.write("No changes detected.\n")
 
     print("✅ mods.json updated successfully.")
     print("✅ pr_body.md generated for pull request.")
