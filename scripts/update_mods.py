@@ -23,19 +23,46 @@ def codeberg_get(url):
 def fetch_repos():
     repos = []
     page = 1
-    while True:
+    max_pages = 10  # Safety limit to prevent infinite loops
+    
+    while page <= max_pages:
         url = f"{CODEBERG_API}/users/Lyall/repos?page={page}&limit=50"
-        response = codeberg_get(url)
-        response.raise_for_status()
-        data = response.json()
+        print(f"📡 Fetching page {page}...")
+        
+        try:
+            response = codeberg_get(url)
+            response.raise_for_status()
+            data = response.json()
+            
+            # Get total count from headers (if available)
+            if page == 1 and 'X-Total-Count' in response.headers:
+                total_count = int(response.headers['X-Total-Count'])
+                print(f"📊 Total repos available: {total_count}")
+        except Exception as e:
+            print(f"⚠️ Error fetching page {page}: {e}")
+            break
+        
         if not data:
+            print(f"📭 Page {page} returned no data, stopping pagination")
             break
+        
+        print(f"📦 Page {page} returned {len(data)} repos")
         repos.extend(data)
-        # Check if there are more pages by looking at the response length
-        # and the Link header if present
-        if len(data) < 50:
+        
+        # Check Link header for next page
+        has_next = False
+        if 'Link' in response.headers:
+            link_header = response.headers['Link']
+            has_next = 'rel="next"' in link_header
+        
+        # Stop if no next link or partial page
+        if not has_next or len(data) < 50:
+            print(f"✅ Reached last page (page {page} had {len(data)} repos, has_next={has_next})")
             break
+        
         page += 1
+    
+    print(f"📊 Total repos collected: {len(repos)}")
     return repos
 
 def clean_game_title(title):
