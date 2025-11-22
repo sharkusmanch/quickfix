@@ -112,6 +112,49 @@ def guess_game_from_repo(repo):
 
     return None
 
+def get_config_files_from_readme(full_name, default_name):
+    """
+    Fetch the README from Codeberg and extract config file names from the Configuration section.
+    Returns a list of config file names, or default if parsing fails.
+    """
+    try:
+        # Fetch README content from Codeberg API
+        readme_url = f"{CODEBERG_API}/repos/{full_name}/contents/README.md"
+        print(f"  📄 Fetching README to detect config files...")
+        response = codeberg_get(readme_url)
+        response.raise_for_status()
+        readme_data = response.json()
+        
+        # Decode base64 content
+        import base64
+        content = base64.b64decode(readme_data['content']).decode('utf-8')
+        
+        # Find Configuration section
+        config_section_match = re.search(r'## Configuration\s*\n(.*?)(?=\n##|\Z)', content, re.DOTALL | re.IGNORECASE)
+        if not config_section_match:
+            print(f"  ⚠️ No Configuration section found, using default")
+            return [default_name]
+        
+        config_text = config_section_match.group(1)
+        
+        # Extract file names with common extensions (.ini, .cfg, .json, .yaml, .yml, .toml)
+        # Look for patterns like: **filename.ext** or `filename.ext` or just filename.ext
+        file_pattern = r'[`*]*([A-Za-z0-9_-]+\.(?:ini|cfg|json|yaml|yml|toml))[`*]*'
+        matches = re.findall(file_pattern, config_text)
+        
+        if matches:
+            # Remove duplicates while preserving order
+            config_files = list(dict.fromkeys(matches))
+            print(f"  ✅ Found config file(s): {', '.join(config_files)}")
+            return config_files
+        else:
+            print(f"  ⚠️ No config files detected in Configuration section, using default")
+            return [default_name]
+            
+    except Exception as e:
+        print(f"  ⚠️ Failed to fetch README ({e}), using default config file")
+        return [default_name]
+
 def load_existing_mods():
     if os.path.exists("mods.json"):
         with open("mods.json", "r", encoding="utf-8") as f:
@@ -146,9 +189,13 @@ def main():
             if mod_id not in existing_mods:
                 print(f"🆕 New mod detected: {mod_id}")
                 appid = guess_game_from_repo(repo)
+                
+                # Detect config files from README
+                config_files = get_config_files_from_readme(full_name, f"{name}.ini")
+                
                 updated_mods[mod_id] = {
                     "repo": full_name,
-                    "config_files": [f"{name}.ini"],
+                    "config_files": config_files,
                     "games": [{"steam_appid": appid}] if appid else [],
                     "last_updated": repo_updated_at
                 }

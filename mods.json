@@ -837,7 +837,7 @@
   "RaidouFix": {
     "repo": "Lyall/RaidouFix",
     "config_files": [
-      "RaidouFix.ini"
+      "RaidouFix.cfg"
     ],
     "games": [
       {
