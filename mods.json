@@ -945,7 +945,7 @@
   "TalesofXilliaFix": {
     "repo": "Lyall/TalesofXilliaFix",
     "config_files": [
-      "TalesofXilliaFix.ini"
+      "TalesofXilliaFix.cfg"
     ],
     "games": [
       {
