@@ -55,9 +55,9 @@ def fetch_repos():
             link_header = response.headers['Link']
             has_next = 'rel="next"' in link_header
         
-        # Stop if no next link or partial page
-        if not has_next or len(data) < 50:
-            print(f"✅ Reached last page (page {page} had {len(data)} repos, has_next={has_next})")
+        # Stop only if there's no next link in the response
+        if not has_next:
+            print(f"✅ Reached last page (page {page} had {len(data)} repos)")
             break
         
         page += 1
