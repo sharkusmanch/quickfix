@@ -953,5 +953,17 @@
       }
     ],
     "last_updated": "2025-11-20T11:28:10+01:00"
+  },
+  "DBXV2Fix": {
+    "repo": "Lyall/DBXV2Fix",
+    "config_files": [
+      "DBXV2Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 454650
+      }
+    ],
+    "last_updated": "2025-11-24T21:49:37+01:00"
   }
 }
