@@ -940,7 +940,7 @@
         "steam_appid": 1904480
       }
     ],
-    "last_updated": "2025-10-30T20:38:49+01:00"
+    "last_updated": "2025-12-01T00:08:22+01:00"
   },
   "TalesofXilliaFix": {
     "repo": "Lyall/TalesofXilliaFix",
@@ -953,5 +953,29 @@
       }
     ],
     "last_updated": "2025-11-20T11:28:10+01:00"
+  },
+  "DBXV2Fix": {
+    "repo": "Lyall/DBXV2Fix",
+    "config_files": [
+      "DBXV2Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 454650
+      }
+    ],
+    "last_updated": "2025-11-24T21:49:37+01:00"
+  },
+  "DOA5LRFix": {
+    "repo": "Lyall/DOA5LRFix",
+    "config_files": [
+      "DOA5LRFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 311730
+      }
+    ],
+    "last_updated": "2025-11-30T23:42:38+01:00"
   }
 }
