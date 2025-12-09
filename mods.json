@@ -102,7 +102,7 @@
         "steam_appid": 3061810
       }
     ],
-    "last_updated": "2025-05-31T19:32:14+02:00"
+    "last_updated": "2025-12-08T16:32:28+01:00"
   },
   "FateSamuraiRemnantFix": {
     "repo": "Lyall/FateSamuraiRemnantFix",
@@ -904,7 +904,7 @@
         "steam_appid": 2486820
       }
     ],
-    "last_updated": "2025-12-06T03:14:52+01:00"
+    "last_updated": "2025-12-07T16:23:51+01:00"
   },
   "WO3UFix": {
     "repo": "Lyall/WO3UFix",
@@ -977,5 +977,17 @@
       }
     ],
     "last_updated": "2025-11-30T23:42:38+01:00"
+  },
+  "DOA6Fix": {
+    "repo": "Lyall/DOA6Fix",
+    "config_files": [
+      "DOA6Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 838380
+      }
+    ],
+    "last_updated": "2025-12-08T16:29:22+01:00"
   }
 }
