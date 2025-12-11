@@ -989,5 +989,17 @@
       }
     ],
     "last_updated": "2025-12-08T16:29:22+01:00"
+  },
+  "TormentedSouls2Fix": {
+    "repo": "Lyall/TormentedSouls2Fix",
+    "config_files": [
+      "TormentedSouls2Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 2464280
+      }
+    ],
+    "last_updated": "2025-12-11T00:51:50+01:00"
   }
 }
