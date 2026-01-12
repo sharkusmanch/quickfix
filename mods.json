@@ -1013,5 +1013,17 @@
       }
     ],
     "last_updated": "2026-01-03T10:01:56+01:00"
+  },
+  "DQ7RFix": {
+    "repo": "Lyall/DQ7RFix",
+    "config_files": [
+      "DQ7RFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 2499870
+      }
+    ],
+    "last_updated": "2026-01-11T23:31:44+01:00"
   }
 }
