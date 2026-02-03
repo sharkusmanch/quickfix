@@ -69,7 +69,7 @@
         "steam_appid": 1462040
       }
     ],
-    "last_updated": "2025-06-04T17:18:05+02:00"
+    "last_updated": "2026-01-30T10:39:29+01:00"
   },
   "DragonTweak": {
     "repo": "Lyall/DragonTweak",
@@ -102,7 +102,7 @@
         "steam_appid": 3061810
       }
     ],
-    "last_updated": "2026-01-13T16:33:55+01:00"
+    "last_updated": "2026-01-21T21:23:20+01:00"
   },
   "FateSamuraiRemnantFix": {
     "repo": "Lyall/FateSamuraiRemnantFix",
@@ -964,7 +964,7 @@
         "steam_appid": 454650
       }
     ],
-    "last_updated": "2025-11-24T21:49:37+01:00"
+    "last_updated": "2026-01-23T21:53:10+01:00"
   },
   "DOA5LRFix": {
     "repo": "Lyall/DOA5LRFix",
@@ -1025,5 +1025,25 @@
       }
     ],
     "last_updated": "2026-01-11T23:31:44+01:00"
+  },
+  "Nioh2Fix": {
+    "repo": "Lyall/Nioh2Fix",
+    "config_files": [
+      "Nioh2Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 1325200
+      }
+    ],
+    "last_updated": "2026-01-27T03:09:44+01:00"
+  },
+  "DOAXVVPrismFix": {
+    "repo": "Lyall/DOAXVVPrismFix",
+    "config_files": [
+      "DOAXVVPrismFix.ini"
+    ],
+    "games": [],
+    "last_updated": "2026-01-22T07:55:05+01:00"
   }
 }
