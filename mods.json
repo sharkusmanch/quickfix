@@ -1022,6 +1022,9 @@
     "games": [
       {
         "steam_appid": 2499870
+      },
+      {
+        "steam_appid": 2499860
       }
     ],
     "last_updated": "2026-02-03T23:19:35+01:00"
