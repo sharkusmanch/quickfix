@@ -1045,5 +1045,17 @@
     ],
     "games": [],
     "last_updated": "2026-01-22T07:55:05+01:00"
+  },
+  "Nioh3Fix": {
+    "repo": "Lyall/Nioh3Fix",
+    "config_files": [
+      "Nioh3Fix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 4198760
+      }
+    ],
+    "last_updated": "2026-02-04T05:57:50+01:00"
   }
 }
