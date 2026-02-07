@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - 'quickfix.py'
+      - 'quickfix/**'
   workflow_dispatch:
 
 jobs:
@@ -15,20 +16,22 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Install pyinstaller
-        run: pip install pyinstaller requests
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
 
-      - name: Extract version from quickfix.py
+      - name: Extract version from quickfix package
         id: get_version
         shell: pwsh
         run: |
-          $content = Get-Content quickfix.py -Raw
+          $content = Get-Content quickfix/__init__.py -Raw
           if ($content -match '__version__\s*=\s*"(?<version>[\d\.]+)"') {
             $version = $matches.version
             echo "VERSION=$version" >> $env:GITHUB_ENV
@@ -38,16 +41,31 @@ jobs:
             exit 1
           }
 
+      - name: Check if tag already exists
+        id: check_tag
+        shell: pwsh
+        run: |
+          $tagExists = git tag -l "v$env:VERSION"
+          if ($tagExists) {
+            echo "TAG_EXISTS=true" >> $env:GITHUB_ENV
+            echo "::warning::Tag v$env:VERSION already exists. Skipping build and release."
+          } else {
+            echo "TAG_EXISTS=false" >> $env:GITHUB_ENV
+          }
+
       - name: Build executable
+        if: env.TAG_EXISTS == 'false'
         run: pyinstaller quickfix.spec
 
       - name: Upload Artifact
+        if: env.TAG_EXISTS == 'false'
         uses: actions/upload-artifact@v4
         with:
           name: quickfix
           path: dist/quickfix.exe
 
       - name: Create GitHub Release
+        if: env.TAG_EXISTS == 'false'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ env.VERSION }}

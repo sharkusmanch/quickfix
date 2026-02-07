@@ -1,121 +1,133 @@
 
 # QuickFix
 
-QuickFix is a CLI tool to easily install, update, and manage Lyall's PC game fixes from GitHub.
+QuickFix is a CLI tool to easily install, update, uninstall, and manage Lyall's PC game fixes.
 
-## 🚀 Features
+## Features
 
-- Install and update mods automatically from GitHub releases
-- Automatically detect installed Steam games
-- Merge config files intelligently to preserve user settings
-- Semantic versioning and clean GitHub releases
+- Install, update, and uninstall mods automatically from Codeberg releases
+- Automatically detect installed Steam games via the Windows registry
+- Local cache for mods list (6-hour TTL) to reduce network requests
 - Manage config files easily
 - Debug logging for troubleshooting
-- Custom Steam directories support
 
-## 📦 Installation
+## Installation
 
 1. Download the latest release from the [Releases](https://github.com/sharkusmanch/quickfix/releases) page.
 2. Run `quickfix.exe` or `python quickfix.py` if using the source.
 
-## 🧩 Commands
+## Commands
 
 ### Install a mod
 
 ```bash
-python quickfix.py install <mod_id>
+quickfix install <mod_id>
 ```
 
 Example:
 
 ```bash
-python quickfix.py install ClairObscurFix
+quickfix install ClairObscurFix
 ```
 
 ### Install all available mods
 
 ```bash
-python quickfix.py install --all
+quickfix install --all
 ```
 
 This will install all mods for detected installed games that don't already have the latest version installed.
 
+### Update a specific mod
+
+```bash
+quickfix update <mod_id>
+```
+
 ### Update all mods
 
 ```bash
-python quickfix.py update --all
+quickfix update --all
 ```
 
-Force re-download and update all installed mods.
-
-### 📂 Open a mod's config file
+### Uninstall a mod
 
 ```bash
-python quickfix.py open-config <mod_id>
+quickfix uninstall <mod_id>
 ```
 
-Example:
+Removes tracked files from the game directory and cleans up the installed.json entry. Mods installed before file tracking was added will have their entry removed but files must be cleaned up manually.
+
+### List all available mods
 
 ```bash
-python quickfix.py open-config ClairObscurFix
+quickfix list-mods
+```
+
+### List installed mods
+
+```bash
+quickfix list-installed
+```
+
+Shows all installed mods, their versions, and whether they can be cleanly uninstalled.
+
+### Update the local mods cache
+
+```bash
+quickfix update-cache
+```
+
+Forces a fresh download of the mods list, bypassing the 6-hour cache.
+
+### Open a mod's config file
+
+```bash
+quickfix open-config <mod_id>
 ```
 
 QuickFix will find and open the config file inside the installed game's directory.
 
-### 🐛 Enable debug logging
+### Enable debug logging
 
 Add `--debug` to any command:
 
 ```bash
-python quickfix.py install ClairObscurFix --debug
+quickfix install ClairObscurFix --debug
 ```
 
-Shows detailed Steam scanning, GitHub API requests, and file operations.
+Shows detailed Steam scanning, API requests, and file operations.
 
-### 📂 Use custom Steam directories
-
-Specify one or multiple custom Steam game libraries:
-
-```bash
-python quickfix.py install ClairObscurFix --steam-dir "D:\SteamLibrary"
-```
-
-Or multiple:
-
-```bash
-python quickfix.py install ClairObscurFix --steam-dir "D:\SteamLibrary" --steam-dir "E:\Games\SteamLibrary"
-```
-
-## ⚙️ Advanced Usage
-
-- Open a mod's config file: `python quickfix.py open-config <mod_id>`
-- Enable debug logging: `python quickfix.py --debug install <mod_id>`
-- Set custom Steam game directories: `python quickfix.py --steam-dir "<path>" install <mod_id>`
-
-## 🛡 Security Disclaimer
-
-**Use at your own risk!**  
-QuickFix downloads and installs files from third-party GitHub repositories (Lyall).  
-Always exercise caution when running scripts or modifying your game installations.
-
-## 🛠 Development
+## Development
 
 Install requirements:
 
 ```bash
-pip install pyinstaller requests
+pip install -r requirements-dev.txt
+```
+
+Run tests:
+
+```bash
+python -m pytest tests/ -v
 ```
 
 Build executable:
 
 ```bash
-pyinstaller --onefile quickfix.py
+pyinstaller quickfix.spec
 ```
 
-## 📜 License
+## Security Disclaimer
+
+**Use at your own risk!**
+QuickFix downloads and installs files from third-party Codeberg repositories (Lyall).
+Always exercise caution when running scripts or modifying your game installations.
+
+## License
 
 MIT License (see LICENSE file).
 
 ---
 
-Made with ❤️ for PC gamers by [sharkusmanch](https://github.com/sharkusmanch).
+Made with love for PC gamers by [sharkusmanch](https://github.com/sharkusmanch).
