@@ -940,7 +940,7 @@
         "steam_appid": 1904480
       }
     ],
-    "last_updated": "2025-12-01T00:08:22+01:00"
+    "last_updated": "2026-02-12T23:16:13+01:00"
   },
   "TalesofXilliaFix": {
     "repo": "Lyall/TalesofXilliaFix",
@@ -1056,6 +1056,18 @@
         "steam_appid": 4198760
       }
     ],
-    "last_updated": "2026-02-06T21:18:45+01:00"
+    "last_updated": "2026-02-11T02:41:33+01:00"
+  },
+  "FutureSoldierFix": {
+    "repo": "Lyall/FutureSoldierFix",
+    "config_files": [
+      "FutureSoldierFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 212630
+      }
+    ],
+    "last_updated": "2026-02-13T03:18:07+01:00"
   }
 }
