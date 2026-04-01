@@ -1104,6 +1104,18 @@
         "steam_appid": 3280350
       }
     ],
-    "last_updated": "2026-03-22T12:16:19+01:00"
+    "last_updated": "2026-03-31T11:44:19+02:00"
+  },
+  "ToBRFix": {
+    "repo": "Lyall/ToBRFix",
+    "config_files": [
+      "ToBRFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 2331020
+      }
+    ],
+    "last_updated": "2026-03-31T15:50:00+02:00"
   }
 }
