@@ -1117,5 +1117,17 @@
       }
     ],
     "last_updated": "2026-03-31T15:50:00+02:00"
+  },
+  "BDFFHDFix": {
+    "repo": "Lyall/BDFFHDFix",
+    "config_files": [
+      "BDFFHDFix.cfg"
+    ],
+    "games": [
+      {
+        "steam_appid": 2833580
+      }
+    ],
+    "last_updated": "2026-04-30T22:03:46+02:00"
   }
 }
