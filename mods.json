@@ -1129,5 +1129,17 @@
       }
     ],
     "last_updated": "2026-04-30T22:03:46+02:00"
+  },
+  "NiNoKuniFix": {
+    "repo": "Lyall/NiNoKuniFix",
+    "config_files": [
+      "NiNoKuniFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 798460
+      }
+    ],
+    "last_updated": "2026-05-17T22:26:21+02:00"
   }
 }
