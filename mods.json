@@ -1141,5 +1141,13 @@
       }
     ],
     "last_updated": "2026-05-17T22:26:21+02:00"
+  },
+  "NierReplicantFix": {
+    "repo": "Lyall/NierReplicantFix",
+    "config_files": [
+      "NierReplicantFix.ini"
+    ],
+    "games": [],
+    "last_updated": "2026-05-26T20:18:47+02:00"
   }
 }
