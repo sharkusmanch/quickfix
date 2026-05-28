@@ -1104,7 +1104,7 @@
         "steam_appid": 3280350
       }
     ],
-    "last_updated": "2026-03-31T11:44:19+02:00"
+    "last_updated": "2026-05-28T17:57:55+02:00"
   },
   "ToBRFix": {
     "repo": "Lyall/ToBRFix",
@@ -1141,5 +1141,25 @@
       }
     ],
     "last_updated": "2026-05-17T22:26:21+02:00"
+  },
+  "NierReplicantFix": {
+    "repo": "Lyall/NierReplicantFix",
+    "config_files": [
+      "NierReplicantFix.ini"
+    ],
+    "games": [],
+    "last_updated": "2026-05-26T20:18:47+02:00"
+  },
+  "LEGOBatmanLotDKFix": {
+    "repo": "Lyall/LEGOBatmanLotDKFix",
+    "config_files": [
+      "LEGOBatmanLotDKFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 2215200
+      }
+    ],
+    "last_updated": "2026-05-27T16:24:56+02:00"
   }
 }
