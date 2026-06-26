@@ -21,7 +21,7 @@
         "steam_appid": 3159330
       }
     ],
-    "last_updated": "2026-04-08T18:28:34+02:00"
+    "last_updated": "2026-06-17T23:53:59+02:00"
   },
   "AtelierYumiaFix": {
     "repo": "Lyall/AtelierYumiaFix",
@@ -45,7 +45,7 @@
         "steam_appid": 287700
       }
     ],
-    "last_updated": "2026-06-09T22:00:27+02:00"
+    "last_updated": "2026-06-13T04:14:49+02:00"
   },
   "RiseOfTheRoninFix": {
     "repo": "Lyall/RiseOfTheRoninFix",
@@ -454,7 +454,7 @@
         "steam_appid": 881020
       }
     ],
-    "last_updated": "2025-06-06T00:18:28+02:00"
+    "last_updated": "2026-06-19T19:17:04+02:00"
   },
   "GoTFix": {
     "repo": "Lyall/GoTFix",
@@ -1104,7 +1104,7 @@
         "steam_appid": 3280350
       }
     ],
-    "last_updated": "2026-05-28T17:57:55+02:00"
+    "last_updated": "2026-06-12T00:28:14+02:00"
   },
   "ToBRFix": {
     "repo": "Lyall/ToBRFix",
@@ -1165,5 +1165,25 @@
       }
     ],
     "last_updated": "2026-05-27T16:24:56+02:00"
+  },
+  "NoSleepForKanameDateFix": {
+    "repo": "Lyall/NoSleepForKanameDateFix",
+    "config_files": [
+      "NoSleepForKanameDateFix.cfg"
+    ],
+    "games": [],
+    "last_updated": "2026-06-12T15:34:27+02:00"
+  },
+  "DOA6LRFix": {
+    "repo": "Lyall/DOA6LRFix",
+    "config_files": [
+      "DOA6LRFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 4144680
+      }
+    ],
+    "last_updated": "2026-06-26T05:02:43+02:00"
   }
 }
