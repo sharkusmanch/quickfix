@@ -61,7 +61,7 @@ Windows `quickfix.py` ignores the new fields for now (unknown keys are already t
 
 ---
 
-## Part 2 — New repo `decky-quickfix` (plugin name: "QuickFix")
+## Part 2 — Plugin repo `decky-lyall` (display name: "Lyall Fixes")
 
 Based on `SteamDeckHomebrew/decky-plugin-template`: `api_version: 1`, `@decky/ui` + `@decky/api`, rollup via `@decky/rollup`, pnpm 9. **No `root` flag** — the `deck` user owns all Steam library paths, including SD cards. No compiled backend.
 
@@ -99,13 +99,13 @@ Version checks call Codeberg per mod; do them lazily (on QAM open / explicit ref
 
 - `index.tsx`: `definePlugin`; on mount, detect `(window as any).hasDeckyLaunchOptions`.
 - **QAM panel:** list of detected games with available fixes — display name via `appStore.GetAppOverviewByAppID(appid)` (retry-wrapped), status line (`Installed 0.0.15 · 0.0.16 available`), context-aware button (Install / Update / Uninstall), refresh button, `toaster.toast` on completion/failure, progress from `qf_progress` events. For BepInEx mods, the post-install toast warns that first boot takes minutes.
-- **DLO required:** if `hasDeckyLaunchOptions` is falsy, the panel shows an explanation ("QuickFix needs the 'Launch Options' plugin from the Decky store to activate fixes under Proton") and install buttons are disabled. No direct `SetAppLaunchOptions` writes in v1.
+- **DLO required:** if `hasDeckyLaunchOptions` is falsy, the panel shows an explanation ("Lyall Fixes needs the 'Launch Options' plugin from the Decky store to activate fixes under Proton") and install buttons are disabled. No direct `SetAppLaunchOptions` writes in v1.
 - **DLO registration:** after a successful install, dispatch:
   ```ts
   window.dispatchEvent(new CustomEvent('dlo-add-launch-options', {
     detail: [{
-      id: `quickfix-${modId}`,          // stable → re-dispatch upserts
-      group: 'QuickFix',
+      id: `lyall-${modId}`,             // stable → re-dispatch upserts
+      group: 'Lyall Fixes',
       name: `${modId} (${dll} override)`,
       on: `WINEDLLOVERRIDES="${dll}=n,b"`,  // env-only; DLO merges WINEDLLOVERRIDES across options with ';'
       off: '',
@@ -123,9 +123,9 @@ Version checks call Codeberg per mod; do them lazily (on QAM open / explicit ref
 
 ### Repo layout, CI, distribution
 
-- Template-derived layout: `main.py`, `py_modules/quickfix_core/` (detection, download, extract, manifest — unit-testable pure Python), `src/`, `plugin.json` (`flags: []`), `package.json`, `defaults/`.
-- GitHub Actions: lint + pytest for `py_modules/quickfix_core` (fixture zips: flat, pathed, backslash-entries, zip-slip), `pnpm build`, decky CLI zip build; on tag push, attach the zip to a GitHub release.
-- Install URL for users: `https://github.com/sharkusmanch/decky-quickfix/releases/latest/download/quickfix.zip` via Decky Settings → Developer → Install from URL.
+- Template-derived layout: `main.py`, `py_modules/lyall_core/` (detection, download, extract, manifest — unit-testable pure Python), `src/`, `plugin.json` (`flags: []`), `package.json`, `defaults/`.
+- GitHub Actions: lint + pytest for `py_modules/lyall_core` (fixture zips: flat, pathed, backslash-entries, zip-slip), `pnpm build`, decky CLI zip build; on tag push, attach the zip to a GitHub release.
+- Install URL for users: `https://github.com/sharkusmanch/decky-lyall/releases/latest/download/decky-lyall.zip` via Decky Settings → Developer → Install from URL.
 - Dev loop: rsync to `deck@<ip>:~/homebrew/plugins` + `systemctl restart plugin_loader`; CEF debugging via `chrome://inspect` → `<deck-ip>:8081`.
 
 ### Testing
