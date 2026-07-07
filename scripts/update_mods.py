@@ -162,6 +162,13 @@ def load_existing_mods():
     else:
         return {}
 
+def refresh_existing_entry(existing_entry, full_name, repo_updated_at):
+    """Update only the fields this script owns, preserving derived/unknown fields."""
+    new_entry = copy.deepcopy(existing_entry)
+    new_entry["repo"] = full_name
+    new_entry["last_updated"] = repo_updated_at
+    return new_entry
+
 def main():
     repos = fetch_repos()
     existing_mods = load_existing_mods()
@@ -202,19 +209,8 @@ def main():
                 added_mods.append(mod_id)
             else:
                 print(f"✏️ Existing mod: {mod_id}")
-                preserved_config_files = existing_mods[mod_id].get("config_files", [])
-                preserved_games = existing_mods[mod_id].get("games", [])
-                existing_last_updated = existing_mods[mod_id].get("last_updated", "")
-
-                new_entry = {
-                    "repo": full_name,
-                    "config_files": preserved_config_files,
-                    "games": preserved_games,
-                    "last_updated": repo_updated_at
-                }
-
-                # Check if repo has been updated on Codeberg or if metadata changed
-                if repo_updated_at != existing_last_updated or new_entry != existing_mods[mod_id]:
+                new_entry = refresh_existing_entry(existing_mods[mod_id], full_name, repo_updated_at)
+                if new_entry != existing_mods[mod_id]:
                     print(f"✏️ Updated mod: {mod_id} (last updated: {repo_updated_at})")
                     updated_mods[mod_id] = new_entry
                     updated_mods_ids.append(mod_id)
