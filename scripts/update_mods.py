@@ -155,6 +155,72 @@ def get_config_files_from_readme(full_name, default_name):
         print(f"  ⚠️ Failed to fetch README ({e}), using default config file")
         return [default_name]
 
+def fetch_readme_text(full_name):
+    """Return the repo's README text, or None."""
+    try:
+        import base64
+        response = codeberg_get(f"{CODEBERG_API}/repos/{full_name}/contents/README.md")
+        response.raise_for_status()
+        return base64.b64decode(response.json()["content"]).decode("utf-8")
+    except Exception:
+        return None
+
+
+def extract_readme_game_names(readme_text):
+    """Game names from the first column of any markdown table (best-effort).
+    Skips header rows ('Game'/'Title'/'Name') and separator rows."""
+    names = []
+    for line in readme_text.splitlines():
+        s = line.strip()
+        if not s.startswith("|"):
+            continue
+        cells = [c.strip() for c in s.strip("|").split("|")]
+        first = cells[0] if cells else ""
+        if not first or set(first) <= set("-: "):
+            continue
+        if first.lower() in ("game", "title", "name"):
+            continue
+        if any(ch.isalpha() for ch in first):
+            names.append(first)
+    return names
+
+
+def steam_search_appid(term):
+    """Top Steam appid for a game name, or None (best-effort — the human verifies)."""
+    try:
+        resp = requests.get(STEAM_SEARCH_API.format(term), timeout=5)
+        resp.raise_for_status()
+        items = resp.json().get("items", [])
+        return items[0].get("id") if items else None
+    except Exception:
+        return None
+
+
+def flag_multigame_gaps(mods, fetch_readme=fetch_readme_text, resolve_appid=steam_search_appid):
+    """For mods covering 2+ games, re-check the README's game table for titles the
+    catalog doesn't have yet. Returns warnings (suggested appids are unverified —
+    a human confirms and adds them). Multi-game mods like DragonTweak accrue new
+    titles upstream that a plain refresh never picks up."""
+    warnings = []
+    for mod_id, mod in mods.items():
+        if len(mod.get("games", [])) < 2:
+            continue
+        readme = fetch_readme(mod["repo"])
+        if not readme:
+            continue
+        have = {g.get("steam_appid") for g in mod["games"]}
+        flagged = set()
+        for name in extract_readme_game_names(readme):
+            if "demo" in name.lower():   # demos are transient; we don't catalog them
+                continue
+            appid = resolve_appid(name)
+            if appid and appid not in have and appid not in flagged:
+                flagged.add(appid)
+                warnings.append(
+                    f"`{mod_id}`: README lists '{name}' (appid {appid}?) not in catalog — verify & add")
+    return warnings
+
+
 def load_existing_mods():
     if os.path.exists("mods.json"):
         with open("mods.json", "r", encoding="utf-8") as f:
@@ -248,6 +314,15 @@ def main():
                     f.write(f"  - [Steam App {game['steam_appid']}](https://store.steampowered.com/app/{game['steam_appid']}/)\n")
         if not added_mods and not updated_mods_ids:
             f.write("No changes detected.\n")
+
+    print("🔎 Re-checking multi-game mods for newly-supported titles...")
+    gaps = flag_multigame_gaps(updated_mods)
+    if gaps:
+        with open("pr_body.md", "a", encoding="utf-8") as f:
+            f.write("\n#### 🎮 Multi-game mods: possible new titles\n")
+            for w in gaps:
+                f.write(f"- {w}\n")
+        print(f"🎮 {len(gaps)} possible new game(s) flagged for review.")
 
     print("✅ mods.json updated successfully.")
     print("✅ pr_body.md generated for pull request.")
