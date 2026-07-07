@@ -25,7 +25,8 @@
     ],
     "games": [
       {
-        "steam_appid": 3159330
+        "steam_appid": 3159330,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2026-06-17T23:53:59+02:00",
@@ -44,7 +45,8 @@
     ],
     "games": [
       {
-        "steam_appid": 3123410
+        "steam_appid": 3123410,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-04T17:33:34+02:00",
@@ -63,7 +65,8 @@
     ],
     "games": [
       {
-        "steam_appid": 287700
+        "steam_appid": 287700,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2026-06-13T04:14:49+02:00",
@@ -82,7 +85,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1340990
+        "steam_appid": 1340990,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-04T17:32:54+02:00",
@@ -161,7 +165,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1902690
+        "steam_appid": 1902690,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-04T17:17:18+02:00",
@@ -199,7 +204,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1761390
+        "steam_appid": 1761390,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-04T17:15:36+02:00",
@@ -229,7 +235,8 @@
     ],
     "games": [
       {
-        "steam_appid": 2677660
+        "steam_appid": 2677660,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-04T17:14:22+02:00",
@@ -338,7 +345,8 @@
     ],
     "games": [
       {
-        "steam_appid": 2535440
+        "steam_appid": 2535440,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-04T17:10:00+02:00",
@@ -357,7 +365,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1089090
+        "steam_appid": 1089090,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-05T01:01:26+02:00",
@@ -387,7 +396,8 @@
     ],
     "games": [
       {
-        "steam_appid": 2679460
+        "steam_appid": 2679460,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-05T01:15:29+02:00",
@@ -447,7 +457,8 @@
     ],
     "games": [
       {
-        "steam_appid": 2515020
+        "steam_appid": 2515020,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-05T01:17:00+02:00",
@@ -545,7 +556,8 @@
     ],
     "games": [
       {
-        "steam_appid": 367500
+        "steam_appid": 367500,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-21T17:54:29+02:00",
@@ -774,7 +786,8 @@
     ],
     "games": [
       {
-        "steam_appid": 2161700
+        "steam_appid": 2161700,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-08-24T16:28:10+02:00",
@@ -793,7 +806,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1382330
+        "steam_appid": 1382330,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-08T21:38:16+02:00",
@@ -877,7 +891,8 @@
     ],
     "games": [
       {
-        "steam_appid": 609150
+        "steam_appid": 609150,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-06T15:54:29+02:00",
@@ -1000,7 +1015,8 @@
     ],
     "games": [
       {
-        "steam_appid": 552700
+        "steam_appid": 552700,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-08T22:57:21+02:00",
@@ -1039,7 +1055,8 @@
     ],
     "games": [
       {
-        "steam_appid": 3014080
+        "steam_appid": 3014080,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-05-29T20:51:21+02:00",
@@ -1096,7 +1113,8 @@
     ],
     "games": [
       {
-        "steam_appid": 814380
+        "steam_appid": 814380,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-09T12:58:30+02:00",
@@ -1115,7 +1133,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1580790
+        "steam_appid": 1580790,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-06-21T17:55:13+02:00",
@@ -1153,7 +1172,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1850570
+        "steam_appid": 1850570,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-07-05T00:31:21+02:00",
@@ -1172,7 +1192,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1448440
+        "steam_appid": 1448440,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-07-18T14:27:40+02:00",
@@ -1251,7 +1272,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1879330
+        "steam_appid": 1879330,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-10-16T04:39:41+02:00",
@@ -1270,7 +1292,8 @@
     ],
     "games": [
       {
-        "steam_appid": 3375780
+        "steam_appid": 3375780,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-10-21T13:42:45+02:00",
@@ -1347,7 +1370,8 @@
     ],
     "games": [
       {
-        "steam_appid": 311730
+        "steam_appid": 311730,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-11-30T23:42:38+01:00",
@@ -1366,7 +1390,8 @@
     ],
     "games": [
       {
-        "steam_appid": 838380
+        "steam_appid": 838380,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2025-12-08T16:29:22+01:00",
@@ -1443,7 +1468,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1325200
+        "steam_appid": 1325200,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2026-02-23T12:01:10+01:00",
@@ -1477,7 +1503,8 @@
     ],
     "games": [
       {
-        "steam_appid": 4198760
+        "steam_appid": 4198760,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2026-03-11T15:32:36+01:00",
@@ -1496,7 +1523,8 @@
     ],
     "games": [
       {
-        "steam_appid": 212630
+        "steam_appid": 212630,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2026-02-14T11:39:00+01:00",
@@ -1534,7 +1562,8 @@
     ],
     "games": [
       {
-        "steam_appid": 3920610
+        "steam_appid": 3920610,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2026-03-13T18:38:35+01:00",
@@ -1553,7 +1582,8 @@
     ],
     "games": [
       {
-        "steam_appid": 3280350
+        "steam_appid": 3280350,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2026-06-12T00:28:14+02:00",
@@ -1572,7 +1602,8 @@
     ],
     "games": [
       {
-        "steam_appid": 2331020
+        "steam_appid": 2331020,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2026-03-31T15:50:00+02:00",
@@ -1610,7 +1641,8 @@
     ],
     "games": [
       {
-        "steam_appid": 798460
+        "steam_appid": 798460,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2026-05-17T22:26:21+02:00",
@@ -1629,7 +1661,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1113560
+        "steam_appid": 1113560,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2026-05-26T20:18:47+02:00",
@@ -1683,7 +1716,8 @@
     ],
     "games": [
       {
-        "steam_appid": 4144680
+        "steam_appid": 4144680,
+        "install_subdir": "."
       }
     ],
     "last_updated": "2026-06-26T05:02:43+02:00",

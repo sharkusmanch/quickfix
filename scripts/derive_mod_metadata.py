@@ -108,6 +108,8 @@ def collect_warnings(mods):
             warnings.append(f"`{mod_id}`: empty `games[]` — needs a Steam appid")
         for game in mod.get("games", []):
             appid = game.get("steam_appid")
+            # install_subdir "." is the explicit "extract to install root" marker
+            # (README-verified); absence means the target dir is unknown.
             if mod.get("zip_layout") == "flat" and not game.get("install_subdir"):
                 warnings.append(f"`{mod_id}`: flat zip but appid {appid} has no `install_subdir` — installs blocked on Deck")
             if appid in seen_appids and seen_appids[appid] != mod_id:
