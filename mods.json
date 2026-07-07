@@ -78,7 +78,8 @@
     ],
     "games": [
       {
-        "steam_appid": 2072450
+        "steam_appid": 2072450,
+        "install_subdir": "runtime/media"
       },
       {
         "steam_appid": 2375550
@@ -417,7 +418,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1295510
+        "steam_appid": 1295510,
+        "install_subdir": "Game/Binaries/Win64"
       }
     ],
     "last_updated": "2026-01-18T05:20:16+01:00"
@@ -541,7 +543,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1971650
+        "steam_appid": 1971650,
+        "install_subdir": "Octopath_Traveler2/Binaries/Win64"
       }
     ],
     "last_updated": "2025-06-08T21:49:07+02:00"
@@ -553,7 +556,7 @@
     ],
     "games": [
       {
-        "steam_appid": 1971650
+        "steam_appid": 921570
       }
     ]
   },
@@ -643,7 +646,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1875830
+        "steam_appid": 1875830,
+        "install_subdir": "Project/Binaries/Win64"
       }
     ],
     "last_updated": "2025-09-20T12:55:10+02:00"
@@ -769,7 +773,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1903340
+        "steam_appid": 1903340,
+        "install_subdir": "Sandfall/Binaries/Win64"
       }
     ],
     "last_updated": "2025-12-22T18:40:47+01:00"
@@ -877,7 +882,8 @@
     ],
     "games": [
       {
-        "steam_appid": 2417610
+        "steam_appid": 2417610,
+        "install_subdir": "MGSDelta/Binaries/Win64"
       }
     ],
     "last_updated": "2025-11-01T01:36:55+01:00"
@@ -889,7 +895,8 @@
     ],
     "games": [
       {
-        "steam_appid": 2947440
+        "steam_appid": 2947440,
+        "install_subdir": "SHf/Binaries/Win64"
       }
     ],
     "last_updated": "2025-09-24T23:53:07+02:00"
@@ -901,7 +908,8 @@
     ],
     "games": [
       {
-        "steam_appid": 2486820
+        "steam_appid": 2486820,
+        "install_subdir": "UNION/Binaries/Win64"
       }
     ],
     "last_updated": "2025-12-07T16:23:51+01:00"
@@ -937,7 +945,8 @@
     ],
     "games": [
       {
-        "steam_appid": 1904480
+        "steam_appid": 1904480,
+        "install_subdir": "x64.steam"
       }
     ],
     "last_updated": "2026-02-12T23:16:13+01:00"
@@ -1021,7 +1030,8 @@
     ],
     "games": [
       {
-        "steam_appid": 2499860
+        "steam_appid": 2499860,
+        "install_subdir": "DQ7R/Binaries/Win64"
       }
     ],
     "last_updated": "2026-03-10T00:14:21+01:00"
@@ -1161,7 +1171,8 @@
     ],
     "games": [
       {
-        "steam_appid": 2215200
+        "steam_appid": 2215200,
+        "install_subdir": "LEGOBatmanLotDK/Binaries/Win64"
       }
     ],
     "last_updated": "2026-05-27T16:24:56+02:00"

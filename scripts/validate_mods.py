@@ -23,11 +23,12 @@ def codeberg_get(url, retries=3):
         headers["Authorization"] = f"token {API_TOKEN}"
     for attempt in range(retries):
         response = requests.get(url, headers=headers, timeout=10)
-        if response.status_code == 200:
+        # 4xx is a definitive answer (e.g. repo gone) — only retry transient errors.
+        if response.status_code < 500:
             return response
         if attempt < retries - 1:
             time.sleep(2 ** attempt)
-    response.raise_for_status()
+    return response
 
 
 def _unsafe_subdir(subdir):
@@ -104,8 +105,9 @@ def validate_mods():
         if mod.get("repo"):
             response = codeberg_get(f"{CODEBERG_API}/repos/{mod['repo']}")
             if response.status_code != 200:
-                print(f"❌ {mod_id}: Codeberg repo '{mod['repo']}' does not exist.")
-                failed = True
+                # Legacy GitHub-only fixes (pre-Codeberg-migration) 404 here; they
+                # simply never get derived metadata, so warn rather than fail.
+                print(f"⚠️ {mod_id}: Codeberg repo '{mod['repo']}' not found.")
 
     for warning in collect_cross_mod_warnings(mods):
         print(f"⚠️ {warning}")
