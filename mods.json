@@ -154,6 +154,30 @@
       {
         "steam_appid": 3061810,
         "install_subdir": "runtime/media"
+      },
+      {
+        "steam_appid": 638970
+      },
+      {
+        "steam_appid": 834530
+      },
+      {
+        "steam_appid": 1088710
+      },
+      {
+        "steam_appid": 1105500
+      },
+      {
+        "steam_appid": 1105510
+      },
+      {
+        "steam_appid": 2988580
+      },
+      {
+        "steam_appid": 3717330
+      },
+      {
+        "steam_appid": 3717340
       }
     ],
     "last_updated": "2026-01-21T21:23:20+01:00",
