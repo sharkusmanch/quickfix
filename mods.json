@@ -127,7 +127,14 @@
         "steam_appid": 2909400
       }
     ],
-    "last_updated": "2026-06-04T15:05:53+02:00"
+    "last_updated": "2026-06-04T15:05:53+02:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/FF7RebirthFix/releases/download/0.0.13/FF7RebirthFix_0.0.13.zip",
+    "sha256": "364a076d18da0fa92091160584029119aa544174f1cd81738fffa77e4a028d45",
+    "size": 911633,
+    "derived_release": "0.0.13"
   },
   "MegaMixPlusFix": {
     "repo": "Lyall/MegaMixPlusFix",
@@ -777,7 +784,14 @@
         "install_subdir": "Sandfall/Binaries/Win64"
       }
     ],
-    "last_updated": "2025-12-22T18:40:47+01:00"
+    "last_updated": "2025-12-22T18:40:47+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/ClairObscurFix/releases/download/0.0.15/ClairObscurFix_0.0.15.zip",
+    "sha256": "efccc589592f5aef5efb386d60859c0cc46fa254686b624586b913a6587328c2",
+    "size": 836536,
+    "derived_release": "0.0.15"
   },
   "HundredLineFix": {
     "repo": "Lyall/HundredLineFix",
@@ -849,7 +863,14 @@
         "steam_appid": 2288350
       }
     ],
-    "last_updated": "2025-06-25T03:28:08+02:00"
+    "last_updated": "2025-06-25T03:28:08+02:00",
+    "loader": "bepinex",
+    "zip_layout": "pathed",
+    "wine_dll_override": "winhttp",
+    "download_url": "https://codeberg.org/Lyall/RaidouFix/releases/download/0.0.4/RaidouFix_0.0.4.zip",
+    "sha256": "576b07ac2008c1d1cd8dc425acb6f7cbe34989b660c5479808b406d5e1b95591",
+    "size": 35365090,
+    "derived_release": "0.0.4"
   },
   "DeathStrandingDCFix": {
     "repo": "Lyall/DeathStrandingDCFix",
