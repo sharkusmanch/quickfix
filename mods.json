@@ -9,7 +9,14 @@
         "steam_appid": 1721060
       }
     ],
-    "last_updated": "2025-06-04T17:34:19+02:00"
+    "last_updated": "2025-06-04T17:34:19+02:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/MandragoraFix/releases/download/0.0.2/MandragoraFix_0.0.2.zip",
+    "sha256": "0dcd232aa051afbe37e099a885b6074e70ca970c09883204a0c2a682b784f15f",
+    "size": 728559,
+    "derived_release": "0.0.2"
   },
   "ACShadowsFix": {
     "repo": "Lyall/ACShadowsFix",
@@ -21,7 +28,14 @@
         "steam_appid": 3159330
       }
     ],
-    "last_updated": "2026-06-17T23:53:59+02:00"
+    "last_updated": "2026-06-17T23:53:59+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/ACShadowsFix/releases/download/0.0.8/ACShadowsFix_0.0.8.zip",
+    "sha256": "2d84985ec7a0bd75ceda36d51f8eeb2e7c90a4612fce9d5c3e8f258d2613beea",
+    "size": 784126,
+    "derived_release": "0.0.8"
   },
   "AtelierYumiaFix": {
     "repo": "Lyall/AtelierYumiaFix",
@@ -33,7 +47,14 @@
         "steam_appid": 3123410
       }
     ],
-    "last_updated": "2025-06-04T17:33:34+02:00"
+    "last_updated": "2025-06-04T17:33:34+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/AtelierYumiaFix/releases/download/0.0.6/AtelierYumiaFix_0.0.6.zip",
+    "sha256": "a8a18efb12feaf810353046f5f50880a758cbd5a1b3988e1a47ec65e14f28026",
+    "size": 721954,
+    "derived_release": "0.0.6"
   },
   "MGSVFix": {
     "repo": "Lyall/MGSVFix",
@@ -45,7 +66,14 @@
         "steam_appid": 287700
       }
     ],
-    "last_updated": "2026-06-13T04:14:49+02:00"
+    "last_updated": "2026-06-13T04:14:49+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/MGSVFix/releases/download/0.0.3/MGSVFix_0.0.3.zip",
+    "sha256": "e552d512c758d39a9b3c62703ffec9352a498d82509ae503f838398482b65744",
+    "size": 786976,
+    "derived_release": "0.0.3"
   },
   "RiseOfTheRoninFix": {
     "repo": "Lyall/RiseOfTheRoninFix",
@@ -57,7 +85,14 @@
         "steam_appid": 1340990
       }
     ],
-    "last_updated": "2025-06-04T17:32:54+02:00"
+    "last_updated": "2025-06-04T17:32:54+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/RiseOfTheRoninFix/releases/download/0.0.4/RiseOfTheRoninFix_0.0.4.zip",
+    "sha256": "78cd3f3d6243f181fb6d9c818adadeb1e2aff9f92404b84ab7ef2a32b5f05b13",
+    "size": 722389,
+    "derived_release": "0.0.4"
   },
   "FF7RemakeFix": {
     "repo": "Lyall/FF7RemakeFix",
@@ -69,7 +104,14 @@
         "steam_appid": 1462040
       }
     ],
-    "last_updated": "2026-01-30T10:39:29+01:00"
+    "last_updated": "2026-01-30T10:39:29+01:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/FF7RemakeFix/releases/download/0.0.2/FF7RemakeFix_0.0.2.zip",
+    "sha256": "9a11e6ee833e98484a5cd8588cf20727f24e283efd512b34fad82c525d096402",
+    "size": 881345,
+    "derived_release": "0.0.2"
   },
   "DragonTweak": {
     "repo": "Lyall/DragonTweak",
@@ -78,7 +120,8 @@
     ],
     "games": [
       {
-        "steam_appid": 2072450
+        "steam_appid": 2072450,
+        "install_subdir": "runtime/media"
       },
       {
         "steam_appid": 2375550
@@ -102,7 +145,14 @@
         "steam_appid": 3061810
       }
     ],
-    "last_updated": "2026-01-21T21:23:20+01:00"
+    "last_updated": "2026-01-21T21:23:20+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/DragonTweak/releases/download/0.0.6/DragonTweak_0.0.6.zip",
+    "sha256": "97a23c3f506f2748b27508412142d1341a56308c9b8882c18f97ffac2e485047",
+    "size": 900584,
+    "derived_release": "0.0.6"
   },
   "FateSamuraiRemnantFix": {
     "repo": "Lyall/FateSamuraiRemnantFix",
@@ -114,7 +164,14 @@
         "steam_appid": 1902690
       }
     ],
-    "last_updated": "2025-06-04T17:17:18+02:00"
+    "last_updated": "2025-06-04T17:17:18+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/FateSamuraiRemnantFix/releases/download/0.0.2/FateSamuraiRemnantFix_0.0.2.zip",
+    "sha256": "d60daa8296d038f4254791b980373ef8bbdf944f818cb4a9fe966ac0337ad1f1",
+    "size": 720860,
+    "derived_release": "0.0.2"
   },
   "FF7RebirthFix": {
     "repo": "Lyall/FF7RebirthFix",
@@ -126,7 +183,14 @@
         "steam_appid": 2909400
       }
     ],
-    "last_updated": "2026-06-04T15:05:53+02:00"
+    "last_updated": "2026-06-04T15:05:53+02:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/FF7RebirthFix/releases/download/0.0.13/FF7RebirthFix_0.0.13.zip",
+    "sha256": "364a076d18da0fa92091160584029119aa544174f1cd81738fffa77e4a028d45",
+    "size": 911633,
+    "derived_release": "0.0.13"
   },
   "MegaMixPlusFix": {
     "repo": "Lyall/MegaMixPlusFix",
@@ -138,7 +202,14 @@
         "steam_appid": 1761390
       }
     ],
-    "last_updated": "2025-06-04T17:15:36+02:00"
+    "last_updated": "2025-06-04T17:15:36+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/MegaMixPlusFix/releases/download/0.0.1/MegaMixPlusFix_0.0.1.zip",
+    "sha256": "1aa841888dddea64f2335d31c132fd536849f1e0adb657d6ad2c24eaf81d2f25",
+    "size": 715413,
+    "derived_release": "0.0.1"
   },
   "TalesOfGracesFFix": {
     "repo": "Lyall/TalesOfGracesFFix",
@@ -161,7 +232,14 @@
         "steam_appid": 2677660
       }
     ],
-    "last_updated": "2025-06-04T17:14:22+02:00"
+    "last_updated": "2025-06-04T17:14:22+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/GreatCircleFix/releases/download/0.0.8/GreatCircleFix_0.0.8.zip",
+    "sha256": "41ade7902055c10911f98697f0aecf7c7bb6d9345aea0e06515c056d1d560725",
+    "size": 722914,
+    "derived_release": "0.0.8"
   },
   "MDARainCodePlusFix": {
     "repo": "Lyall/MDARainCodePlusFix",
@@ -173,7 +251,14 @@
         "steam_appid": 2903950
       }
     ],
-    "last_updated": "2025-06-04T17:12:38+02:00"
+    "last_updated": "2025-06-04T17:12:38+02:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/MDARainCodePlusFix/releases/download/0.0.1/MDARainCodePlusFix_0.0.1.zip",
+    "sha256": "5cf0b71e4e327910e133aa20d49904b3a38a1332625e9f3892120ea7ff81f361",
+    "size": 723432,
+    "derived_release": "0.0.1"
   },
   "DQTreasuresFix": {
     "repo": "Lyall/DQTreasuresFix",
@@ -185,7 +270,14 @@
         "steam_appid": 2021210
       }
     ],
-    "last_updated": "2025-06-04T23:37:42+02:00"
+    "last_updated": "2025-06-04T23:37:42+02:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/DQTreasuresFix/releases/download/0.0.4/DQTreasuresFix_0.0.4.zip",
+    "sha256": "83d1b4f0770f7139aebaf99a7743912f52dae23f69e52acb569f8eb52125d8ec",
+    "size": 729217,
+    "derived_release": "0.0.4"
   },
   "DQ3Fix": {
     "repo": "Lyall/DQ3Fix",
@@ -197,7 +289,14 @@
         "steam_appid": 2701660
       }
     ],
-    "last_updated": "2025-06-04T23:11:26+02:00"
+    "last_updated": "2025-06-04T23:11:26+02:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/DQ3Fix/releases/download/0.0.4/DQ3Fix_0.0.4.zip",
+    "sha256": "cd8d297c5565245aac83e4844c475e8aa8a78e136c543e54ada5d307a74bc31f",
+    "size": 729399,
+    "derived_release": "0.0.4"
   },
   "STALKER2Tweak": {
     "repo": "Lyall/STALKER2Tweak",
@@ -223,7 +322,14 @@
         "steam_appid": 1238040
       }
     ],
-    "last_updated": "2025-06-04T18:22:35+02:00"
+    "last_updated": "2025-06-04T18:22:35+02:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/DAFix/releases/download/0.0.3/DAFix_0.0.3.zip",
+    "sha256": "ac945464f17c943978ec7198aa9cf3add35bd034046158432af0c4b360d6cccf",
+    "size": 1247643,
+    "derived_release": "0.0.3"
   },
   "SotDFix": {
     "repo": "Lyall/SotDFix",
@@ -235,7 +341,14 @@
         "steam_appid": 2535440
       }
     ],
-    "last_updated": "2025-06-04T17:10:00+02:00"
+    "last_updated": "2025-06-04T17:10:00+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/SotDFix/releases/download/0.0.3/SotDFix_0.0.3.zip",
+    "sha256": "b3b892ec24ebe8ddf45d402f1763283d93104e989986a18d0135a514913cd405",
+    "size": 718508,
+    "derived_release": "0.0.3"
   },
   "OPPW4Fix": {
     "repo": "Lyall/OPPW4Fix",
@@ -247,7 +360,14 @@
         "steam_appid": 1089090
       }
     ],
-    "last_updated": "2025-06-05T01:01:26+02:00"
+    "last_updated": "2025-06-05T01:01:26+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "version",
+    "download_url": "https://codeberg.org/Lyall/OPPW4Fix/releases/download/0.0.4/OPPW4Fix_0.0.4.zip",
+    "sha256": "49206167a08244e112bf6c3a2f409e7de08c847de6db178669b2d9a47a9a06b3",
+    "size": 713764,
+    "derived_release": "0.0.4"
   },
   "BerserkFix": {
     "repo": "Lyall/BerserkFix",
@@ -270,7 +390,14 @@
         "steam_appid": 2679460
       }
     ],
-    "last_updated": "2025-06-05T01:15:29+02:00"
+    "last_updated": "2025-06-05T01:15:29+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/MetaphorFix/releases/download/0.8.5/MetaphorFix_0.8.5.zip",
+    "sha256": "9325f5d5b2ebdc62a7b7127b69ec4e187a6ec75c8e1aa4efb2f1c65284e9a9fc",
+    "size": 732772,
+    "derived_release": "0.8.5"
   },
   "NMHFix": {
     "repo": "Lyall/NMHFix",
@@ -304,7 +431,14 @@
         "steam_appid": 2358720
       }
     ],
-    "last_updated": "2025-06-04T23:34:10+02:00"
+    "last_updated": "2025-06-04T23:34:10+02:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/WukongTweak/releases/download/0.8.5/WukongTweak_0.8.5.zip",
+    "sha256": "ec66494e9e7a4edf72bea0dca1cdd10db0c9e2847329627617c34a3eca6bd74d",
+    "size": 723846,
+    "derived_release": "0.8.5"
   },
   "FFXVIFix": {
     "repo": "Lyall/FFXVIFix",
@@ -316,31 +450,52 @@
         "steam_appid": 2515020
       }
     ],
-    "last_updated": "2025-06-05T01:17:00+02:00"
+    "last_updated": "2025-06-05T01:17:00+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/FFXVIFix/releases/download/0.8.5/FFXVIFix_0.8.5.zip",
+    "sha256": "79afccda7e67b6f47d128adf04ff0cc61aa26e208a3be0c2845e0fbfb7e0eeed",
+    "size": 724034,
+    "derived_release": "0.8.5"
   },
   "PoPTLCFix": {
     "repo": "Lyall/PoPTLCFix",
     "config_files": [
-      "PoPTLCFix.ini"
+      "PoPTLCFix.cfg"
     ],
     "games": [
       {
         "steam_appid": 2751000
       }
     ],
-    "last_updated": "2025-06-06T16:24:15+02:00"
+    "last_updated": "2025-06-06T16:24:15+02:00",
+    "loader": "bepinex",
+    "zip_layout": "pathed",
+    "wine_dll_override": "winhttp",
+    "download_url": "https://codeberg.org/Lyall/PoPTLCFix/releases/download/0.8.6/PoPTLCFix_0.8.6.zip",
+    "sha256": "43a8957bec7da9ea9937ea183b3f841f8a5d39dc6d4fa37984be33f3efae3430",
+    "size": 35308927,
+    "derived_release": "0.8.6"
   },
   "AISomniumFiles2Fix": {
     "repo": "Lyall/AISomniumFiles2Fix",
     "config_files": [
-      "AISomniumFiles2Fix.ini"
+      "AISomniumFiles2Fix.cfg"
     ],
     "games": [
       {
         "steam_appid": 1449200
       }
     ],
-    "last_updated": "2025-07-08T06:21:46+02:00"
+    "last_updated": "2025-07-08T06:21:46+02:00",
+    "loader": "bepinex",
+    "zip_layout": "pathed",
+    "wine_dll_override": "winhttp",
+    "download_url": "https://codeberg.org/Lyall/AISomniumFiles2Fix/releases/download/1.0.7/AISomniumFiles2Fix_1.0.7.zip",
+    "sha256": "5880e3029c8f0603d69ce5865c97f7b466f9ff70886d7cd1e19ac56e8d9a30f0",
+    "size": 35363478,
+    "derived_release": "1.0.7"
   },
   "AISomniumFilesFix": {
     "repo": "Lyall/AISomniumFilesFix",
@@ -374,7 +529,14 @@
         "steam_appid": 1446650
       }
     ],
-    "last_updated": "2025-06-21T17:55:03+02:00"
+    "last_updated": "2025-06-21T17:55:03+02:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/BravelyDefault2Fix/releases/download/0.0.4/BravelyDefault2Fix_0.0.4.zip",
+    "sha256": "1a04aaebbd2f295b04d30b0a361e072412b67f692f05b39bf7d97d54cd6a78c4",
+    "size": 725288,
+    "derived_release": "0.0.4"
   },
   "DDDAFix": {
     "repo": "Lyall/DDDAFix",
@@ -386,7 +548,14 @@
         "steam_appid": 367500
       }
     ],
-    "last_updated": "2025-06-21T17:54:29+02:00"
+    "last_updated": "2025-06-21T17:54:29+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/DDDAFix/releases/download/0.9.1/DDDAFix_0.9.1.zip",
+    "sha256": "b44c6cb649c616cbd2cd38e97d0649e638ec747e729da5aacd7faa3130a587f9",
+    "size": 1289942,
+    "derived_release": "0.9.1"
   },
   "DeadIsland2Fix": {
     "repo": "Lyall/DeadIsland2Fix",
@@ -417,10 +586,18 @@
     ],
     "games": [
       {
-        "steam_appid": 1295510
+        "steam_appid": 1295510,
+        "install_subdir": "Game/Binaries/Win64"
       }
     ],
-    "last_updated": "2026-01-18T05:20:16+01:00"
+    "last_updated": "2026-01-18T05:20:16+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/DQXISFix/releases/download/0.9.3/DQXISFix_0.9.3.zip",
+    "sha256": "3e3d177677b1655efba16c8cfa5c45319ef2870f396f92c02f7a71e8d044893b",
+    "size": 871861,
+    "derived_release": "0.9.3"
   },
   "EiyudenChronicleRisingFix": {
     "repo": "Lyall/EiyudenChronicleRisingFix",
@@ -454,7 +631,14 @@
         "steam_appid": 881020
       }
     ],
-    "last_updated": "2026-06-19T19:17:04+02:00"
+    "last_updated": "2026-06-19T19:17:04+02:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/GBFRelinkFix/releases/download/1.1.1/GBFRelinkFix_1.1.1.zip",
+    "sha256": "fdece8758fd7412555c78e54f100085273761235377032c92190ac4de97c6e23",
+    "size": 738470,
+    "derived_release": "1.1.1"
   },
   "GoTFix": {
     "repo": "Lyall/GoTFix",
@@ -481,14 +665,21 @@
   "HundredHeroesFix": {
     "repo": "Lyall/HundredHeroesFix",
     "config_files": [
-      "HundredHeroesFix.ini"
+      "HundredHeroesFix.cfg"
     ],
     "games": [
       {
         "steam_appid": 1658280
       }
     ],
-    "last_updated": "2025-06-06T21:58:40+02:00"
+    "last_updated": "2025-06-06T21:58:40+02:00",
+    "loader": "bepinex",
+    "zip_layout": "pathed",
+    "wine_dll_override": "winhttp",
+    "download_url": "https://codeberg.org/Lyall/HundredHeroesFix/releases/download/0.9.8/HundredHeroesFix_0.9.8.zip",
+    "sha256": "4b0009424608524dfd471c2936bdaa4173ce233f294dd72e49e38a2f6fa6ffa5",
+    "size": 35313471,
+    "derived_release": "0.9.8"
   },
   "IshinFix": {
     "repo": "Lyall/IshinFix",
@@ -541,10 +732,18 @@
     ],
     "games": [
       {
-        "steam_appid": 1971650
+        "steam_appid": 1971650,
+        "install_subdir": "Octopath_Traveler2/Binaries/Win64"
       }
     ],
-    "last_updated": "2025-06-08T21:49:07+02:00"
+    "last_updated": "2025-06-08T21:49:07+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/Octopath2Fix/releases/download/0.9.0/Octopath2Fix_0.9.0.zip",
+    "sha256": "f36c6c6e8ff0f7410cb92e4277217ec0f1193d5ceafa5f696daace602158b418",
+    "size": 735444,
+    "derived_release": "0.9.0"
   },
   "OctopathFix": {
     "repo": "Lyall/OctopathFix",
@@ -553,7 +752,7 @@
     ],
     "games": [
       {
-        "steam_appid": 1971650
+        "steam_appid": 921570
       }
     ]
   },
@@ -578,7 +777,14 @@
         "steam_appid": 2161700
       }
     ],
-    "last_updated": "2025-08-24T16:28:10+02:00"
+    "last_updated": "2025-08-24T16:28:10+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/P3RFix/releases/download/1.2.4/P3RFix_1.2.4.zip",
+    "sha256": "9db602490f2a73ed064239b4d81b1fab10e156f51d8ae70791ba4e5dcc6d781d",
+    "size": 725720,
+    "derived_release": "1.2.4"
   },
   "P5StrikersFix": {
     "repo": "Lyall/P5StrikersFix",
@@ -590,7 +796,14 @@
         "steam_appid": 1382330
       }
     ],
-    "last_updated": "2025-06-08T21:38:16+02:00"
+    "last_updated": "2025-06-08T21:38:16+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/P5StrikersFix/releases/download/1.0.1/P5StrikersFix_1.0.1.zip",
+    "sha256": "d7cd807fb8c76ea0d3dc9f8d3fd0187e82674699871ce6a704a8d5081979c259",
+    "size": 738097,
+    "derived_release": "1.0.1"
   },
   "RE5Fix": {
     "repo": "Lyall/RE5Fix",
@@ -639,14 +852,23 @@
   "SMTVFix": {
     "repo": "Lyall/SMTVFix",
     "config_files": [
-      "SMTVFix.ini"
+      "SMTVFix.ini",
+      "Input.ini"
     ],
     "games": [
       {
-        "steam_appid": 1875830
+        "steam_appid": 1875830,
+        "install_subdir": "Project/Binaries/Win64"
       }
     ],
-    "last_updated": "2025-09-20T12:55:10+02:00"
+    "last_updated": "2025-09-20T12:55:10+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/SMTVFix/releases/download/1.0.0/SMTVFix_1.0.0.zip",
+    "sha256": "7d2a3afbd9054a71fa37ea16b01e886e43e75ec17697498dcd17120eaa758dad",
+    "size": 880460,
+    "derived_release": "1.0.0"
   },
   "SO4Fix": {
     "repo": "Lyall/SO4Fix",
@@ -658,19 +880,33 @@
         "steam_appid": 609150
       }
     ],
-    "last_updated": "2025-06-06T15:54:29+02:00"
+    "last_updated": "2025-06-06T15:54:29+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/SO4Fix/releases/download/0.9.1/SO4Fix_0.9.1.zip",
+    "sha256": "8a145d3d83139a5db75f0564e061d4ea8f2b75b6a9f4d4c8eff7d0422eee7d22",
+    "size": 738462,
+    "derived_release": "0.9.1"
   },
   "SoulHackers2Fix": {
     "repo": "Lyall/SoulHackers2Fix",
     "config_files": [
-      "SoulHackers2Fix.ini"
+      "SoulHackers2Fix.cfg"
     ],
     "games": [
       {
         "steam_appid": 1777620
       }
     ],
-    "last_updated": "2025-07-07T16:40:18+02:00"
+    "last_updated": "2025-07-07T16:40:18+02:00",
+    "loader": "bepinex",
+    "zip_layout": "pathed",
+    "wine_dll_override": "winhttp",
+    "download_url": "https://codeberg.org/Lyall/SoulHackers2Fix/releases/download/v0.0.5/SoulHackers2Fix_v0.0.5.zip",
+    "sha256": "1e7ffbef85ae04f38ad6ced3082dc0fd083e17c1cb74ed9b4129538e08d9c7e2",
+    "size": 33580968,
+    "derived_release": "v0.0.5"
   },
   "StarTrekResurgenceFix": {
     "repo": "Lyall/StarTrekResurgenceFix",
@@ -697,14 +933,21 @@
   "SyberiaTWBFix": {
     "repo": "Lyall/SyberiaTWBFix",
     "config_files": [
-      "SyberiaTWBFix.ini"
+      "SyberiaTWBFix.cfg"
     ],
     "games": [
       {
         "steam_appid": 1410640
       }
     ],
-    "last_updated": "2025-06-21T17:55:28+02:00"
+    "last_updated": "2025-06-21T17:55:28+02:00",
+    "loader": "melonloader",
+    "zip_layout": "pathed",
+    "wine_dll_override": "version",
+    "download_url": "https://codeberg.org/Lyall/SyberiaTWBFix/releases/download/1.0.3/SyberiaTWBFix_1.0.3.zip",
+    "sha256": "05059115ba4726e5c356cf431b02fcdcb85a637db737fc703fb58ba7750b34ed",
+    "size": 10893011,
+    "derived_release": "1.0.3"
   },
   "TGYHFix": {
     "repo": "Lyall/TGYHFix",
@@ -760,7 +1003,14 @@
         "steam_appid": 552700
       }
     ],
-    "last_updated": "2025-06-08T22:57:21+02:00"
+    "last_updated": "2025-06-08T22:57:21+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/WOFFFix/releases/download/0.8.0/WOFFFix_0.8.0.zip",
+    "sha256": "6ef1bb4ab145efaa111be5730daa6230d73269788761c251f8906aa1872622b9",
+    "size": 737439,
+    "derived_release": "0.8.0"
   },
   "ClairObscurFix": {
     "repo": "Lyall/ClairObscurFix",
@@ -769,10 +1019,18 @@
     ],
     "games": [
       {
-        "steam_appid": 1903340
+        "steam_appid": 1903340,
+        "install_subdir": "Sandfall/Binaries/Win64"
       }
     ],
-    "last_updated": "2025-12-22T18:40:47+01:00"
+    "last_updated": "2025-12-22T18:40:47+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/ClairObscurFix/releases/download/0.0.15/ClairObscurFix_0.0.15.zip",
+    "sha256": "efccc589592f5aef5efb386d60859c0cc46fa254686b624586b913a6587328c2",
+    "size": 836536,
+    "derived_release": "0.0.15"
   },
   "HundredLineFix": {
     "repo": "Lyall/HundredLineFix",
@@ -784,7 +1042,14 @@
         "steam_appid": 3014080
       }
     ],
-    "last_updated": "2025-05-29T20:51:21+02:00"
+    "last_updated": "2025-05-29T20:51:21+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/HundredLineFix/releases/download/0.0.1/HundredLineFix_0.0.1.zip",
+    "sha256": "3a6a06131736b4a78ec977dac6ba0d7a3343ab9eea77a1edfee5dfe1bb35d3e7",
+    "size": 717832,
+    "derived_release": "0.0.1"
   },
   "DeusExMDFix": {
     "repo": "Lyall/DeusExMDFix",
@@ -796,7 +1061,14 @@
         "steam_appid": 337000
       }
     ],
-    "last_updated": "2025-06-04T17:11:28+02:00"
+    "last_updated": "2025-06-04T17:11:28+02:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/DeusExMDFix/releases/download/0.0.4/DeusExMDFix_0.0.4.zip",
+    "sha256": "179761d11d9462df21df585e639e6a1b33c19e4ae6d0f5a8ee750c395e8b2bb4",
+    "size": 722076,
+    "derived_release": "0.0.4"
   },
   "WatchDogsFix": {
     "repo": "Lyall/WatchDogsFix",
@@ -808,7 +1080,14 @@
         "steam_appid": 243470
       }
     ],
-    "last_updated": "2025-05-29T21:20:59+02:00"
+    "last_updated": "2025-05-29T21:20:59+02:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/WatchDogsFix/releases/download/0.0.1/WatchDogsFix_0.0.1.zip",
+    "sha256": "00e183498a0ce265875ea58c8f4aa9b8a88038a5e53d401157ad34cc5beb0ce0",
+    "size": 721541,
+    "derived_release": "0.0.1"
   },
   "SekiroFix": {
     "repo": "Lyall/SekiroFix",
@@ -820,7 +1099,14 @@
         "steam_appid": 814380
       }
     ],
-    "last_updated": "2025-06-09T12:58:30+02:00"
+    "last_updated": "2025-06-09T12:58:30+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/SekiroFix/releases/download/0.0.1/SekiroFix_0.0.1.zip",
+    "sha256": "712643daba03247537ea8934e916b6c502ee78cb9f1c1dadc9e3e18f40e78ade",
+    "size": 740615,
+    "derived_release": "0.0.1"
   },
   "NinjaGaidenMCFix": {
     "repo": "Lyall/NinjaGaidenMCFix",
@@ -832,7 +1118,14 @@
         "steam_appid": 1580790
       }
     ],
-    "last_updated": "2025-06-21T17:55:13+02:00"
+    "last_updated": "2025-06-21T17:55:13+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/NinjaGaidenMCFix/releases/download/0.0.1/NinjaGaidenMCFix_0.0.1.zip",
+    "sha256": "081cdf37ca7479541c167fbf018bfb375ae5c013535122ae17ca808ea24cc50f",
+    "size": 769832,
+    "derived_release": "0.0.1"
   },
   "RaidouFix": {
     "repo": "Lyall/RaidouFix",
@@ -844,7 +1137,14 @@
         "steam_appid": 2288350
       }
     ],
-    "last_updated": "2025-06-25T03:28:08+02:00"
+    "last_updated": "2025-06-25T03:28:08+02:00",
+    "loader": "bepinex",
+    "zip_layout": "pathed",
+    "wine_dll_override": "winhttp",
+    "download_url": "https://codeberg.org/Lyall/RaidouFix/releases/download/0.0.4/RaidouFix_0.0.4.zip",
+    "sha256": "576b07ac2008c1d1cd8dc425acb6f7cbe34989b660c5479808b406d5e1b95591",
+    "size": 35365090,
+    "derived_release": "0.0.4"
   },
   "DeathStrandingDCFix": {
     "repo": "Lyall/DeathStrandingDCFix",
@@ -856,7 +1156,14 @@
         "steam_appid": 1850570
       }
     ],
-    "last_updated": "2025-07-05T00:31:21+02:00"
+    "last_updated": "2025-07-05T00:31:21+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winhttp",
+    "download_url": "https://codeberg.org/Lyall/DeathStrandingDCFix/releases/download/0.0.2/DeathStrandingDCFix_0.0.2.zip",
+    "sha256": "dd9ec2a39656d246d12e2f01aec77945268594528f556f69e865eb574e1f12a6",
+    "size": 741677,
+    "derived_release": "0.0.2"
   },
   "WoLongFix": {
     "repo": "Lyall/WoLongFix",
@@ -868,7 +1175,14 @@
         "steam_appid": 1448440
       }
     ],
-    "last_updated": "2025-07-18T14:27:40+02:00"
+    "last_updated": "2025-07-18T14:27:40+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/WoLongFix/releases/download/0.0.2/WoLongFix_0.0.2.zip",
+    "sha256": "9b364cb72c3b25a0208120b0e02b552891ab458956aeb835777504613a20853e",
+    "size": 715060,
+    "derived_release": "0.0.2"
   },
   "MGSDeltaFix": {
     "repo": "Lyall/MGSDeltaFix",
@@ -877,10 +1191,18 @@
     ],
     "games": [
       {
-        "steam_appid": 2417610
+        "steam_appid": 2417610,
+        "install_subdir": "MGSDelta/Binaries/Win64"
       }
     ],
-    "last_updated": "2025-11-01T01:36:55+01:00"
+    "last_updated": "2025-11-01T01:36:55+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/MGSDeltaFix/releases/download/0.0.6/MGSDeltaFix_0.0.6.zip",
+    "sha256": "b57fe2027ece7a3abcc70cc1b08272a42adf6fad2f2b0bc359c02d4c2cefcf9e",
+    "size": 1063799,
+    "derived_release": "0.0.6"
   },
   "SHfFix": {
     "repo": "Lyall/SHfFix",
@@ -889,10 +1211,18 @@
     ],
     "games": [
       {
-        "steam_appid": 2947440
+        "steam_appid": 2947440,
+        "install_subdir": "SHf/Binaries/Win64"
       }
     ],
-    "last_updated": "2025-09-24T23:53:07+02:00"
+    "last_updated": "2025-09-24T23:53:07+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/SHfFix/releases/download/0.0.1/SHfFix_0.0.1.zip",
+    "sha256": "fc3f7926aaf929b3b72991d4115b4c863fabf431a9393e099dbd8d5e6e198163",
+    "size": 864050,
+    "derived_release": "0.0.1"
   },
   "CrossWorldsFix": {
     "repo": "Lyall/CrossWorldsFix",
@@ -901,10 +1231,18 @@
     ],
     "games": [
       {
-        "steam_appid": 2486820
+        "steam_appid": 2486820,
+        "install_subdir": "UNION/Binaries/Win64"
       }
     ],
-    "last_updated": "2025-12-07T16:23:51+01:00"
+    "last_updated": "2025-12-07T16:23:51+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/CrossWorldsFix/releases/download/0.0.3/CrossWorldsFix_0.0.3.zip",
+    "sha256": "1cd5ed2d7ce6a8b4dfc9d47b7cb38b69a3a94ef437da54d4ee6b380665d31c13",
+    "size": 876758,
+    "derived_release": "0.0.3"
   },
   "WO3UFix": {
     "repo": "Lyall/WO3UFix",
@@ -916,7 +1254,14 @@
         "steam_appid": 1879330
       }
     ],
-    "last_updated": "2025-10-16T04:39:41+02:00"
+    "last_updated": "2025-10-16T04:39:41+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/WO3UFix/releases/download/0.0.1/WO3UFix_0.0.1.zip",
+    "sha256": "1b46b754a7ce55728764c0e080b34880e66ce050ecf648e43a6a25fc0287c388",
+    "size": 865483,
+    "derived_release": "0.0.1"
   },
   "Sky1stChapterFix": {
     "repo": "Lyall/Sky1stChapterFix",
@@ -928,7 +1273,14 @@
         "steam_appid": 3375780
       }
     ],
-    "last_updated": "2025-10-21T13:42:45+02:00"
+    "last_updated": "2025-10-21T13:42:45+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/Sky1stChapterFix/releases/download/0.0.2/Sky1stChapterFix_0.0.2.zip",
+    "sha256": "ea26bc1f5a17ea9329fd76292a9eabd77ee79a17e5dc40ed7810281d7892ad5e",
+    "size": 862344,
+    "derived_release": "0.0.2"
   },
   "AbsolumFix": {
     "repo": "Lyall/AbsolumFix",
@@ -937,10 +1289,18 @@
     ],
     "games": [
       {
-        "steam_appid": 1904480
+        "steam_appid": 1904480,
+        "install_subdir": "x64.steam"
       }
     ],
-    "last_updated": "2026-02-12T23:16:13+01:00"
+    "last_updated": "2026-02-12T23:16:13+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winhttp",
+    "download_url": "https://codeberg.org/Lyall/AbsolumFix/releases/download/0.0.2/AbsolumFix_0.0.2.zip",
+    "sha256": "a8e2581be83f0d12c082d657cfdc6946fcb424233ae0233489c4ab37c59f7f7f",
+    "size": 868224,
+    "derived_release": "0.0.2"
   },
   "TalesofXilliaFix": {
     "repo": "Lyall/TalesofXilliaFix",
@@ -952,7 +1312,14 @@
         "steam_appid": 2246670
       }
     ],
-    "last_updated": "2025-11-20T11:28:10+01:00"
+    "last_updated": "2025-11-20T11:28:10+01:00",
+    "loader": "bepinex",
+    "zip_layout": "pathed",
+    "wine_dll_override": "winhttp",
+    "download_url": "https://codeberg.org/Lyall/TalesofXilliaFix/releases/download/0.0.1/TalesofXilliaFix_0.0.1.zip",
+    "sha256": "0e88a884fc3dbc8dd90b737904cbfc0b131b45f773b10dd023a817100fd36816",
+    "size": 35368328,
+    "derived_release": "0.0.1"
   },
   "DBXV2Fix": {
     "repo": "Lyall/DBXV2Fix",
@@ -964,7 +1331,14 @@
         "steam_appid": 454650
       }
     ],
-    "last_updated": "2026-01-23T21:53:10+01:00"
+    "last_updated": "2026-01-23T21:53:10+01:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/DBXV2Fix/releases/download/0.0.2/DBXV2Fix_0.0.2.zip",
+    "sha256": "072cdddd98a21981fa3bbdd2b75a4bd0ae267d77fce99cd72bf862a259a06f5f",
+    "size": 871339,
+    "derived_release": "0.0.2"
   },
   "DOA5LRFix": {
     "repo": "Lyall/DOA5LRFix",
@@ -976,7 +1350,14 @@
         "steam_appid": 311730
       }
     ],
-    "last_updated": "2025-11-30T23:42:38+01:00"
+    "last_updated": "2025-11-30T23:42:38+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/DOA5LRFix/releases/download/0.0.1/DOA5LRFix_0.0.1.zip",
+    "sha256": "7642188afeb66ba16c3093a767ff8bf02bdec7ec2d5a938bf49807d8481227ad",
+    "size": 1389800,
+    "derived_release": "0.0.1"
   },
   "DOA6Fix": {
     "repo": "Lyall/DOA6Fix",
@@ -988,7 +1369,14 @@
         "steam_appid": 838380
       }
     ],
-    "last_updated": "2025-12-08T16:29:22+01:00"
+    "last_updated": "2025-12-08T16:29:22+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/DOA6Fix/releases/download/0.0.1/DOA6Fix_0.0.1.zip",
+    "sha256": "2fe02166e54db1e866d076d9d1a0f2f5a1209e6fc5b4badac27c9411f5076996",
+    "size": 870938,
+    "derived_release": "0.0.1"
   },
   "TormentedSouls2Fix": {
     "repo": "Lyall/TormentedSouls2Fix",
@@ -1000,7 +1388,14 @@
         "steam_appid": 2464280
       }
     ],
-    "last_updated": "2025-12-11T00:51:50+01:00"
+    "last_updated": "2025-12-11T00:51:50+01:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/TormentedSouls2Fix/releases/download/0.0.1/TormentedSouls2Fix_0.0.1.zip",
+    "sha256": "5f3451876a482f2866eaac478412b633212aa0a2008f0ff291427b7111eb0a08",
+    "size": 872296,
+    "derived_release": "0.0.1"
   },
   "Octopath0Fix": {
     "repo": "Lyall/Octopath0Fix",
@@ -1012,7 +1407,14 @@
         "steam_appid": 3014320
       }
     ],
-    "last_updated": "2026-03-05T13:42:59+01:00"
+    "last_updated": "2026-03-05T13:42:59+01:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/Octopath0Fix/releases/download/0.0.4/Octopath0Fix_0.0.4.zip",
+    "sha256": "f40b5a54847e445d312eda2d0977656fea7b4b63a169913d415809cffdcc9a69",
+    "size": 875056,
+    "derived_release": "0.0.4"
   },
   "DQ7RFix": {
     "repo": "Lyall/DQ7RFix",
@@ -1021,10 +1423,18 @@
     ],
     "games": [
       {
-        "steam_appid": 2499860
+        "steam_appid": 2499860,
+        "install_subdir": "DQ7R/Binaries/Win64"
       }
     ],
-    "last_updated": "2026-03-10T00:14:21+01:00"
+    "last_updated": "2026-03-10T00:14:21+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/DQ7RFix/releases/download/0.0.5/DQ7RFix_0.0.5.zip",
+    "sha256": "1e3c5482a578a08913839c54f5db682783502acef6f7e45482ecafb4c3085daf",
+    "size": 886578,
+    "derived_release": "0.0.5"
   },
   "Nioh2Fix": {
     "repo": "Lyall/Nioh2Fix",
@@ -1036,7 +1446,14 @@
         "steam_appid": 1325200
       }
     ],
-    "last_updated": "2026-02-23T12:01:10+01:00"
+    "last_updated": "2026-02-23T12:01:10+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "version",
+    "download_url": "https://codeberg.org/Lyall/Nioh2Fix/releases/download/0.0.3/Nioh2Fix_0.0.3.zip",
+    "sha256": "75058d2b9f0b254acfe53266e485b692ece7673565986909585393e92379c2dd",
+    "size": 871635,
+    "derived_release": "0.0.3"
   },
   "DOAXVVPrismFix": {
     "repo": "Lyall/DOAXVVPrismFix",
@@ -1044,7 +1461,14 @@
       "DOAXVVPrismFix.ini"
     ],
     "games": [],
-    "last_updated": "2026-01-22T07:55:05+01:00"
+    "last_updated": "2026-01-22T07:55:05+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/DOAXVVPrismFix/releases/download/0.0.1/DOAXVVPrismFix_0.0.1.zip",
+    "sha256": "974cc19118277b2cdf3fd514383f45d5048100d1919fd55b5952facbc708c210",
+    "size": 868434,
+    "derived_release": "0.0.1"
   },
   "Nioh3Fix": {
     "repo": "Lyall/Nioh3Fix",
@@ -1056,7 +1480,14 @@
         "steam_appid": 4198760
       }
     ],
-    "last_updated": "2026-03-11T15:32:36+01:00"
+    "last_updated": "2026-03-11T15:32:36+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/Nioh3Fix/releases/download/0.0.5/Nioh3Fix_0.0.5.zip",
+    "sha256": "2cdaa96d6084a74d0c1c76fb5b7e332a7b2130b67e69c5ec947ff178e98df05f",
+    "size": 874346,
+    "derived_release": "0.0.5"
   },
   "FutureSoldierFix": {
     "repo": "Lyall/FutureSoldierFix",
@@ -1068,7 +1499,14 @@
         "steam_appid": 212630
       }
     ],
-    "last_updated": "2026-02-14T11:39:00+01:00"
+    "last_updated": "2026-02-14T11:39:00+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/FutureSoldierFix/releases/download/0.0.2/FutureSoldierFix_0.0.2.zip",
+    "sha256": "f50fac0b78777384b8f38cd16301e3163c1c6e80fd44fd89e61723f2c94fe558",
+    "size": 1390248,
+    "derived_release": "0.0.2"
   },
   "WildHeartsFix": {
     "repo": "Lyall/WildHeartsFix",
@@ -1080,7 +1518,14 @@
         "steam_appid": 1938010
       }
     ],
-    "last_updated": "2026-02-28T19:39:02+01:00"
+    "last_updated": "2026-02-28T19:39:02+01:00",
+    "loader": "ual",
+    "zip_layout": "pathed",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/WildHeartsFix/releases/download/0.0.1/WildHeartsFix_0.0.1.zip",
+    "sha256": "dae952ef448205d49c050c5fb77368a1fbc4d767d0b5ddb6fde86728275bef81",
+    "size": 868980,
+    "derived_release": "0.0.1"
   },
   "FF2RFix": {
     "repo": "Lyall/FF2RFix",
@@ -1092,7 +1537,14 @@
         "steam_appid": 3920610
       }
     ],
-    "last_updated": "2026-03-13T18:38:35+01:00"
+    "last_updated": "2026-03-13T18:38:35+01:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/FF2RFix/releases/download/0.0.2/FF2RFix_0.0.2.zip",
+    "sha256": "f80005fe04bc345ea0955f7301abbda34e80f40fca9ad203c9e8cbf38b69173d",
+    "size": 872993,
+    "derived_release": "0.0.2"
   },
   "DeathStranding2Fix": {
     "repo": "Lyall/DeathStranding2Fix",
@@ -1104,7 +1556,14 @@
         "steam_appid": 3280350
       }
     ],
-    "last_updated": "2026-06-12T00:28:14+02:00"
+    "last_updated": "2026-06-12T00:28:14+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "version",
+    "download_url": "https://codeberg.org/Lyall/DeathStranding2Fix/releases/download/0.0.5/DeathStranding2Fix_0.0.5.zip",
+    "sha256": "f78768df9acf11a2785ced6c89cd43e9f618c61a8e37454c1a1ecfdde01b3ea2",
+    "size": 885747,
+    "derived_release": "0.0.5"
   },
   "ToBRFix": {
     "repo": "Lyall/ToBRFix",
@@ -1116,7 +1575,14 @@
         "steam_appid": 2331020
       }
     ],
-    "last_updated": "2026-03-31T15:50:00+02:00"
+    "last_updated": "2026-03-31T15:50:00+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "version",
+    "download_url": "https://codeberg.org/Lyall/ToBRFix/releases/download/0.0.1/ToBRFix_0.0.1.zip",
+    "sha256": "6981188ebdf6220f1925cd6e6b4f2e2b0bf408e3aafea950888c97301b00ca2d",
+    "size": 871656,
+    "derived_release": "0.0.1"
   },
   "BDFFHDFix": {
     "repo": "Lyall/BDFFHDFix",
@@ -1128,7 +1594,14 @@
         "steam_appid": 2833580
       }
     ],
-    "last_updated": "2026-04-30T22:03:46+02:00"
+    "last_updated": "2026-04-30T22:03:46+02:00",
+    "loader": "bepinex",
+    "zip_layout": "pathed",
+    "wine_dll_override": "version",
+    "download_url": "https://codeberg.org/Lyall/BDFFHDFix/releases/download/0.0.1/BDFFHDFix_0.0.1.zip",
+    "sha256": "e37027729e70e05190e01d01e8ddf8ca2574201abaee4375c3204ced96e835c7",
+    "size": 35430998,
+    "derived_release": "0.0.1"
   },
   "NiNoKuniFix": {
     "repo": "Lyall/NiNoKuniFix",
@@ -1140,7 +1613,14 @@
         "steam_appid": 798460
       }
     ],
-    "last_updated": "2026-05-17T22:26:21+02:00"
+    "last_updated": "2026-05-17T22:26:21+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/NiNoKuniFix/releases/download/0.0.1/NiNoKuniFix_0.0.1.zip",
+    "sha256": "0bde3aad776091d4c803bb05a58d3338ee717e53cf9cfa1f7fd8b26d32e34510",
+    "size": 863256,
+    "derived_release": "0.0.1"
   },
   "NierReplicantFix": {
     "repo": "Lyall/NierReplicantFix",
@@ -1152,7 +1632,14 @@
         "steam_appid": 1113560
       }
     ],
-    "last_updated": "2026-05-26T20:18:47+02:00"
+    "last_updated": "2026-05-26T20:18:47+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/NierReplicantFix/releases/download/0.0.1/NierReplicantFix_0.0.1.zip",
+    "sha256": "f968cd2ac313cec6e265c4f5bb36a1209378ee11b0ce612c9763e8a490c7a363",
+    "size": 878504,
+    "derived_release": "0.0.1"
   },
   "LEGOBatmanLotDKFix": {
     "repo": "Lyall/LEGOBatmanLotDKFix",
@@ -1161,10 +1648,18 @@
     ],
     "games": [
       {
-        "steam_appid": 2215200
+        "steam_appid": 2215200,
+        "install_subdir": "LEGOBatmanLotDK/Binaries/Win64"
       }
     ],
-    "last_updated": "2026-05-27T16:24:56+02:00"
+    "last_updated": "2026-05-27T16:24:56+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/LEGOBatmanLotDKFix/releases/download/0.0.1/LEGOBatmanLotDKFix_0.0.1.zip",
+    "sha256": "3d86b2f2c59b1220bc3b0149cf4f4470d8a1bbc9fa80b3fdc60721811046c50c",
+    "size": 891304,
+    "derived_release": "0.0.1"
   },
   "NoSleepForKanameDateFix": {
     "repo": "Lyall/NoSleepForKanameDateFix",
@@ -1172,7 +1667,14 @@
       "NoSleepForKanameDateFix.cfg"
     ],
     "games": [],
-    "last_updated": "2026-06-12T15:34:27+02:00"
+    "last_updated": "2026-06-12T15:34:27+02:00",
+    "loader": "bepinex",
+    "zip_layout": "pathed",
+    "wine_dll_override": "winhttp",
+    "download_url": "https://codeberg.org/Lyall/NoSleepForKanameDateFix/releases/download/0.0.1/NoSleepForKanameDateFix_0.0.1.zip",
+    "sha256": "5f3a386efe76440f57ddcbf488b16ddff53663a5efb3adc4cf1cfa378e806a20",
+    "size": 35432180,
+    "derived_release": "0.0.1"
   },
   "DOA6LRFix": {
     "repo": "Lyall/DOA6LRFix",
@@ -1184,6 +1686,13 @@
         "steam_appid": 4144680
       }
     ],
-    "last_updated": "2026-06-26T05:02:43+02:00"
+    "last_updated": "2026-06-26T05:02:43+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "winmm",
+    "download_url": "https://codeberg.org/Lyall/DOA6LRFix/releases/download/0.0.1/DOA6LRFix_0.0.1.zip",
+    "sha256": "c308975e1fd4ec5ba5d03f0236c1d791081fd3348535a3f7c5fa90e8b44f902d",
+    "size": 776894,
+    "derived_release": "0.0.1"
   }
 }

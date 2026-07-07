@@ -26,6 +26,9 @@ jobs:
       - name: Update mods.json
         run: python scripts/update_mods.py
 
+      - name: Derive mod metadata
+        run: python scripts/derive_mod_metadata.py
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
