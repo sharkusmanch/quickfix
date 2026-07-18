@@ -1,0 +1,140 @@
+name: Auto-review & Merge Refresh
+
+# The "Refresh Mods List" workflow opens/updates the auto/refresh-mods PR using the
+# default GITHUB_TOKEN. GitHub deliberately does NOT fire `pull_request` workflows for
+# such PRs (loop protection), so a plain `on: pull_request` reviewer would never run on
+# it. `workflow_run` is exempt from that restriction, so we trigger off the refresh
+# workflow completing instead.
+on:
+  workflow_run:
+    workflows: ["Refresh Mods List"]
+    types: [completed]
+  workflow_dispatch:  # allow manual re-runs against the current auto/refresh-mods PR
+
+permissions:
+  contents: write        # merge to master
+  pull-requests: write   # review + merge the PR
+  id-token: write        # claude-code-action OIDC
+
+concurrency:
+  group: auto-merge-refresh
+  cancel-in-progress: false
+
+jobs:
+  review-and-merge:
+    # Only proceed when the refresh run itself succeeded (manual dispatch has no run).
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Find the open auto-refresh PR
+        id: pr
+        run: |
+          num=$(gh pr list --repo "$GITHUB_REPOSITORY" \
+            --head auto/refresh-mods --state open \
+            --json number --jq '.[0].number // empty')
+          if [ -z "$num" ]; then
+            echo "No open auto/refresh-mods PR — nothing to review."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Found PR #$num"
+            echo "found=true" >> "$GITHUB_OUTPUT"
+            echo "number=$num" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout PR head
+        if: steps.pr.outputs.found == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: auto/refresh-mods
+          fetch-depth: 0
+
+      - name: Set up Python
+        if: steps.pr.outputs.found == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        if: steps.pr.outputs.found == 'true'
+        run: pip install pytest requests
+
+      # --- Green-checks gate: the job fails here (no merge) if tests fail or
+      #     validate_mods.py reports a hard error. Curation *warnings* are printed
+      #     by validate but exit 0, so they never block. ---
+      - name: Run tests
+        if: steps.pr.outputs.found == 'true'
+        run: python -m pytest -q
+
+      - name: Validate mods.json (hard errors block the merge)
+        if: steps.pr.outputs.found == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/validate_mods.py
+
+      # --- Claude reviews the diff and posts an APPROVE or REQUEST_CHANGES review.
+      #     It does not merge; the next step merges only if it approved. ---
+      - name: Claude review
+        if: steps.pr.outputs.found == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            You are the reviewer for an automated `mods.json` refresh pull request in the
+            QuickFix repo. The PR is **#${{ steps.pr.outputs.number }}**, opened by a bot on
+            branch `auto/refresh-mods`, and only edits `mods.json`. The test suite and
+            `validate_mods.py` have ALREADY PASSED as earlier steps in this CI job, so
+            structural validity and hard errors are already covered — do not re-run them.
+
+            Inspect the change and decide whether it is a safe, routine metadata refresh:
+            - Diff: `gh pr diff ${{ steps.pr.outputs.number }}`
+            - Body (may hold a "Curation needed" section): `gh pr view ${{ steps.pr.outputs.number }}`
+
+            APPROVE only if ALL of these hold:
+            - The only file changed is `mods.json`.
+            - Changes stay within expected fields: `download_url`, `sha256`, `size`,
+              `derived_release`, `loader`, `zip_layout`, `wine_dll_override`, `last_updated`,
+              and additions of new mods or new `games[]` entries.
+            - Every `download_url` uses https and a host of `codeberg.org` or `github.com`.
+            - No EXISTING `steam_appid` or `install_subdir` was changed to a different value
+              (adding new entries is fine; silently mutating a human-curated value is a red flag).
+            - No previously-supported mod or game was removed without a clear reason.
+            - Nothing anomalous: unexpected hosts, non-metadata content, or an unexplained
+              order-of-magnitude `size` change.
+
+            The "Curation needed" ⚠️ warnings (new games lacking `install_subdir`, mods lacking
+            a derived `wine_dll_override`, or empty `games[]`) are INFORMATIONAL. They must NOT
+            block approval — but list them in your review so a human can curate them on-device.
+
+            Then act (do NOT merge — a later CI step merges if you approve):
+            - If it passes: `gh pr review ${{ steps.pr.outputs.number }} --approve --body "<concise
+              summary of what changed + a bullet list of any curation warnings to follow up>"`
+            - If it fails: `gh pr review ${{ steps.pr.outputs.number }} --request-changes --body
+              "<which rule failed and what a human should check>"`, and leave the PR open.
+
+            Be concise. `gh` is authenticated here; use it directly.
+          claude_args: >-
+            --max-turns 12
+            --allowedTools "Bash(gh pr view:*),Bash(gh pr diff:*),Bash(gh pr review:*),Bash(gh pr comment:*),Bash(git diff:*),Bash(git log:*)"
+
+      # --- Merge only if Claude's most recent review is an approval. Uses the workflow's
+      #     GITHUB_TOKEN (guaranteed merge rights) rather than the Claude app token. ---
+      - name: Merge if Claude approved
+        if: steps.pr.outputs.found == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          state=$(gh pr view ${{ steps.pr.outputs.number }} \
+            --json reviews \
+            --jq '[.reviews[] | select(.author.login | test("claude"; "i")) | .state] | last // "NONE"')
+          echo "Latest Claude review state: $state"
+          if [ "$state" = "APPROVED" ]; then
+            echo "Approved — merging."
+            gh pr merge ${{ steps.pr.outputs.number }} --squash --delete-branch
+          else
+            echo "Not approved (state=$state) — leaving PR open."
+            exit 0
+          fi
