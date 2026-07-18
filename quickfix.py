@@ -16,6 +16,7 @@ __version__ = "1.0.5"
 DEBUG_MODE = False
 INSTALLED_MODS_FILE = "installed.json"
 CODEBERG_API = "https://codeberg.org/api/v1"
+GITHUB_API = "https://api.github.com"
 
 def debug_print(message):
     if DEBUG_MODE:
@@ -319,26 +320,40 @@ def open_config_files(mod_id, mods):
 
     print(f"[INFO] Finished processing config files for {mod_id}.")
 
+def _select_release_zip(release_data):
+    """Return (version, download_url) for the latest release's .zip asset.
+
+    Prefers a non-Xbox zip when a release ships both a Steam and an _Xbox
+    build. Returns (version, None) when no zip asset is present.
+    """
+    version = release_data.get("tag_name", "unknown")
+    zips = [a for a in release_data.get("assets", [])
+            if a.get("name", "").endswith(".zip")]
+    if not zips:
+        return version, None
+    preferred = next((a for a in zips if "xbox" not in a.get("name", "").lower()), zips[0])
+    return version, preferred.get("browser_download_url")
+
+
 def get_latest_release_info(repo):
-    url = f"{CODEBERG_API}/repos/{repo}/releases/latest"
-    response = codeberg_get(url)
-
+    # Try Codeberg first, then fall back to GitHub for the Lyall fixes not
+    # (yet) mirrored to Codeberg.
+    response = codeberg_get(f"{CODEBERG_API}/repos/{repo}/releases/latest")
     if response.status_code == 200:
-        release_data = response.json()
-        version = release_data.get("tag_name", "unknown")
-        attachments = release_data.get("assets", [])
-        download_url = next((asset.get("browser_download_url")
-                          for asset in attachments
-                          if asset.get("name", "").endswith(".zip")), None)
+        version, download_url = _select_release_zip(response.json())
+        if download_url:
+            return version, download_url
 
+    response = github_get(f"{GITHUB_API}/repos/{repo}/releases/latest")
+    if response.status_code == 200:
+        version, download_url = _select_release_zip(response.json())
         if not download_url:
             print(f"[ERROR] No download URL found for the latest release of {repo}.")
             return None, None
-
         return version, download_url
-    else:
-        print(f"[ERROR] Could not fetch release info for {repo}.")
-        return None, None
+
+    print(f"[ERROR] Could not fetch release info for {repo}.")
+    return None, None
 
 def list_installed_mods():
     """List all installed mods and their versions."""

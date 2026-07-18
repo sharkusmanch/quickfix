@@ -11,9 +11,12 @@ from derive_mod_metadata import KNOWN_PROXY_DLLS
 
 API_TOKEN = os.environ.get("CODEBERG_TOKEN")
 CODEBERG_API = "https://codeberg.org/api/v1"
+GITHUB_API = "https://api.github.com"
 
 ALLOWED_LOADERS = {"ual", "bepinex", "melonloader"}
 ALLOWED_LAYOUTS = {"flat", "pathed"}
+# Release assets are served from Codeberg or, for fixes not mirrored there, GitHub.
+ALLOWED_DOWNLOAD_HOSTS = {"codeberg.org", "github.com"}
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
@@ -29,6 +32,21 @@ def codeberg_get(url, retries=3):
         if attempt < retries - 1:
             time.sleep(2 ** attempt)
     return response
+
+
+def github_get(url):
+    headers = {"Accept": "application/vnd.github+json"}
+    token = os.environ.get("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    return requests.get(url, headers=headers, timeout=10)
+
+
+def repo_exists(repo):
+    """True if the repo is hosted on Codeberg or GitHub."""
+    if codeberg_get(f"{CODEBERG_API}/repos/{repo}").status_code == 200:
+        return True
+    return github_get(f"{GITHUB_API}/repos/{repo}").status_code == 200
 
 
 def _unsafe_subdir(subdir):
@@ -63,7 +81,7 @@ def validate_entry(mod_id, mod):
         if not SHA256_RE.match(str(mod.get("sha256", ""))):
             errors.append("bad or missing sha256 for derived entry")
         url = urlparse(str(mod.get("download_url", "")))
-        if url.scheme != "https" or url.hostname != "codeberg.org":
+        if url.scheme != "https" or url.hostname not in ALLOWED_DOWNLOAD_HOSTS:
             errors.append(f"bad download_url: {mod.get('download_url')!r}")
         if not isinstance(mod.get("size"), int) or mod["size"] <= 0:
             errors.append("bad or missing size for derived entry")
@@ -102,12 +120,10 @@ def validate_mods():
         for error in errors:
             print(f"❌ {mod_id}: {error}")
             failed = True
-        if mod.get("repo"):
-            response = codeberg_get(f"{CODEBERG_API}/repos/{mod['repo']}")
-            if response.status_code != 200:
-                # Legacy GitHub-only fixes (pre-Codeberg-migration) 404 here; they
-                # simply never get derived metadata, so warn rather than fail.
-                print(f"⚠️ {mod_id}: Codeberg repo '{mod['repo']}' not found.")
+        if mod.get("repo") and not repo_exists(mod["repo"]):
+            # Only warn when the repo is on neither Codeberg nor GitHub; a
+            # GitHub-only fix still derives and installs via the fallback.
+            print(f"⚠️ {mod_id}: repo '{mod['repo']}' not found on Codeberg or GitHub.")
 
     for warning in collect_cross_mod_warnings(mods):
         print(f"⚠️ {warning}")

@@ -1,4 +1,30 @@
-from validate_mods import validate_entry, collect_cross_mod_warnings
+from validate_mods import validate_entry, collect_cross_mod_warnings, repo_exists
+
+
+class _Resp:
+    def __init__(self, status):
+        self.status_code = status
+
+
+def test_repo_exists_true_when_on_codeberg(monkeypatch):
+    import validate_mods as v
+    monkeypatch.setattr(v, "codeberg_get", lambda url: _Resp(200))
+    monkeypatch.setattr(v, "github_get", lambda url: _Resp(404))
+    assert repo_exists("Lyall/FooFix") is True
+
+
+def test_repo_exists_true_when_only_on_github(monkeypatch):
+    import validate_mods as v
+    monkeypatch.setattr(v, "codeberg_get", lambda url: _Resp(404))
+    monkeypatch.setattr(v, "github_get", lambda url: _Resp(200))
+    assert repo_exists("Lyall/FooFix") is True
+
+
+def test_repo_exists_false_when_nowhere(monkeypatch):
+    import validate_mods as v
+    monkeypatch.setattr(v, "codeberg_get", lambda url: _Resp(404))
+    monkeypatch.setattr(v, "github_get", lambda url: _Resp(404))
+    assert repo_exists("Lyall/GhostFix") is False
 
 
 def _valid():
@@ -43,6 +69,13 @@ def test_offsite_download_url_rejected():
     mod = _valid()
     mod["download_url"] = "https://evil.example.com/F.zip"
     assert any("download_url" in e for e in validate_entry("FooFix", mod))
+
+
+def test_github_download_url_accepted():
+    # GitHub-hosted fixes (not mirrored to Codeberg) derive github.com asset URLs.
+    mod = _valid()
+    mod["download_url"] = "https://github.com/Lyall/FooFix/releases/download/0.0.1/F.zip"
+    assert not any("download_url" in e for e in validate_entry("FooFix", mod))
 
 
 def test_underived_entry_needs_no_pinning_fields():

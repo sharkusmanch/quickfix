@@ -8,6 +8,7 @@ import zipfile
 import requests
 
 CODEBERG_API = "https://codeberg.org/api/v1"
+GITHUB_API = "https://api.github.com"
 
 # UAL x64 proxy names Lyall's fixes can ship. dxgi is deliberately excluded:
 # auto-overriding it would break DXVK.
@@ -61,15 +62,44 @@ def codeberg_get(url):
     return requests.get(url, headers=headers, timeout=15)
 
 
-def get_latest_zip_asset(repo):
-    """Return {'tag', 'url'} for the latest release's .zip asset, or None."""
-    resp = codeberg_get(f"{CODEBERG_API}/repos/{repo}/releases/latest")
-    if resp.status_code != 200:
+def github_get(url):
+    headers = {"Accept": "application/vnd.github+json"}
+    token = os.environ.get("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    return requests.get(url, headers=headers, timeout=15)
+
+
+def parse_release_assets(data):
+    """Extract {'tag', 'url'} for the latest release's .zip asset, or None.
+
+    Codeberg's Gitea API and the GitHub API expose the same release schema
+    (tag_name + assets[].browser_download_url), so one parser serves both.
+    When a release ships multiple zips (e.g. a Steam build and an _Xbox
+    variant), prefer the non-Xbox one — that's the build QuickFix installs.
+    """
+    zips = [a for a in data.get("assets", []) if a.get("name", "").endswith(".zip")]
+    if not zips:
         return None
-    data = resp.json()
-    for asset in data.get("assets", []):
-        if asset.get("name", "").endswith(".zip"):
-            return {"tag": data.get("tag_name", ""), "url": asset["browser_download_url"]}
+    preferred = next((a for a in zips if "xbox" not in a["name"].lower()), zips[0])
+    return {"tag": data.get("tag_name", ""), "url": preferred["browser_download_url"]}
+
+
+def get_latest_zip_asset(repo):
+    """Return {'tag', 'url'} for the latest release's .zip asset, or None.
+
+    Tries Codeberg first, then falls back to GitHub for the many Lyall fixes
+    not (yet) mirrored to Codeberg. Without the fallback these mods never
+    derive metadata and warn on every refresh.
+    """
+    resp = codeberg_get(f"{CODEBERG_API}/repos/{repo}/releases/latest")
+    if resp.status_code == 200:
+        asset = parse_release_assets(resp.json())
+        if asset:
+            return asset
+    resp = github_get(f"{GITHUB_API}/repos/{repo}/releases/latest")
+    if resp.status_code == 200:
+        return parse_release_assets(resp.json())
     return None
 
 
