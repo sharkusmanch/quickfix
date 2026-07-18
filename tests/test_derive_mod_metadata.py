@@ -49,7 +49,82 @@ import hashlib
 import io
 import zipfile
 
-from derive_mod_metadata import collect_warnings, derive_mod, needs_derivation
+from derive_mod_metadata import (
+    collect_warnings,
+    derive_mod,
+    get_latest_zip_asset,
+    needs_derivation,
+    parse_release_assets,
+)
+
+
+def test_parse_release_assets_picks_zip_and_tag():
+    data = {"tag_name": "v1.2.3", "assets": [
+        {"name": "notes.txt", "browser_download_url": "https://x/notes.txt"},
+        {"name": "Fix_v1.2.3.zip", "browser_download_url": "https://x/Fix.zip"},
+    ]}
+    assert parse_release_assets(data) == {"tag": "v1.2.3", "url": "https://x/Fix.zip"}
+
+
+def test_parse_release_assets_prefers_non_xbox_zip():
+    # GitHub releases often ship a Steam zip and an _Xbox variant; the Steam
+    # build is the one QuickFix installs.
+    data = {"tag_name": "v0.0.9", "assets": [
+        {"name": "STALKER2Tweak_v0.0.9_Xbox.zip", "browser_download_url": "https://x/xbox.zip"},
+        {"name": "STALKER2Tweak_v0.0.9.zip", "browser_download_url": "https://x/steam.zip"},
+    ]}
+    assert parse_release_assets(data)["url"] == "https://x/steam.zip"
+
+
+def test_parse_release_assets_none_without_zip():
+    assert parse_release_assets({"tag_name": "v1", "assets": [
+        {"name": "readme.md", "browser_download_url": "https://x/readme.md"}]}) is None
+
+
+def test_get_latest_zip_asset_falls_back_to_github(monkeypatch):
+    import derive_mod_metadata as d
+
+    class Resp:
+        def __init__(self, status, data=None):
+            self.status_code = status
+            self._data = data or {}
+
+        def json(self):
+            return self._data
+
+    gh_payload = {"tag_name": "v0.0.9", "assets": [
+        {"name": "Fix_v0.0.9.zip", "browser_download_url": "https://github.com/Lyall/Fix.zip"}]}
+    monkeypatch.setattr(d, "codeberg_get", lambda url: Resp(404))
+    monkeypatch.setattr(d, "github_get", lambda url: Resp(200, gh_payload))
+
+    assert get_latest_zip_asset("Lyall/Fix") == {
+        "tag": "v0.0.9", "url": "https://github.com/Lyall/Fix.zip"}
+
+
+def test_get_latest_zip_asset_prefers_codeberg(monkeypatch):
+    import derive_mod_metadata as d
+
+    class Resp:
+        def __init__(self, status, data=None):
+            self.status_code = status
+            self._data = data or {}
+
+        def json(self):
+            return self._data
+
+    cb_payload = {"tag_name": "1.0", "assets": [
+        {"name": "Fix.zip", "browser_download_url": "https://codeberg.org/Lyall/Fix.zip"}]}
+    calls = {"github": 0}
+
+    def gh(url):
+        calls["github"] += 1
+        return Resp(404)
+
+    monkeypatch.setattr(d, "codeberg_get", lambda url: Resp(200, cb_payload))
+    monkeypatch.setattr(d, "github_get", gh)
+
+    assert get_latest_zip_asset("Lyall/Fix")["url"] == "https://codeberg.org/Lyall/Fix.zip"
+    assert calls["github"] == 0  # codeberg hit means no github call
 
 
 def _zip_blob(names):
