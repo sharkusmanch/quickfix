@@ -755,14 +755,14 @@
         "steam_appid": 881020
       }
     ],
-    "last_updated": "2026-07-19T16:11:48+02:00",
+    "last_updated": "2026-07-30T16:31:02+02:00",
     "loader": "ual",
     "zip_layout": "pathed",
     "wine_dll_override": "winmm",
-    "download_url": "https://codeberg.org/Lyall/GBFRelinkFix/releases/download/1.1.3/GBFRelinkFix_1.1.3.zip",
-    "sha256": "6128e562dc80d9ebeb5133191243de528ef2140c5add3ac85ecc5b893d10c6d5",
-    "size": 794983,
-    "derived_release": "1.1.3"
+    "download_url": "https://codeberg.org/Lyall/GBFRelinkFix/releases/download/1.1.4/GBFRelinkFix_1.1.4.zip",
+    "sha256": "b53d11a75fafcc4945a10dc2117a674514a8e5ab9df77deb3ad494869e94eb76",
+    "size": 790664,
+    "derived_release": "1.1.4"
   },
   "GoTFix": {
     "repo": "Lyall/GoTFix",
@@ -887,10 +887,10 @@
     ],
     "loader": "ual",
     "zip_layout": "pathed",
-    "download_url": "https://github.com/ShizCalev/MGSHDFix/releases/download/4.0.0/MGSHDFix_4.0.0.zip",
-    "sha256": "52c32791a8bfa79d27611cdbf27888e7b9ceb818edc118ac8579ae1c649519be",
-    "size": 10002698,
-    "derived_release": "4.0.0"
+    "download_url": "https://github.com/ShizCalev/MGSHDFix/releases/download/4.0.2/MGSHDFix_4.0.2.zip",
+    "sha256": "a2a2584a7d53b00177a810cfbf5a94caa871715e3c4ef9607d3953b951bdb15c",
+    "size": 10007438,
+    "derived_release": "4.0.2"
   },
   "Octopath2Fix": {
     "repo": "Lyall/Octopath2Fix",
@@ -1931,14 +1931,14 @@
         "install_subdir": "LEGOBatmanLotDK/Binaries/Win64"
       }
     ],
-    "last_updated": "2026-07-17T18:07:18+02:00",
+    "last_updated": "2026-07-26T17:47:52+02:00",
     "loader": "ual",
     "zip_layout": "flat",
     "wine_dll_override": "dsound",
-    "download_url": "https://codeberg.org/Lyall/LEGOBatmanLotDKFix/releases/download/0.0.2/LEGOBatmanLotDKFix_0.0.2.zip",
-    "sha256": "d2d9af866e8a94cb0d94ddfde74468f57b1a63a57cb82956c8a77a55ed19b920",
-    "size": 891277,
-    "derived_release": "0.0.2"
+    "download_url": "https://codeberg.org/Lyall/LEGOBatmanLotDKFix/releases/download/0.0.3/LEGOBatmanLotDKFix_0.0.3.zip",
+    "sha256": "b074e471ed2aa487ebcc6c4a8883a676188c636605ce45f3eaf3d47db607a85f",
+    "size": 890881,
+    "derived_release": "0.0.3"
   },
   "NoSleepForKanameDateFix": {
     "repo": "Lyall/NoSleepForKanameDateFix",
@@ -1978,5 +1978,43 @@
     "sha256": "c308975e1fd4ec5ba5d03f0236c1d791081fd3348535a3f7c5fa90e8b44f902d",
     "size": 776894,
     "derived_release": "0.0.1"
+  },
+  "BinaryDomainFix": {
+    "repo": "Lyall/BinaryDomainFix",
+    "config_files": [
+      "BinaryDomainFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 203750
+      }
+    ],
+    "last_updated": "2026-07-30T16:36:55+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dinput8",
+    "download_url": "https://codeberg.org/Lyall/BinaryDomainFix/releases/download/0.0.2/BinaryDomainFix_0.0.2.zip",
+    "sha256": "082437c0f0a3c5c7e90e595445b16e98f3feb8581b66da9f3449de3ba3551ce3",
+    "size": 1340088,
+    "derived_release": "0.0.2"
+  },
+  "BeastOfReincarnationFix": {
+    "repo": "Lyall/BeastOfReincarnationFix",
+    "config_files": [
+      "BeastOfReincarnationFix.ini"
+    ],
+    "games": [
+      {
+        "steam_appid": 2001760
+      }
+    ],
+    "last_updated": "2026-08-06T19:52:05+02:00",
+    "loader": "ual",
+    "zip_layout": "flat",
+    "wine_dll_override": "dsound",
+    "download_url": "https://codeberg.org/Lyall/BeastOfReincarnationFix/releases/download/0.0.4/BeastOfReincarnationFix_0.0.4.zip",
+    "sha256": "9251a60896a94fa959a7229902242992b018f0d0ec998d69b02ca04583b715f7",
+    "size": 785500,
+    "derived_release": "0.0.4"
   }
 }
