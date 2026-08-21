@@ -979,14 +979,14 @@
         "install_subdir": "."
       }
     ],
-    "last_updated": "2025-06-08T21:38:16+02:00",
+    "last_updated": "2026-08-21T00:44:26+02:00",
     "loader": "ual",
-    "zip_layout": "flat",
+    "zip_layout": "pathed",
     "wine_dll_override": "dinput8",
-    "download_url": "https://codeberg.org/Lyall/P5StrikersFix/releases/download/1.0.1/P5StrikersFix_1.0.1.zip",
-    "sha256": "d7cd807fb8c76ea0d3dc9f8d3fd0187e82674699871ce6a704a8d5081979c259",
-    "size": 738097,
-    "derived_release": "1.0.1"
+    "download_url": "https://codeberg.org/Lyall/P5StrikersFix/releases/download/1.0.2/P5StrikersFix_1.0.2.zip",
+    "sha256": "a7a5f48157f87c4e1dace0929c9758be5942a0fc19d85907519619c892300aad",
+    "size": 892523,
+    "derived_release": "1.0.2"
   },
   "RE5Fix": {
     "repo": "Lyall/RE5Fix",
