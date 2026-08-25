@@ -1753,14 +1753,14 @@
         "install_subdir": "."
       }
     ],
-    "last_updated": "2026-03-11T15:32:36+01:00",
+    "last_updated": "2026-08-25T12:24:00+02:00",
     "loader": "ual",
     "zip_layout": "flat",
     "wine_dll_override": "dinput8",
-    "download_url": "https://codeberg.org/Lyall/Nioh3Fix/releases/download/0.0.5/Nioh3Fix_0.0.5.zip",
-    "sha256": "2cdaa96d6084a74d0c1c76fb5b7e332a7b2130b67e69c5ec947ff178e98df05f",
-    "size": 874346,
-    "derived_release": "0.0.5"
+    "download_url": "https://codeberg.org/Lyall/Nioh3Fix/releases/download/0.0.6/Nioh3Fix_0.0.6.zip",
+    "sha256": "f1ff24cc71351cd82bae9e24ed36795c9b9947552260afd0e0982e65dbf762f4",
+    "size": 891877,
+    "derived_release": "0.0.6"
   },
   "FutureSoldierFix": {
     "repo": "Lyall/FutureSoldierFix",
