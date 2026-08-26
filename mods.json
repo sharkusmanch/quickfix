@@ -2008,13 +2008,13 @@
         "steam_appid": 2001760
       }
     ],
-    "last_updated": "2026-08-10T10:09:38+02:00",
+    "last_updated": "2026-08-25T23:00:26+02:00",
     "loader": "ual",
     "zip_layout": "flat",
     "wine_dll_override": "dsound",
-    "download_url": "https://codeberg.org/Lyall/BeastOfReincarnationFix/releases/download/0.0.4/BeastOfReincarnationFix_0.0.4.zip",
-    "sha256": "9251a60896a94fa959a7229902242992b018f0d0ec998d69b02ca04583b715f7",
-    "size": 785500,
-    "derived_release": "0.0.4"
+    "download_url": "https://codeberg.org/Lyall/BeastOfReincarnationFix/releases/download/0.0.5/BeastOfReincarnationFix_0.0.5.zip",
+    "sha256": "e737d077391ad7467665a31262164db6bb33d28305a93a6aa2143b83bd25a384",
+    "size": 783148,
+    "derived_release": "0.0.5"
   }
 }
