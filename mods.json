@@ -887,10 +887,10 @@
     ],
     "loader": "ual",
     "zip_layout": "pathed",
-    "download_url": "https://github.com/ShizCalev/MGSHDFix/releases/download/4.0.2/MGSHDFix_4.0.2.zip",
-    "sha256": "a2a2584a7d53b00177a810cfbf5a94caa871715e3c4ef9607d3953b951bdb15c",
-    "size": 10007438,
-    "derived_release": "4.0.2"
+    "download_url": "https://github.com/ShizCalev/MGSHDFix/releases/download/4.1.0/MGSHDFix_4.1.0.zip",
+    "sha256": "413171222e1292092cf879508917a19e0bcac03f34993f31b521ce7b2e4b3523",
+    "size": 10183473,
+    "derived_release": "4.1.0"
   },
   "Octopath2Fix": {
     "repo": "Lyall/Octopath2Fix",
@@ -2008,13 +2008,13 @@
         "steam_appid": 2001760
       }
     ],
-    "last_updated": "2026-08-25T23:00:26+02:00",
+    "last_updated": "2026-08-26T08:23:14+02:00",
     "loader": "ual",
     "zip_layout": "flat",
     "wine_dll_override": "dsound",
-    "download_url": "https://codeberg.org/Lyall/BeastOfReincarnationFix/releases/download/0.0.5/BeastOfReincarnationFix_0.0.5.zip",
-    "sha256": "e737d077391ad7467665a31262164db6bb33d28305a93a6aa2143b83bd25a384",
-    "size": 783148,
-    "derived_release": "0.0.5"
+    "download_url": "https://codeberg.org/Lyall/BeastOfReincarnationFix/releases/download/0.0.6/BeastOfReincarnationFix_0.0.6.zip",
+    "sha256": "0c84d89014864d5e8b106a82ab5d702d4deb44f8eaa548d446d4fdebb9315cc2",
+    "size": 783140,
+    "derived_release": "0.0.6"
   }
 }
