@@ -887,10 +887,10 @@
     ],
     "loader": "ual",
     "zip_layout": "pathed",
-    "download_url": "https://github.com/ShizCalev/MGSHDFix/releases/download/4.1.0/MGSHDFix_4.1.0.zip",
-    "sha256": "413171222e1292092cf879508917a19e0bcac03f34993f31b521ce7b2e4b3523",
-    "size": 10183473,
-    "derived_release": "4.1.0"
+    "download_url": "https://github.com/ShizCalev/MGSHDFix/releases/download/4.1.1/MGSHDFix_4.1.1.zip",
+    "sha256": "480e2a13e6e98a17cbe7ce6c3c63439f86159ae705d10cd277ec0e7f4b2f551e",
+    "size": 10183646,
+    "derived_release": "4.1.1"
   },
   "Octopath2Fix": {
     "repo": "Lyall/Octopath2Fix",
