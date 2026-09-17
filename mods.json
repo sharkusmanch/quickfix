@@ -1931,14 +1931,14 @@
         "install_subdir": "LEGOBatmanLotDK/Binaries/Win64"
       }
     ],
-    "last_updated": "2026-07-26T17:47:52+02:00",
+    "last_updated": "2026-09-17T18:17:42+02:00",
     "loader": "ual",
     "zip_layout": "flat",
     "wine_dll_override": "dsound",
-    "download_url": "https://codeberg.org/Lyall/LEGOBatmanLotDKFix/releases/download/0.0.3/LEGOBatmanLotDKFix_0.0.3.zip",
-    "sha256": "b074e471ed2aa487ebcc6c4a8883a676188c636605ce45f3eaf3d47db607a85f",
-    "size": 890881,
-    "derived_release": "0.0.3"
+    "download_url": "https://codeberg.org/Lyall/LEGOBatmanLotDKFix/releases/download/0.0.4/LEGOBatmanLotDKFix_0.0.4.zip",
+    "sha256": "50be68f90711e981a1b948e6b39e97f702874370ead245598ef8aee7fa96709c",
+    "size": 885562,
+    "derived_release": "0.0.4"
   },
   "NoSleepForKanameDateFix": {
     "repo": "Lyall/NoSleepForKanameDateFix",
